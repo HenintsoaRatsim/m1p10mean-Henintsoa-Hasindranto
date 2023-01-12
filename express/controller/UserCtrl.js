@@ -5,11 +5,11 @@ const {
 } = require("mongodb");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const SECRET_KEY = "NOTESAPI";
+const SECRET_KEY = "NOTESAPI";//cle de securite ze tina atao fa tsy votery io NOTES... io
 
 const AjoutUser = async (req, res) => {
     try {
-        let user = new User(req.body.nom, req.body.prenom, req.body.email, req.body.mdp);
+        let user = new User(req.body.nom, req.body.prenom, req.body.mail, req.body.mdp);
         let result = await connect.db().collection("user").insertOne(user); //rehefa promes de asina await
 
         res.status(200).json(result);
@@ -63,7 +63,7 @@ const updateUser = async (req, res) => {
         let id = new ObjectId(req.params.id);
         let Nouv_nom = req.body.nom;
         let Nouv_prenom = req.body.prenom;
-        let Nouv_email = req.body.email;
+        let Nouv_mail = req.body.mail;
         let Nouv_mdp = req.body.mpd;
 
         let result = await connect.db().collection("user").updateOne({
@@ -72,7 +72,7 @@ const updateUser = async (req, res) => {
             $set: {
                 nom: Nouv_nom,
                 prenom: Nouv_prenom,
-                email: Nouv_email,
+                mail: Nouv_mail,
                 mdp: Nouv_mdp
             }
         })
@@ -112,7 +112,6 @@ const Inscription = async (req, res) => {
         const existClient = await  User.findOne({
             mail: req.body.mail
         });
-        console.log(existClient);
         if (existClient) {
             return res.status(400).json({
                 message: "address e-mail déjà utilisé"
@@ -125,14 +124,14 @@ const Inscription = async (req, res) => {
             prenom: req.body.prenom,
             mail: req.body.mail,
             mdp: hasshedPassord,
-            contact: contact
+            contact: contact,
+            role: role
         }).save();
         const token = jwt.sign({
             mail: u.mail,
             id: u.id
         }, SECRET_KEY);
         res.status(201).json({
-            user: u,
             token
         })
     } catch (error) {
@@ -144,14 +143,13 @@ const Inscription = async (req, res) => {
 }
 const Login = async (req, res) => {
     const {
-        email,
+        mail,
         mdp
     } = req.body;
     try {
-        const existClient = await connect.db().collection("user").findOne({
-            email: email
+        const existClient = await  User.findOne({
+            mail: req.body.mail
         });
-        console.log(email);
         if (!existClient) {
             return res.status(404).json({
                 message: "User introuvable"
@@ -160,21 +158,20 @@ const Login = async (req, res) => {
         const verifMdp = await bcrypt.compare(mdp, existClient.mdp)
         if (!verifMdp) {
             return res.status(400).json({
-                msg: "erreur lors de la connexion "
+                msg: "erreur veilliez verifier vos information de login"
             })
         }
         const token = jwt.sign({
-            email: existClient.email,
+            mail: existClient.mail,
             id: existClient._id
         }, SECRET_KEY);
         res.status(201).json({
-            user: existClient,
             token
         })
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            msg: "Erreur  connexion"
+            msg: "Erreur dans votre code de connexion"
         });
     }
 }

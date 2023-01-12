@@ -16,7 +16,7 @@ router.route("/updatuser/:id").put(updateUser);
 
 router.route("/deleteuser/:id").delete(deletUser);
 
-router.route("/login").get(Login);
+router.route("/login").post(Login);
 router.route("/logout").post(Logout);
 router.route("/inscription").post(Inscription);
 

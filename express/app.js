@@ -9,6 +9,7 @@ const fiche_route = require("./routes/fiche_route");
 const {connecter} = require("./db/connect")
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const auth = require('./middleware/auth');
 
 var app = express();
 
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 require("./db/mongooseconnect");
 
+// app.use(auth);
 app.use("/api/user",client_route);
 app.use("/api/depot",fiche_route);
 
