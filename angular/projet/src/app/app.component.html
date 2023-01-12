@@ -1,3 +1,43 @@
-<h1>liste client de express</h1>
 
-<router-outlet></router-outlet>
+<div class="preloader">
+  <div class="lds-ripple">
+      <div class="lds-pos"></div>
+      <div class="lds-pos"></div>
+  </div>
+</div>
+
+<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+  data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+
+  <header class="topbar" data-navbarbg="skin5">
+      <app-header></app-header>
+  </header>
+  
+  <aside class="left-sidebar" data-sidebarbg="skin6">
+      
+      <div class="scroll-sidebar">
+          
+          <app-sidebar></app-sidebar>
+          
+      </div>
+      
+  </aside>
+  
+  <div class="page-wrapper">
+     
+      <div class="container-fluid">
+          
+          <router-outlet></router-outlet>
+
+      </div>
+     
+      <app-footer></app-footer>
+      
+  </div>
+  
+</div>
+
+
+
+
+ <!-- <app-logout></app-logout> -->
