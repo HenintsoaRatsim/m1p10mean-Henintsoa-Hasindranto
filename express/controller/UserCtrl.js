@@ -1,6 +1,4 @@
-const {
-    User
-} = require("../models/user")
+const User = require("../models/user")
 const connect = require("../db/connect");
 const {
     ObjectId
@@ -23,7 +21,8 @@ const AjoutUser = async (req, res) => {
 
 const getAllUser = async (req, res) => {
     try {
-        let cursor = connect.db().collection("user").find();
+        let cursor = User.find();
+        // let cursor = connect.db().collection("user").find();
         let result = await cursor.toArray();
         if (result.length > 0) {
             res.status(200).json(result)
@@ -104,32 +103,38 @@ const Inscription = async (req, res) => {
     const {
         nom,
         prenom,
-        email,
-        mdp
+        mail,
+        mdp,
+        contact,
+        role
     } = req.body;
     try {
-        const existClient = await connect.db().collection("user").findOne({
-            email: email
+        const existClient = await  User.findOne({
+            mail: req.body.mail
         });
+        console.log(existClient);
         if (existClient) {
             return res.status(400).json({
-                message: "email déjà utilisé"
+                message: "address e-mail déjà utilisé"
             });
         }
         const hasshedPassord = await bcrypt.hash(mdp, 10);
-        let user = new User(req.body.nom, req.body.prenom, req.body.email, hasshedPassord);
-        let result = await connect.db().collection("user").insertOne(user);
-
+        // console.log(req.body);
+        let u = await new User({
+            nom: req.body.nom,
+            prenom: req.body.prenom,
+            mail: req.body.mail,
+            mdp: hasshedPassord,
+            contact: contact
+        }).save();
         const token = jwt.sign({
-            email: result.email,
-            id: result._id
+            mail: u.mail,
+            id: u.id
         }, SECRET_KEY);
         res.status(201).json({
-            user: user,
+            user: u,
             token
         })
-
-
     } catch (error) {
         console.log(error);
         res.status(500).json({
@@ -152,9 +157,11 @@ const Login = async (req, res) => {
                 message: "User introuvable"
             });
         }
-        const verifMdp = await bcrypt.compare(mdp,existClient.mdp)
-        if(!verifMdp){
-            return res.status(400).json({msg :"erreur lors de la connexion "})
+        const verifMdp = await bcrypt.compare(mdp, existClient.mdp)
+        if (!verifMdp) {
+            return res.status(400).json({
+                msg: "erreur lors de la connexion "
+            })
         }
         const token = jwt.sign({
             email: existClient.email,

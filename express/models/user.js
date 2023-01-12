@@ -1,11 +1,33 @@
-class User{
-    constructor(nom,prenom,email,mdp,etat){
-        this.nom=nom;
-        this.prenom=prenom;
-        this.email =email;
-        this.mdp =mdp;
-        this.etat =0;//client 1,
-    }
-}
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const ObjectId = require("mongodb").ObjectId;
 
-module.exports = {User};
+const UserSchema = new Schema({
+    nom: {
+        type: String,
+        required: true
+    },
+    prenom: {
+        type: String,
+        required: true
+    },
+    mail: {
+        type: String,
+        required: true
+    },
+    mdp: {
+        type: String,
+        required: true
+    },
+    contact: {
+        type: String,
+        required: true
+    },
+    role: {
+        type: ObjectId,
+        ref: "Role",
+        required: true
+    }
+});
+
+module.exports = mongoose.model("User", UserSchema);
