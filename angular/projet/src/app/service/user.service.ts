@@ -16,16 +16,16 @@ export class UserService {
   	return this.httpClient.get(url);
   }
 
-  viewUser(id){
+  // viewUser(id){
 
-  }
+  // }
 
-  editUser(id, userObj){
+  // editUser(id, userObj){
 
-  }
+  // }
 
-  delete_User(id){
+  // delete_User(id){
 
-  }
+  // }
 
 }
