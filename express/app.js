@@ -4,7 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 // const MongoClient = require('mongodb').MongoClient
-const client_route = require("./routes/client_route");
+const client_route = require("./routes/user_route");
+const fiche_route = require("./routes/fiche_route");
 const {connecter} = require("./db/connect")
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -18,49 +19,18 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+require("./db/mongooseconnect");
 
-app.use("/api/client",client_route);
+app.use("/api/user",client_route);
+app.use("/api/depot",fiche_route);
 
 connecter("mongodb+srv://henintsoa:wi0VByNKAQxLq3YF@cluster0.25yd0bh.mongodb.net/?retryWrites=true&w=majority", (erreur) => {
   if (erreur) {
     console.log("erreur lors de la connexion avec la base de données");
+    console.log(erreur);
     process.exit(-1)
   } else {
     console.log("Connexion avec la base de données étableie");
-    // --------------------------------------------------------------
-    // app.set('views', path.join(__dirname, 'views'));
-
-
-
-    // app.use('/', indexRouter);
-    // app.use('/users', usersRouter);
-
-
-
-
-
-
-
-
-
-
-
-    // // catch 404 and forward to error handler
-    // app.use(function (req, res, next) {
-    //   next(createError(404));
-    // });
-
-    // // error handler
-    // app.use(function (err, req, res, next) {
-    //   // set locals, only providing error in development
-    //   res.locals.message = err.message;
-    //   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-    //   // render the error page
-    //   res.status(err.status || 500);
-    //   res.render('error');
-    // });
-
   }
 })
 

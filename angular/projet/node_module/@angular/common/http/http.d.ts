@@ -4021,3 +4021,5 @@ export declare class ɵHttpInterceptingHandler implements HttpHandler {
 }
 
 export { }
+
+//# sourceMappingURL=http.d.ts.map
