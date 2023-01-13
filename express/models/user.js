@@ -27,7 +27,21 @@ const UserSchema = new Schema({
         type: ObjectId,
         ref: "Role",
         required: true
-    }
+    },
+    voiture:[{
+        matricule: {
+            type: String,
+            required: true
+        },
+        marque: {
+            type: String,
+            required: true
+        },
+        type: {
+            type: String,
+            required: true
+        }
+    }]
 });
 
 module.exports = mongoose.model("User", UserSchema);
