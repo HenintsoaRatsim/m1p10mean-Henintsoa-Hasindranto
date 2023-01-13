@@ -8,7 +8,8 @@ import {UserComponent} from './auth/user/user.component';
 const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: 'logout', component: LogoutComponent },
-	{ path: 'user', component: UserComponent }
+	{ path: 'user', component: UserComponent },
+	{ path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) }
 ];
 
 @NgModule({
