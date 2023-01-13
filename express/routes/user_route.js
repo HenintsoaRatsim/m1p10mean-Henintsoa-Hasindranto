@@ -1,5 +1,5 @@
 const express = require("express");
-const {  Login, Logout, Inscription, AjoutUser, getAllUser, getUser, updateUser, deletUser } = require("../controller/UserCtrl");
+const {  Login, Logout, Inscription, AjoutUser, getAllUser, getUser, updateUser, deletUser } = require("../Service/User_Service");
 var router = express.Router();
 // rehefa find de atao tsika get 
 // rehefa insertion de atao tika post
