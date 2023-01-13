@@ -3,7 +3,7 @@ export const environment = {
 	BASE_URL: 'http://localhost:3000',
 	USER_BASE_URL: 'http://localhost:3000/api/user/',
 	USER: {
-		getalluser: 'getalluser',
+		getAllUser: 'getalluser',
 		getUser: 'view',
 		updateUser: 'update',
 		deletUser: 'delete'

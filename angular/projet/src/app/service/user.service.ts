@@ -12,7 +12,7 @@ export class UserService {
   // mmethods to communicate with our backend
   
   get_All_User(){
-  	let url = environment.USER_BASE_URL+environment.USER.getalluser; 
+  	let url = environment.USER_BASE_URL+environment.USER.getAllUser; 
   	return this.httpClient.get(url);
   }
 
