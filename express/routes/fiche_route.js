@@ -1,7 +1,7 @@
 const express = require("express");
-const { depot } = require("../Service/Fiche_Service");
+const { depotvoiture } = require("../Service/Fiche_Service");
 var router = express.Router();
 
-// router.route("/test").post(depot);
+router.route("/depotvoiture").post(depotvoiture);
 
 module.exports = router;

@@ -5,6 +5,7 @@ const {
 } = require("mongodb");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Role = require("../models/Role");
 const SECRET_KEY = "NOTESAPI";//cle de securite ze tina atao fa tsy votery io NOTES... io
 
 const AjoutUser = async (req, res) => {
@@ -22,18 +23,6 @@ const AjoutUser = async (req, res) => {
 const getAllUser = async (req, res) => {
     try {
         User.find({}).then((result)=>sendResult(res,result));
-        // let cursor = await  User.find();
-        // let cursor = connect.db().collection("User").find();
-        // // let result = await cursor.toArray();
-        // // console.log(result);
-        // let result = await cursor.toArray();
-        // if (result.length > 0) {
-        //     res.status(200).json(result)
-        // } else {
-        //     res.status(204).json({
-        //         msg: "Aucun utilisateur trouvé"
-        //     }) // 204 midika fa recu le requete fa vide ny valiny
-        // }
     } catch (error) {
         console.log(error);
         res.status(500).json(error);
@@ -167,13 +156,16 @@ const Login = async (req, res) => {
                 msg: "erreur veilliez verifier vos information de login"
             })
         }
+        let idRole = new ObjectId(existClient.role);
+        let role = await Role.findById(idRole).exec()
         const token = jwt.sign({
             mail: existClient.mail,
             id: existClient._id
         }, SECRET_KEY);
         res.status(201).json({
-            // token
-            existClient
+            token,
+            existClient,
+            role
         })
     } catch (error) {
         console.log(error);

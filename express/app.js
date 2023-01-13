@@ -23,7 +23,7 @@ require("./db/mongooseconnect");
 
 // app.use(auth);
 app.use("/api/user",client_route);
-app.use("/api/depot",fiche_route);
+app.use("/api/garage",fiche_route);
 
 connecter("mongodb+srv://henintsoa:wi0VByNKAQxLq3YF@cluster0.25yd0bh.mongodb.net/?retryWrites=true&w=majority", (erreur) => {
   if (erreur) {
