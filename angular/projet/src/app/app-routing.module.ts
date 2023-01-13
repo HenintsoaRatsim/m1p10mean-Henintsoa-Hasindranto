@@ -6,6 +6,7 @@ import {UserComponent} from './auth/user/user.component';
 
 
 const routes: Routes = [
+	{ path: '',   redirectTo: '/liste', pathMatch: 'full' },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'logout', component: LogoutComponent },
 	{ path: 'user', component: UserComponent },

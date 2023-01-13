@@ -23,7 +23,7 @@ export class ListeUserComponent implements OnInit {
     .subscribe(
       userResult => {
         this.userResult = userResult;
-        console.log(this.userList);
+        console.log(this.userResult);
     });
   }
 
