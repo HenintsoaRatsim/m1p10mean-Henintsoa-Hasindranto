@@ -1,4 +1,4 @@
-const User = require("../models/user")
+const User = require("../models/User")
 const connect = require("../db/connect");
 const {
     ObjectId
@@ -21,20 +21,26 @@ const AjoutUser = async (req, res) => {
 
 const getAllUser = async (req, res) => {
     try {
-        let cursor = User.find();
-        // let cursor = connect.db().collection("user").find();
-        let result = await cursor.toArray();
-        if (result.length > 0) {
-            res.status(200).json(result)
-        } else {
-            res.status(204).json({
-                msg: "Aucun utilisateur trouvé"
-            }) // 204 midika fa recu le requete fa vide ny valiny
-        }
+        User.find({}).then((result)=>sendResult(res,result));
+        // let cursor = await  User.find();
+        // let cursor = connect.db().collection("User").find();
+        // // let result = await cursor.toArray();
+        // // console.log(result);
+        // let result = await cursor.toArray();
+        // if (result.length > 0) {
+        //     res.status(200).json(result)
+        // } else {
+        //     res.status(204).json({
+        //         msg: "Aucun utilisateur trouvé"
+        //     }) // 204 midika fa recu le requete fa vide ny valiny
+        // }
     } catch (error) {
         console.log(error);
         res.status(500).json(error);
     }
+}
+function sendResult(res,result){
+    res.status(200).json({user:result,token:res.token});
 }
 
 const getUser = async (req, res) => {
@@ -166,7 +172,8 @@ const Login = async (req, res) => {
             id: existClient._id
         }, SECRET_KEY);
         res.status(201).json({
-            token
+            // token
+            existClient
         })
     } catch (error) {
         console.log(error);

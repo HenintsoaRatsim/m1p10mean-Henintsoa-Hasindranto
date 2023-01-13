@@ -3,13 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-// const MongoClient = require('mongodb').MongoClient
 const client_route = require("./routes/user_route");
 const fiche_route = require("./routes/fiche_route");
 const {connecter} = require("./db/connect")
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-const auth = require('./middleware/auth');
+// const auth = require('./middleware/auth');
 
 var app = express();
 
