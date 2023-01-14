@@ -7,45 +7,30 @@ const ficheShema = new Schema({
         type: Date,
         required: true
     },
-    idvoiture: {
+    voiture: {
         type: ObjectId,
-        ref: "voiture",
+        ref: "Voiture",
         required: true
     },
-    iduser: {
+    user: {
         type: ObjectId,
         ref: "User",
         required: true
     },
     etat: {
         type: Number,
+        /*
+        0 : vo vita depot 
+        1 : en reparation 
+        2 : vita reparation
+        3 : historique
+        */
         required: true
     },
     reparations: [{
-        intitule: {
-            type: String,
-            required: true
-        },
-        datedebut: {
-            type: Date,
-            required: true
-        },
-        datefin: {
-            type: Date,
-            required: true
-        },
-        avancement: {
-            type: Number,
-            required: true
-        },
-        prix: {
-            type: Number,
-            required: true
-        },
-        description: {
-            type: String,
-            required: false
-        }
+        type: ObjectId,
+        ref: "Reparation",
+        required: true
     }],
     etatpayement: {
         type: Number,

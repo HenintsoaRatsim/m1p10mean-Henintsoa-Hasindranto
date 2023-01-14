@@ -164,7 +164,9 @@ const Login = async (req, res) => {
         }, SECRET_KEY);
         res.status(201).json({
             token,
-            existClient,
+            nom:existClient.nom,
+            prenom:existClient.prenom,
+            mail:existClient.mail,
             role
         })
     } catch (error) {

@@ -28,19 +28,11 @@ const UserSchema = new Schema({
         ref: "Role",
         required: true
     },
-    voiture:[{
-        matricule: {
-            type: String,
-            required: true
-        },
-        marque: {
-            type: String,
-            required: true
-        },
-        type: {
-            type: String,
-            required: true
-        }
+    voiture: [{
+        type: ObjectId,
+        ref: "Voiture",
+        required: true
+
     }]
 });
 
