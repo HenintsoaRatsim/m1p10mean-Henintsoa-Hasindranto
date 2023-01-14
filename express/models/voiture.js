@@ -16,7 +16,13 @@ const VoitureSchema = new Schema({
     type: {
         type: String,
         required: true
-    }
+    },
+    user: {
+        type: ObjectId,
+        ref: "User",
+        required: true
+    },
+    
 });
 
 

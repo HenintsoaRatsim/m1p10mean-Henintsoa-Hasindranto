@@ -1,0 +1,37 @@
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const ObjectId = require("mongodb").ObjectId;
+
+const ReparationShema = new Schema({
+    intitule: {
+        type: String,
+        required: true
+    },
+    datedebut: {
+        type: Date,
+        required: true
+    },
+    datefin: {
+        type: Date,
+        required: false
+    },
+    avancement: {
+        type: Number,
+        required: true
+    },
+    prix: {
+        type: Number,
+        required: true
+    },
+    fiche: {
+        type: ObjectId,
+        ref: "Fiche",
+        required: true
+    },
+    description: {
+        type: String,
+        required: false
+    }
+});
+
+module.exports = mongoose.model("Reparation", ReparationShema);
