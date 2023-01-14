@@ -6,8 +6,9 @@ var logger = require('morgan');
 var cors =require('cors');
 const client_route = require("./routes/user_route");
 const fiche_route = require("./routes/fiche_route");
-const {connecter} = require("./db/connect")
-// const auth = require('./middleware/auth');
+const {connecter} = require("./db/connect");
+const { Login } = require('./Service/User_Service');
+const auth = require('./middleware/auth');
 
 var app = express();
 
@@ -21,7 +22,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 require("./db/mongooseconnect");
 
-// app.use(auth);
+app.use("/api",auth);
+app.use("/login",Login);
 app.use("/api/user",client_route);
 app.use("/api/garage",fiche_route);
 
