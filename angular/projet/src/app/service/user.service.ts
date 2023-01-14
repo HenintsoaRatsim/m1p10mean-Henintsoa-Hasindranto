@@ -29,5 +29,9 @@ export class UserService {
 
   // }
 
+  login_user(form: any){
+    let url = environment.BASE_URL+'/login'; 
+  	return this.httpClient.post(url, form);
+  }
 
 }
