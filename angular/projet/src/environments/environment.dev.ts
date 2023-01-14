@@ -6,7 +6,8 @@ export const environment = {
 		getAllUser: 'getalluser',
 		getUser: 'view',
 		updateUser: 'update',
-		deletUser: 'delete'
+		deleteUser: 'delete',
+		login: 'login'
 	} 
 
 }
