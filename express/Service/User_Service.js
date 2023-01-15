@@ -105,7 +105,7 @@ const Inscription = async (req, res) => {
     console.log(req.body)
     try {
         const existClient = await  User.findOne({
-            mail: req.body.mail
+            mail: mail
         });
         if (existClient) {
             return res.status(400).json({
@@ -115,9 +115,9 @@ const Inscription = async (req, res) => {
         const hasshedPassord = await bcrypt.hash(mdp, 10);
         // console.log(req.body);
         let u = await new User({
-            nom: req.body.nom,
-            prenom: req.body.prenom,
-            mail: req.body.mail,
+            nom: nom,
+            prenom: prenom,
+            mail: mail,
             mdp: hasshedPassord,
             contact: contact,
             role: new ObjectId('63c024436ebffd774a0fcb04')
