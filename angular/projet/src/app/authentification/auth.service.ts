@@ -8,8 +8,8 @@ import { tap } from 'rxjs/operators';
 })
 export class AuthService {
 
-  private _isLoggedIn$= new BehaviorSubject<boolean>(false);
-  isLoggedIn$ = this._isLoggedIn$.asObservable();
+  // private _isLoggedIn$= new BehaviorSubject<boolean>(false);
+  // isLoggedIn$ = this._isLoggedIn$.asObservable();
 
   constructor(private userService: UserService) { }
 
@@ -17,7 +17,7 @@ export class AuthService {
     return this.userService.login_user(form).pipe(
       tap((response: any) => {
         localStorage.setItem('userToken', response.token);
-        this._isLoggedIn$.next(true);
+        // this._isLoggedIn$.next(true);
       })
     );
   }

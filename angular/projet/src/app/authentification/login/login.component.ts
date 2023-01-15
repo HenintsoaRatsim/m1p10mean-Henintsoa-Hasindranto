@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     mdp: null
   }
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -24,17 +24,12 @@ export class LoginComponent implements OnInit {
   OnSubmit(){
     console.log('User form value is: ', this.form);
     this.authService.logUser(this.form)
-    // this.http.post('http://localhost:3000/login', this.form)
     .subscribe((response) => {
       console.log(response);
       // alert(response.message);
-      this.router.navigate(['home'], {relativeTo: this.route});
+      this.router.navigate(['home']);
       // this.navi.goToNavigation();
-    }
-      // data => console.log(data),
-      // err => console.log(err);
-      // this.router.navigate(['/liste-user']);
-    );
+    });
   }
 
 }
