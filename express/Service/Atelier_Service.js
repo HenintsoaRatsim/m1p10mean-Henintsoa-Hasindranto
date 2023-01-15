@@ -9,12 +9,12 @@ const Reparations = require("../models/Reparations");
 const getListeVoitureAReparer = async (req, res) => {
     try {
         Fiche.find({
-            etat: 1
+            etat: 0
         }).populate("voiture").populate("user").then(function (fiche) {
             if (fiche.length > 0) {
                 return sendResult(res, fiche);
             }
-            return sendErreur(res,"Pas de voiture à reparer")
+            return sendErreur(res, "Pas de voiture à reparer")
         })
     } catch (error) {
         console.log(error);
@@ -22,7 +22,7 @@ const getListeVoitureAReparer = async (req, res) => {
     }
 }
 
-const AjoutReparation = (req, res) => {
+const AjoutReparation = async (req, res) => {
     let idFiche = new ObjectId(req.body.idfiche);
     let reparation = {
         fiche: idFiche,
@@ -51,24 +51,24 @@ const AjoutReparation = (req, res) => {
     })
 }
 
-const Reparer = (req,res)=>{
+const Reparer = (req, res) => {
     let idReparation = new ObjectId(req.body.idreparation);
-    
+
 }
 
 function sendResult(res, result) {
-    res.status(200).json({
-        data: result,
-        token: res.token
+    return res.status(200).json({
+        result
     });
 }
-function sendErreur(res,message){
+
+function sendErreur(res, message) {
     res.status(404).json({
         message: message
     })
 }
 
-module.exports ={
+module.exports = {
     getListeVoitureAReparer,
     AjoutReparation,
 

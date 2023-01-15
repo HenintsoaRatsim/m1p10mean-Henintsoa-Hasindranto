@@ -6,7 +6,7 @@ const {
 const Voiture = require("../models/Voiture");
 
 const depotvoiture = (req, res) => {
-    let idUser = new ObjectId(req.body.id);
+    let idUser = new ObjectId(res.locals.user.id);
     let voiture = {
         matricule: req.body.matricule,
         marque: req.body.marque,
@@ -14,29 +14,31 @@ const depotvoiture = (req, res) => {
         user: idUser
     }
     Voiture(voiture).save().then(function (voiture) {
-        User.findById(idUser).exec().then(
+        User.findByIdAndUpdate(idUser, {
+            $addToSet: {
+                voiture: new ObjectId(voiture.id)
+            }
+        }, {
+            new: true,
+            upsert: true
+        }).exec().then(
             function (user) {
                 let idvoiture = new ObjectId(voiture.id);
-                user.voiture.push(idvoiture);
-                //Insertion et update  User apres insertion nouvelle voiture dans le json 
-                new User(user).save().then(function (user) {
-                    Fiche({
-                        datefiche: new Date(),
-                        voiture: idvoiture,
+                Fiche({
+                    datefiche: new Date(),
+                    voiture: idvoiture,
+                    user: idUser,
+                    etat: 0,
+                    etatpayement: 0
+                }).save().then(function () {
+                    Fiche.find({
                         user: idUser,
-                        etat: 0,
-                        etatpayement: 0
-                    }).save().then(function () {
-                        //liste fiche 
-                        Fiche.find({
-                            user: idUser,
-                            etat: {
-                                $lt: 2
-                            }
-                        }).populate('user').populate('voiture').then((result) => {
-                            sendResult(res, result)
-                        })
-                    });
+                        etat: {
+                            $lt: 2
+                        }
+                    }).populate('user').populate('voiture').then((result) => {
+                        sendResult(res, result)
+                    })
                 });
             }
         );
@@ -46,11 +48,11 @@ const depotvoiture = (req, res) => {
 const ListeVoitureGarage = async (req, res) => {
     try {
         Fiche.find({
-            user: new ObjectId(req.body.idUser),
+            user: new ObjectId(res.locals.user.id),
             etat: {
                 $lt: 2
             }
-        }).populate('user').populate('voiture').then(function (result) {
+        }).populate('user').populate('voiture').select().then(function (result) {
             if (result.length == 0) {
                 return res.status(404).json({
                     message: "Aucune  voiture à reparer"
@@ -64,7 +66,6 @@ const ListeVoitureGarage = async (req, res) => {
     }
 }
 
-
 function sendErreur(res, message) {
     res.status(404).json({
         message: message
@@ -73,8 +74,7 @@ function sendErreur(res, message) {
 
 function sendResult(res, data = null) {
     res.status(200).json({
-        data,
-        token: res.token
+        data
     });
 }
 

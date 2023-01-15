@@ -5,7 +5,8 @@ const ObjectId = require("mongodb").ObjectId;
 const ReparationShema = new Schema({
     intitule: {
         type: String,
-        required: true
+        required: true,
+        trim:true,
     },
     datedebut: {
         type: Date,
@@ -21,7 +22,8 @@ const ReparationShema = new Schema({
     },
     prix: {
         type: Number,
-        required: true
+        required: true,
+        trim:true,
     },
     fiche: {
         type: ObjectId,
@@ -30,7 +32,8 @@ const ReparationShema = new Schema({
     },
     description: {
         type: String,
-        required: false
+        required: false,
+        trim:true,
     }
 });
 

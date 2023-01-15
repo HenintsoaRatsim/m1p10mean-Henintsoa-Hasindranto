@@ -30,6 +30,6 @@ router.route("/login").post(Login);
 
 router.route("/logout").post(Logout);
 
-router.route("/inscription").post(Inscription);
+// router.route("/inscription").post(Inscription);
 
 module.exports = router;

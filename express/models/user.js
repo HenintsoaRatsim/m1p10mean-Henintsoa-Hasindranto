@@ -5,15 +5,18 @@ const ObjectId = require("mongodb").ObjectId;
 const UserSchema = new Schema({
     nom: {
         type: String,
-        required: true
+        required: true,
+        trim:true,
     },
     prenom: {
         type: String,
-        required: true
+        required: true,
+        trim:true,
     },
     mail: {
         type: String,
-        required: true
+        required: true,
+        trim:true,
     },
     mdp: {
         type: String,
@@ -21,7 +24,8 @@ const UserSchema = new Schema({
     },
     contact: {
         type: String,
-        required: true
+        required: true,
+        trim:true,
     },
     role: {
         type: ObjectId,
