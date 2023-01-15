@@ -4,9 +4,10 @@ export const environment = {
 	USER_BASE_URL: 'http://localhost:3000/api/user/',
 	USER: {
 		getAllUser: 'getalluser',
-		getUser: 'view',
-		updateUser: 'update',
-		deleteUser: 'delete'
+		getUser: 'getuser/:id',
+		updateUser: 'updatuser/:id',
+		deleteUser: 'deletuser/:id',
+		ajoutUser: 'inscription'
 	} 
 
 }

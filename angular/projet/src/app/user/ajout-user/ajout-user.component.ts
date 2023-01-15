@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/service/user.service';
+
 
 @Component({
   selector: 'app-ajout-user',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AjoutUserComponent implements OnInit {
 
-  constructor() { }
+
+  form: any = {
+    mail: null, 
+    mdp: null
+  }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
+  }
+
+  OnSubmit(){
+    console.log('donnee entree: ', this.form);
+    this.userService.inscrire_user(this.form);
   }
 
 }

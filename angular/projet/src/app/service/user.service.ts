@@ -34,4 +34,9 @@ export class UserService {
   	return this.httpClient.post(url, form);
   }
 
+  inscrire_user(form: any){
+    let url = environment.BASE_URL+environment.USER.ajoutUser; 
+    return this.httpClient.post(url, form);
+  }
+
 }

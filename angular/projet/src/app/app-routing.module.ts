@@ -20,12 +20,10 @@ const routes: Routes = [
 			},
 			{
 				path: 'user/liste', component: ListeUserComponent
-			},
-			{
-				path: 'ajout', component: AjoutUserComponent
 			}
 		]
 	},
+	{ path: 'inscription', component: AjoutUserComponent },
 	{ path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
 	{ path: 'navigation', loadChildren: () => import('./navigation/navigation.module').then(m => m.NavigationModule) },
 	{ path: '**', component: PageNotFoundComponent }

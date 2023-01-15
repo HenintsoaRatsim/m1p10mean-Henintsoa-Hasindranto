@@ -7,29 +7,29 @@
             <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
               <div class="card card-plain mt-8">
                 <div class="card-header pb-0 text-left bg-transparent">
-                  <h3 class="font-weight-bolder text-info text-gradient">Welcome back</h3>
-                  <p class="mb-0">Enter your email and password to sign in</p>
+                  <h3 class="font-weight-bolder text-info text-gradient">Bienvenue</h3>
+                  
                 </div>
                 <div class="card-body">
                   <form role="form" #f="ngForm" (ngSubmit)="f.form.valid && OnSubmit()" >
-                    <label>Email</label>
+                    <label>Mail</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" autocomplete="mail" placeholder="Email" aria-label="Email" aria-describedby="email-addon"  [(ngModel)]="form.mail" #email="ngModel" required>
+                      <input type="email" class="form-control" autocomplete="mail" placeholder="Votre mail" aria-label="Email" aria-describedby="email-addon"  [(ngModel)]="form.mail" #email="ngModel" required>
                     </div>
-                    <label>Password</label>
+                    <label>Mot de passe</label>
                     <div class="mb-3">
-                      <input type="password" class="form-control" autocomplete="mdp" placeholder="Password" aria-label="Password" aria-describedby="password-addon"  [(ngModel)]="form.mdp" #mdp="ngModel" required>
+                      <input type="password" class="form-control" autocomplete="mdp" placeholder="Votre mot de passe" aria-label="Password" aria-describedby="password-addon"  [(ngModel)]="form.mdp" #mdp="ngModel" required>
                     </div>
                     
                     <div class="text-center">
-                      <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</button>
+                      <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Se connecter</button>
                     </div>
                   </form>
                 </div>
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-4 text-sm mx-auto">
-                    Don't have an account?
-                    <a href="javascript:;" class="text-info text-gradient font-weight-bold">Sign up</a>
+                    Vous n'avez pas de compte ?
+                    <a href="inscription" class="text-info text-gradient font-weight-bold">S'inscrire</a>
                   </p>
                 </div>
               </div>
