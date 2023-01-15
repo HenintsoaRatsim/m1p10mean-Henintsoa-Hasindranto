@@ -101,8 +101,8 @@ const Inscription = async (req, res) => {
         mail,
         mdp,
         contact,
-        role
     } = req.body;
+    console.log(req.body)
     try {
         const existClient = await  User.findOne({
             mail: req.body.mail
@@ -120,7 +120,7 @@ const Inscription = async (req, res) => {
             mail: req.body.mail,
             mdp: hasshedPassord,
             contact: contact,
-            role: role
+            role: new ObjectId('63c024436ebffd774a0fcb04')
         }).save();
         const token = jwt.sign({
             mail: u.mail,
@@ -132,7 +132,7 @@ const Inscription = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            msg: "Erreur inscription"
+            msg: "Erreur d'inscription"
         });
     }
 }
