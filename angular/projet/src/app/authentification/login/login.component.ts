@@ -24,9 +24,12 @@ export class LoginComponent implements OnInit {
     this.authService.logInUser(this.form)
     .subscribe((response) => {
       console.log(response);
-      // alert(response.message);
-      this.router.navigate(['depot_voiture']);
-      // this.navi.goToNavigation();
+      if(response.role.intitule=='client'){
+        this.router.navigate(['Client/depot_voiture']);
+      }else{
+        this.router.navigate(['Atelier/depot_voiture']);
+      }
+    
     });
   }
 

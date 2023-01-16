@@ -12,21 +12,39 @@
                   
                 </div>
                 <div class="card-body">
-                  <form role="form">
+                  <form role="form" (ngSubmit)="OnSubmit()">
                     <div class="row">
-                        <div class="col">
-                            
-                                <input type="text" class="form-control" placeholder="Entrer le numéro de votre voiture" required>
-                              
-                        </div>
-                        <div class="col">
-                            
-                                <button type="submit" class="btn btn-info w-50 text-gradient">Valider</button>
-                              
-                        </div>
+                      <div class="col">
+                        <label>Matricule</label>
+                          <div class="mb-3">
+                              <input type="text" class="form-control" autocomplete="matricule" placeholder="Exemple: 1020 TAA" aria-label="Matricule" [(ngModel)]="form.matricule" #nom="ngModel" required>
+                          </div>
+                      </div>
+                      <div class="col">
+                        <label>Marque</label>
+                          <div class="mb-3">
+                              <input type="text" class="form-control" autocomplete="marque" placeholder="Exemple: Audi" aria-label="Marque" [(ngModel)]="form.marque" #nom="ngModel" required>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <label>Type</label>
+                          <div class="mb-3">
+                              <input type="text" class="form-control" autocomplete="type" placeholder="Exemple: Q7" aria-label="Type" [(ngModel)]="form.type" #nom="ngModel" required>
+                          </div>
+                      </div>
+                      <div class="col">
+                        
+                      </div>
+                      
                     </div>
                     
-                                        
+                  <div style="margin-top: 20px;">
+                          
+                    <button type="submit" class="btn btn-info w-100 text-gradient">Valider</button>
+                  
+                  </div>              
                     
                   </form>
                 </div>

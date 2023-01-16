@@ -9,14 +9,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './authentification/login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthInterceptorProvider } from './authentification/auth.interceptor';
-
+import { LogoutComponent } from './authentification/logout/logout.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

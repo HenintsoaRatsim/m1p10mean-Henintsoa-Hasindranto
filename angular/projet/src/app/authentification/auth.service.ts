@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'node_modules/rxjs';
 import { UserService } from '../service/user.service';
 import { tap } from 'rxjs/operators';
 
@@ -23,5 +22,9 @@ export class AuthService {
         // this._isLoggedIn$.next(true);
       })
     );
+  }
+
+  logOutUser(){
+      localStorage.removeItem(this.TOKEN_NAME);
   }
 }

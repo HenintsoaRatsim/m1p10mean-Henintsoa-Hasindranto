@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { VoitureService } from 'src/app/service/voiture.service';
 
 @Component({
   selector: 'app-ajout-voiture',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AjoutVoitureComponent implements OnInit {
 
-  constructor() { }
+  form: any = {
+    matricule: null,
+    marque: null,
+    type: null
+  }
+
+  constructor(private router: Router, private voitureService: VoitureService) { }
 
   ngOnInit(): void {
+  }
+
+  OnSubmit(){
+    console.log('donnee entree: ', this.form);
+    this.voitureService.ajout_voiture(this.form)
+    .subscribe((response) => {
+      console.log(response);
+      this.router.navigate(['Client/reparation_voiture']);
+    });
   }
 
 }
