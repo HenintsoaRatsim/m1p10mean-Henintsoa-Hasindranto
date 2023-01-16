@@ -50,11 +50,52 @@ const AjoutReparation = async (req, res) => {
         })
     })
 }
-
-const Reparer = (req, res) => {
+const AjouterAvancement = async (req, res) => {
     let idReparation = new ObjectId(req.body.idreparation);
-
+    let avancement = req.body.avancement;
+    let filter = {
+        _id: idReparation
+    };
+    let update = {
+        avancement: avancement
+    };
+    Reparations.findOneAndUpdate(filter, update, {
+        new: true,
+        upsert: true
+    }).then(function (reparation) {
+        console.log(reparation);
+        SetEtatFiche(reparation.fiche, 1);
+    })
 }
+
+// function VerifTotalReparationFini(idfiche) {
+//     let idFiche = new ObjectId(idfiche);
+//     Reparations.count({
+//         fiche: idFiche
+//     }).then(function (nbReparation) {
+//         console.log(nbReparation);
+//     })
+// }
+
+function SetEtatFiche(idfiche, setEtat) {
+    let idFiche = new ObjectId(idfiche);
+    Fiche.findById(idFiche).then(function (fiche) {
+        let etat = fiche.etat;
+        if (etat == 0) {
+            Fiche.findByIdAndUpdate({
+                _id: idFiche
+            }, {
+                etat: setEtat
+            }, {
+                new: true,
+                upsert: true
+            }).then(function (fiche) {
+                console.log(fiche);
+            })
+        }
+    })
+}
+
 
 function sendResult(res, result) {
     return res.status(200).json({
@@ -71,5 +112,5 @@ function sendErreur(res, message) {
 module.exports = {
     getListeVoitureAReparer,
     AjoutReparation,
-
+    AjouterAvancement,
 }
