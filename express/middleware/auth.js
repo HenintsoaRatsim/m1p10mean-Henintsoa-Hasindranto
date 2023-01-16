@@ -15,7 +15,8 @@ module.exports = (req,res,next)=>{
         // req.iduser = jwt.verify(token,"NOTESAPI").id;
         // req.token=token;
         // res.json({"token": token});
-        const token =req.cookies.jwt;
+        const token= req.headers.token;
+        // const token =req.cookies.jwt;
         if(token){
             jwt.verify(token,"NOTESAPI",async(err,decodedToken)=>{
                 if(err){
@@ -26,7 +27,7 @@ module.exports = (req,res,next)=>{
                 }
                 else{
                     res.cookie('jwt', token, {
-                        httpOnly: true,
+                        httpOnly: false,
                         maxAge: maxAge
                     });
                     let user = await User.findById(decodedToken.id);
