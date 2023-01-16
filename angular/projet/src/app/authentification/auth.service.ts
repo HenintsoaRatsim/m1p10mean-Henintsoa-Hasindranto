@@ -8,17 +8,15 @@ import { tap } from 'rxjs/operators';
 })
 export class AuthService {
 
-  // private _isLoggedIn$= new BehaviorSubject<boolean>(false);
-  // isLoggedIn$ = this._isLoggedIn$.asObservable();
   private readonly TOKEN_NAME= 'userToken';
 
-  get token(){
+  get token_user(){
     return localStorage.getItem(this.TOKEN_NAME);
   }
 
   constructor(private userService: UserService) { }
 
-  logUser(form: any){
+  logInUser(form: any){
     return this.userService.login_user(form).pipe(
       tap((response: any) => {
         localStorage.setItem(this.TOKEN_NAME, response.token);

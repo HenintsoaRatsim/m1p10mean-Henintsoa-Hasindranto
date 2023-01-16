@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { NavigationComponent } from 'src/app/navigation/navigation.component';
 
 @Component({
   selector: 'app-login',
@@ -23,11 +21,11 @@ export class LoginComponent implements OnInit {
 
   OnSubmit(){
     console.log('User form value is: ', this.form);
-    this.authService.logUser(this.form)
+    this.authService.logInUser(this.form)
     .subscribe((response) => {
       console.log(response);
       // alert(response.message);
-      //this.router.navigate(['user/liste']);
+      this.router.navigate(['depot_voiture']);
       // this.navi.goToNavigation();
     });
   }
