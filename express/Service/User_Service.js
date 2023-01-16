@@ -188,7 +188,7 @@ const Login = async (req, res) => {
             expiresIn: maxAge
         });
         res.cookie('jwt', token, {
-            httpOnly: true,
+            httpOnly: false,
             maxAge: maxAge
         });
         res.status(201).json({
