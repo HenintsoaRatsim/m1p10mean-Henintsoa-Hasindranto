@@ -75,16 +75,18 @@ const AjouterAvancement = async (req, res) => {
 
 
 
-function SetFini(idFiche) {
+async function SetFini(idFiche) {
     Reparations.count({
         fiche: idFiche
     }).then(function (nbReparation) {
         Reparations.count({
             avancement: 100,
             fiche: idFiche
-        }).then(function (nbFini) {
+        }).then(async function (nbFini) {
             if (nbFini == nbReparation) {
                 SetEtatFiche(idFiche, 1, 2);
+                let Fiche_= await Fiche.findById(idFiche).populate({path:'user',populate:{path:'user'}});
+                console.log(Fiche_);
                 console.log("mandefa mail")
                 SendMail("ratsimhenintsoa@gmail.com","vita reparation","vita ny reparation fiara anao")
             }

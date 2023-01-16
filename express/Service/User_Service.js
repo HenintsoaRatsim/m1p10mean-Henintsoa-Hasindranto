@@ -198,7 +198,7 @@ const Login = async (req, res) => {
             nom: existClient.nom,
             prenom: existClient.prenom,
             mail: existClient.mail,
-            toke:token,
+            token:token,
             role
         });
     } catch (error) {
