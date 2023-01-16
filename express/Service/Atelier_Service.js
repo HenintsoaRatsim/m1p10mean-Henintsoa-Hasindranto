@@ -43,10 +43,12 @@ const AjoutReparation = async (req, res) => {
             fiche.reparations.push(reparation.id);
             Fiche(fiche).save().then(function (fiche) {
                 Fiche.findOne({
-                    id: idFiche
+                    _id: idFiche
                 }).populate('voiture').populate("user").populate({
                     path: "reparations"
                 }).exec().then(function (fiche) {
+                    console.log(fiche);
+                    console.log("id reparation: "+idFiche)
                     sendResult(res, fiche);
                 })
             })
@@ -85,10 +87,10 @@ async function SetFini(idFiche) {
         }).then(async function (nbFini) {
             if (nbFini == nbReparation) {
                 SetEtatFiche(idFiche, 1, 2);
-                let Fiche_= await Fiche.findById(idFiche).populate({path:'user',populate:{path:'user'}});
+                let Fiche_= await Fiche.findById(idFiche).populate('user');
                 console.log(Fiche_);
-                console.log("mandefa mail")
-                SendMail("ratsimhenintsoa@gmail.com","vita reparation","vita ny reparation fiara anao")
+                console.log("mandefa mail any @ "+Fiche_.user.mail)
+                SendMail(Fiche_.user.mail,"Reparation terminé","Bonjour!! la reparation de votre voiture est terminé avec succès")
             }
             // else{
             //     SetEtatFiche(idFiche,1)

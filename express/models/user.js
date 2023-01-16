@@ -16,6 +16,7 @@ const UserSchema = new Schema({
     mail: {
         type: String,
         required: true,
+        lowercase:true,
         trim:true,
     },
     mdp: {
