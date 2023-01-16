@@ -25,7 +25,7 @@ import { CookieService } from 'ngx-cookie-service';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [AuthInterceptorProvider],
+  providers: [CookieService,AuthInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

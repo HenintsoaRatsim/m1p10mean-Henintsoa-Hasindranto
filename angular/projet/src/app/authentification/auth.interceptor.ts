@@ -21,8 +21,8 @@ export class AuthInterceptor implements HttpInterceptor {
     // });
     let jwtToken = request.clone({
       setHeaders: {
-        Authorization: 'bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWlsIjoiYWhhaEBnbWFpbC5jb20iLCJpZCI6IjYzYzNlZGQxMDY1YWM4OTc0NmZlZjI1ZSIsImlhdCI6MTY3Mzc4OTc5M30.3rZ67cMrJW3NO1cJP0ohaR5RgpSHjMlTFLFpHlHaKic'
-       
+        Authorization: 'bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWlsIjoiYWhhaEBnbWFpbC5jb20iLCJpZCI6IjYzYzNlZGQxMDY1YWM4OTc0NmZlZjI1ZSIsImlhdCI6MTY3Mzc4OTc5M30.3rZ67cMrJW3NO1cJP0ohaR5RgpSHjMlTFLFpHlHaKic',
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWlsIjoiYWhhaEBnbWFpbC5jb20iLCJpZCI6IjYzYzNlZGQxMDY1YWM4OTc0NmZlZjI1ZSIsImlhdCI6MTY3Mzc4OTc5M30.3rZ67cMrJW3NO1cJP0ohaR5RgpSHjMlTFLFpHlHaKic'
       }
     })
     return next.handle(jwtToken);
