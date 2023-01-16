@@ -4,6 +4,9 @@ const {
 const Fiche = require("../models/Fiche");
 
 const Reparations = require("../models/Reparations");
+const {
+    transporter, SendMail
+} = require("../models/Mail");
 
 
 const getListeVoitureAReparer = async (req, res) => {
@@ -64,28 +67,42 @@ const AjouterAvancement = async (req, res) => {
         upsert: true
     }).then(function (reparation) {
         console.log(reparation);
-        SetEtatFiche(reparation.fiche, 1);
+        let idFiche = new ObjectId(reparation.fiche);
+        SetEtatFiche(idFiche, 0, 1); // Etat en reparation
+        SetFini(idFiche)
     })
 }
 
-// function VerifTotalReparationFini(idfiche) {
-//     let idFiche = new ObjectId(idfiche);
-//     Reparations.count({
-//         fiche: idFiche
-//     }).then(function (nbReparation) {
-//         console.log(nbReparation);
-//     })
-// }
 
-function SetEtatFiche(idfiche, setEtat) {
-    let idFiche = new ObjectId(idfiche);
+
+function SetFini(idFiche) {
+    Reparations.count({
+        fiche: idFiche
+    }).then(function (nbReparation) {
+        Reparations.count({
+            avancement: 100,
+            fiche: idFiche
+        }).then(function (nbFini) {
+            if (nbFini == nbReparation) {
+                SetEtatFiche(idFiche, 1, 2);
+                console.log("mandefa mail")
+                SendMail("ratsimhenintsoa@gmail.com","vita reparation","vita ny reparation fiara anao")
+            }
+            // else{
+            //     SetEtatFiche(idFiche,1)
+            // }
+        })
+    })
+}
+
+function SetEtatFiche(idFiche, avant, nouveau) {
     Fiche.findById(idFiche).then(function (fiche) {
         let etat = fiche.etat;
-        if (etat == 0) {
+        if (etat == avant) {
             Fiche.findByIdAndUpdate({
                 _id: idFiche
             }, {
-                etat: setEtat
+                etat: nouveau
             }, {
                 new: true,
                 upsert: true
