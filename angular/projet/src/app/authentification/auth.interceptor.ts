@@ -7,7 +7,8 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
-import { HTTP_INTERCEPTORS } from 'node_module/@angular/common/http';
+import { HTTP_INTERCEPTORS } from 'node_modules/@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -20,7 +21,8 @@ export class AuthInterceptor implements HttpInterceptor {
     // });
     let jwtToken = request.clone({
       setHeaders: {
-        Authorization: 'bearer' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWlsIjoiYWhhaEBnbWFpbC5jb20iLCJpZCI6IjYzYzNlZGQxMDY1YWM4OTc0NmZlZjI1ZSIsImlhdCI6MTY3Mzc4OTc5M30.3rZ67cMrJW3NO1cJP0ohaR5RgpSHjMlTFLFpHlHaKic'
+        Authorization: 'bearer ' + 'henintsoa'
+       
       }
     })
     return next.handle(jwtToken);

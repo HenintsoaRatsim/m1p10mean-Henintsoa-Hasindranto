@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './authentification/login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthInterceptorProvider } from './authentification/auth.interceptor';
-
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
