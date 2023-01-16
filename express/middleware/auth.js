@@ -21,7 +21,7 @@ module.exports = (req,res,next)=>{
             jwt.verify(token,"NOTESAPI",async(err,decodedToken)=>{
                 if(err){
                     res.locals.user =null;
-                    res.cookies("jwt",'',{maxAge:1});
+                    res.cookie("jwt",'',{maxAge:1});
                     redirectLogin();
                     // return res.status(200).json({message :"token invalide",err})
                 }
