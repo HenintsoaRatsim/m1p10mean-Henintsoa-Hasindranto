@@ -6,6 +6,7 @@ const {
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Role = require("../models/Role");
+const { SendMail } = require("../models/Mail");
 const SECRET_KEY = "NOTESAPI"; //cle de securite ze tina atao fa tsy votery io NOTES... io
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
@@ -52,7 +53,7 @@ const getUser = async (req, res) => {
             res.status(200).json(result[0])
         } else {
             res.status(204).json({
-                msg: "Ce user n'existe pas"
+                message: "Ce user n'existe pas"
             }) // 204 midika fa recu le requete fa vide ny valiny
         }
     } catch (error) {
@@ -131,6 +132,7 @@ const Inscription = async (req, res) => {
             role: idRole
         }).save().then(function (user) {
             console.log(user);
+            SendMail(mail,"inscription garage mada","Bonjour!! votre inscription chez garage mada est terminée avec succès")
             const token = jwt.sign({
                 mail: user.mail,
                 id: user._id
@@ -145,6 +147,7 @@ const Inscription = async (req, res) => {
                 nom: user.nom,
                 prenom: user.prenom,
                 mail: user.mail,
+                token:token,
                 role
 
             })
@@ -153,7 +156,7 @@ const Inscription = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            msg: "Erreur d'inscription",
+            message: "Erreur d'inscription",
             error
         });
     }
@@ -176,7 +179,7 @@ const Login = async (req, res) => {
         const verifMdp = await bcrypt.compare(mdp, existClient.mdp)
         if (!verifMdp) {
             return res.status(400).json({
-                msg: "mots de passe ou mail incorrecte"
+                message: "mots de passe ou mail incorrecte"
             })
         }
         let idRole = new ObjectId(existClient.role);
@@ -195,12 +198,13 @@ const Login = async (req, res) => {
             nom: existClient.nom,
             prenom: existClient.prenom,
             mail: existClient.mail,
+            toke:token,
             role
         });
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            msg: "Erreur dans votre code de connexion",
+            message: "Erreur dans votre code de connexion",
             error
         });
     }
