@@ -7,6 +7,7 @@ import { ListeUserComponent } from './liste-user/liste-user.component';
 import { AjoutUserComponent } from './ajout-user/ajout-user.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { ModifierUserComponent } from './modifier-user/modifier-user.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ModifierUserComponent } from './modifier-user/modifier-user.component';
   ],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    FormsModule
   ]
 })
 export class UserModule { }

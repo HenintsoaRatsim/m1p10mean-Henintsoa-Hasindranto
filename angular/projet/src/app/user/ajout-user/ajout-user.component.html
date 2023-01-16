@@ -1,28 +1,33 @@
-
+<div class="preloader">
+    <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+    </div>
+</div>
   <main class="main-content  mt-0">
-    <section>
+    <section style="margin-left: 0px; margin-top: 80px;">
       <div class="page-header min-vh-75">
         <div class="container">
           <div class="row">
-            <div class="col-md-6 d-flex flex-column mx-auto">
+            <div class="col-md-8 d-flex flex-column mx-auto">
               <div class="card card-plain mt-8">
-                <div class="card-header pb-0 text-left bg-transparent">
+                <div class="card-header  text-left bg-transparent">
                   <h3 class="font-weight-bolder text-info text-gradient">Inscription</h3>
-                  <p class="mb-0">Veuillez remplir les champs suivant:</p>
+                  
                 </div>
                 <div class="card-body">
-                  <form role="form">
+                  <form role="form"  (ngSubmit)="OnSubmit()">
                     <div class="row">
                         <div class="col">
                             <label>Nom</label>
                             <div class="mb-3">
-                                <input type="text" class="form-control" autocomplete="nom" placeholder="Votre nom" aria-label="Nom" required>
+                                <input type="text" class="form-control" autocomplete="nom" placeholder="Votre nom" aria-label="Nom" [(ngModel)]="form.nom" #nom="ngModel" required>
                             </div>
                         </div>
                         <div class="col">
                             <label>Prénom</label>
                             <div class="mb-3">
-                                <input type="text" class="form-control" autocomplete="prenom" placeholder="Votre prénom" aria-label="Prénom" required>
+                                <input type="text" class="form-control" autocomplete="prenom" placeholder="Votre prénom" aria-label="Prénom" [(ngModel)]="form.prenom" #prenom="ngModel" required>
                             </div>
                         </div>
                     </div>
@@ -31,26 +36,26 @@
                         <div class="col">
                             <label>Mail</label>
                             <div class="mb-3">
-                                <input type="email" class="form-control" autocomplete="mail" placeholder="ex: nom@example.com" aria-label="Mail" required>
+                                <input type="email" class="form-control" autocomplete="mail" placeholder="ex: nom@example.com" aria-label="Mail" [(ngModel)]="form.mail" #mail="ngModel" required>
                             </div>
                         </div>
                         <div class="col">
                             <label>Contact</label>
                             <div class="mb-3">
-                                <input type="text" class="form-control" autocomplete="contact" placeholder="ex: 03434343434" aria-label="Contact" required>
+                                <input type="text" class="form-control" autocomplete="contact" placeholder="ex: 03434343434" aria-label="Contact" [(ngModel)]="form.contact" #contact="ngModel" required>
                             </div>
                         </div>                        
                     </div>
                     
-                    <div class="col">
-                        <label>Mot de passe</label>
-                        <div class="mb-3">
-                            <input type="password" class="form-control" autocomplete="current-password" placeholder="Votre mot de passe" aria-label="Mot de passe" required>
-                        </div>
-                    </div>
                     
+                    <label>Mot de passe</label>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" autocomplete="current-password" placeholder="Votre mot de passe" aria-label="Mot de passe" [(ngModel)]="form.mdp" #mdp="ngModel"required>
+                    </div>
+                   
+
                     <div class="text-center">
-                      <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">S'inscrire</button>
+                      <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0 text-info text-gradient font-weight-bold">S'inscrire</button>
                     </div>
                   </form>
                 </div>

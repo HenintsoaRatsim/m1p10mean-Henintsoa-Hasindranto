@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     .subscribe((response) => {
       console.log(response);
       // alert(response.message);
-      this.router.navigate(['home']);
+      this.router.navigate(['user/liste']);
       // this.navi.goToNavigation();
     });
   }
