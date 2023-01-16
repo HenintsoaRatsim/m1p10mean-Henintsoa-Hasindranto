@@ -7,15 +7,18 @@ const ObjectId = require("mongodb").ObjectId;
 const VoitureSchema = new Schema({
     matricule: {
         type: String,
-        required: true
+        required: true,
+        trim:true,
     },
     marque: {
         type: String,
-        required: true
+        required: true,
+        trim:true,
     },
     type: {
         type: String,
-        required: true
+        required: true,
+        trim:true,
     },
     user: {
         type: ObjectId,

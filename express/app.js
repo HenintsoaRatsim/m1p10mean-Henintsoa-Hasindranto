@@ -9,8 +9,8 @@ const fiche_route = require("./routes/fiche_route");
 const atelier_route = require("./routes/atelier_route");
 
 const {connecter} = require("./db/connect");
-const { Login } = require('./Service/User_Service');
-// const auth = require('./middleware/auth');
+const { Login, Inscription } = require('./Service/User_Service');
+const auth = require('./middleware/auth');
 
 var app = express();
 
@@ -24,11 +24,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 require("./db/mongooseconnect");
 
-// app.use("/api",auth);
+app.use("/api",auth);
 app.use("/login",Login);
+app.use("/inscription",Inscription);
 app.use("/api/user",client_route);
 app.use("/api/garage",fiche_route);
 app.use("/api/atelier",atelier_route);
+// A faire redirect Login click sur le lien login de mila makaty am back alo zany ny any am angular
 
 connecter("mongodb+srv://henintsoa:wi0VByNKAQxLq3YF@cluster0.25yd0bh.mongodb.net/?retryWrites=true&w=majority", (erreur) => {
   if (erreur) {
