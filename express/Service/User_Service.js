@@ -34,7 +34,8 @@ const getAllUser = async (req, res) => {
 
 function sendResult(res, result) {
     return res.status(200).json({
-        user: result
+        user: result,
+        token:res.token
     });
 }
 

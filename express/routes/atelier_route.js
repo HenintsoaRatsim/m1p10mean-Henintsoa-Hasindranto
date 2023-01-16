@@ -1,10 +1,14 @@
 const express = require("express");
-const { getListeVoitureAReparer,AjoutReparation } = require("../Service/Atelier_Service");
+const { getListeVoitureAReparer,AjoutReparation, AjouterAvancement } = require("../Service/Atelier_Service");
 
 var router = express.Router();
 
 router.route("/getlistevoitureareparer").get(getListeVoitureAReparer);
 
 router.route("/ajoutreparation").post(AjoutReparation);
+
+router.route("/ajouteravancement").post(AjouterAvancement);
+
+// router.route("/finirreparation").post(CommencerReparation);
 
 module.exports = router;
