@@ -5,6 +5,19 @@ const User = require("../models/User");
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
 
+
+function sendResult(res, result) {
+    return res.status(200).json({
+        result
+    });
+}
+function sendErreur(res, message) {
+    res.status(202).json({
+        message: message
+    })
+}
+
+
 async function redirectLogin(res){
     return res.redirect('https://www.google.com');
 }
@@ -21,8 +34,9 @@ module.exports = (req,res,next)=>{
             jwt.verify(token,"NOTESAPI",async(err,decodedToken)=>{
                 if(err){
                     res.locals.user =null;
-                    res.cookie("jwt",'',{maxAge:1});
-                    redirectLogin();
+                    // res.cookie("jwt",'',{maxAge:1});
+                    sendErreur(res,"Token invalide");
+                    // redirectLogin();
                     // return res.status(200).json({message :"token invalide",err})
                 }
                 else{
@@ -43,6 +57,8 @@ module.exports = (req,res,next)=>{
         }
     } catch (error) {
         console.log(error);
-        return res.status(200).json({message :"token invalide",error})
+        sendErreur(res,"Pas de Token trouvé");
+
+        // return res.status(200).json({message :"token invalide",error})
     }
 }
