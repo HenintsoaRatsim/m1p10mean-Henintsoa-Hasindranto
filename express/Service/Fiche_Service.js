@@ -100,5 +100,6 @@ function sendResult(res, data = null) {
 
 module.exports = {
     depotvoiture,
-    ListeVoitureGarage
+    ListeVoitureGarage,
+    getHistorique
 }
