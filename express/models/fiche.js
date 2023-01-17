@@ -20,10 +20,12 @@ const ficheShema = new Schema({
     etat: {
         type: Number,
         /*
-        0 : vo vita depot 
-        1 : en reparation 
-        2 : vita reparation
-        3 : historique
+        0 : Etat Depot 
+        1 : Etat receptionner par Atelier
+        2 : Etat en reparation 
+        3 : Etat Fin de reparation 
+        4 : Etat demmande de sortie
+        5 : Etat sortie
         */
         required: true
     },

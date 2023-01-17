@@ -7,6 +7,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Role = require("../models/Role");
 const { SendMail } = require("../models/Mail");
+const { UpdateEtatFiche } = require("./Atelier_Service");
 const SECRET_KEY = "NOTESAPI"; //cle de securite ze tina atao fa tsy votery io NOTES... io
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
@@ -217,6 +218,21 @@ const Logout = async (req, res) => {
     res.redirect('/');
 }
 
+/**
+ * Demande de sortie de voiture
+ * update etat fiche to 4
+ * @param {*} res 
+ * @param {*} req 
+ */
+
+const DemandeSortie = async (req,res)=>{
+    let idfiche = new ObjectId(req.params.idfiche);
+    UpdateEtatFiche(idfiche, 4);
+    res.status(200).json({message: "Votre Demande de sortie est envoyé"});
+}
+
+
+
 module.exports = {
     AjoutUser,
     getAllUser,
@@ -225,5 +241,6 @@ module.exports = {
     deletUser,
     Login,
     Logout,
-    Inscription
+    Inscription,
+    DemandeSortie
 }

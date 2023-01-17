@@ -10,25 +10,30 @@ const FactureShcema = new Schema({
     },
     montantapayer: {
         type: Number,
-        required: true,
+        required: false,
         trim:true,
 
     },
     remise: {
         type: Number,
-        required: true,
+        required: false,
         trim:true,
 
     },
     montantpayer: {
         type: Number,
-        required: true,
+        required: false,
         trim:true,
 
     },
     datefacture: {
         type: Date,
-        required: true
+        required: false
+    },
+    eta:{
+        type:Number,
+        default:0,
+        required:true,
     }
 });
 

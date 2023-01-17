@@ -83,8 +83,7 @@ const ListeVoitureGarage = async (req, res) => {
 const getHistorique = async (req, res) => {
     try {
         Fiche.find({
-            user: new ObjectId(res.locals.user.id),
-            etat: 2
+            user: new ObjectId(res.locals.user.id)
         }).populate('user').populate('voiture').select().then(function (result) {
             if (result.length == 0) {
                 return res.status(404).json({
