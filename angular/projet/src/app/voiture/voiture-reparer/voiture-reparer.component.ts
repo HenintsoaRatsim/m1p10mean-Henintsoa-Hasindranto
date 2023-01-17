@@ -8,7 +8,6 @@ import { VoitureService } from 'src/app/service/voiture.service';
 })
 export class VoitureReparerComponent implements OnInit {
 
-  voitureResults: any;
   voitureListe: any;
 
   constructor(private voitureService: VoitureService) { }
@@ -19,11 +18,21 @@ export class VoitureReparerComponent implements OnInit {
 
   getVoitureReparerListe(){
     this.voitureService.get_voiture_a_reparer()
-    .subscribe((data: any) => {
-      this.voitureResults = data;
-      // this.voitureListe = this.voitureResults.results;
-      console.log(this.voitureResults);
-  });
+    .subscribe(response => {
+      this.voitureListe=response.data;
+      console.log(response.data);
+      console.log(response.data[0].etat);
+    })
+    // .subscribe(data =>{
+    //   this.voitureListe=data;
+    //   console.log(this.voitureListe);
+    //   console.log('etat oh: '+ this.voitureListe.etat);
+    // })
+  //   .subscribe((data: any) => {
+  //     this.voitureResults = data;
+  //     // this.voitureListe = this.voitureResults.results;
+  //     console.log(this.voitureResults);
+  // });
   }
 
 }

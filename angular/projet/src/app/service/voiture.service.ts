@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.dev';
 
 @Injectable({
@@ -14,9 +15,9 @@ export class VoitureService {
     return this.httpClient.post(url, form);
   }
 
-  get_voiture_a_reparer(){
+  get_voiture_a_reparer(): Observable<any>{
     let url = environment.GARAGE_BASE_URL+environment.VOITURE.getVoitureAReparer; 
-    return this.httpClient.get(url);
+    return this.httpClient.get<any>(url);
   }
 
 }
