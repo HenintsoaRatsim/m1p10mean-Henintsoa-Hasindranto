@@ -20,4 +20,9 @@ export class VoitureService {
     return this.httpClient.get<any>(url);
   }
 
+  get_historique(): Observable<any>{
+    let url = environment.GARAGE_BASE_URL+environment.VOITURE.getHistorique; 
+    return this.httpClient.get<any>(url);
+  }
+
 }

@@ -21,7 +21,7 @@ export class VoitureReparerComponent implements OnInit {
     .subscribe(response => {
       this.voitureListe=response.data;
       console.log(response.data);
-      console.log(response.data[0].etat);
+      // console.log(response.data[0].etat);
     })
     // .subscribe(data =>{
     //   this.voitureListe=data;

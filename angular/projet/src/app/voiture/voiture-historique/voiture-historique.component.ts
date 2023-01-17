@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { VoitureService } from 'src/app/service/voiture.service';
 
 @Component({
   selector: 'app-voiture-historique',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VoitureHistoriqueComponent implements OnInit {
 
-  constructor() { }
+  historiqueListe: any;
+
+  constructor(private voitureService: VoitureService) { }
 
   ngOnInit(): void {
+    this.getListeHistorique();
   }
 
+  getListeHistorique(){
+    this.voitureService.get_historique()
+    .subscribe(response => {
+      this.historiqueListe=response.data;
+      console.log(response.data);
+    })
+  
+  }
+
+  
 }
