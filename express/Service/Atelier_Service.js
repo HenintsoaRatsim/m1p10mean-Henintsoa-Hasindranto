@@ -31,7 +31,6 @@ const AjoutReparation = async (req, res) => {
     let reparation = {
         fiche: idFiche,
         intitule: req.body.intitule,
-        datedebut: new Date(),
         avancement: 0,
         description: req.body.description,
         prix: req.body.prix

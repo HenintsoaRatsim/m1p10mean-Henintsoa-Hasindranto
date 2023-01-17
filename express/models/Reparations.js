@@ -10,7 +10,7 @@ const ReparationShema = new Schema({
     },
     datedebut: {
         type: Date,
-        required: true
+        required: false
     },
     datefin: {
         type: Date,
