@@ -29,11 +29,6 @@ const FactureShcema = new Schema({
     datefacture: {
         type: Date,
         required: false
-    },
-    eta:{
-        type:Number,
-        default:0,
-        required:true,
     }
 });
 

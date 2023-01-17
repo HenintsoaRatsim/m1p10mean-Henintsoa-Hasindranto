@@ -4,7 +4,6 @@ const {
     ObjectId
 } = require("mongodb");
 const Voiture = require("../models/Voiture");
-const Reparations = require("../models/Reparations");
 
 const depotvoiture = (req, res) => {
     let idUser = new ObjectId(res.locals.user.id);
@@ -47,32 +46,16 @@ const depotvoiture = (req, res) => {
     })
 }
 
-/**
- * La liste des reparations de
- * @param {*} req 
- * @param {*} res 
- */
 const getFicheDetail = async (req, res) => {
     let idFiche = new ObjectId(req.params.idfiche);
-    Reparations.find({
-        fiche: idFiche
-    }).exec().then(function (reparation) {
-        // console.log(reparation);
-        Fiche.findById({
-            _id: idFiche
-        }).populate('voiture').then(function (fiche) {
-            Voiture.findOne({
-                _id: new ObjectId(fiche.voiture),
-            }).then(function (voiture) {
-                console.log(voiture);
-                resultat ={
-                    reparations:reparation,
-                    voiture:voiture
-                }
-                sendResult(res, resultat);
-
-            })
-        })
+    Fiche.findOne({
+        _id: idFiche
+    }).populate('voiture').populate("user").populate({
+        path: "reparations"
+    }).exec().then(function (fiche) {
+        console.log(fiche);
+        console.log("id reparation: " + idFiche)
+        sendResult(res, fiche);
     })
 }
 
