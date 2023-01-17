@@ -12,7 +12,8 @@ export class AjoutVoitureComponent implements OnInit {
   form: any = {
     matricule: null,
     marque: null,
-    type: null
+    type: null,
+    datefiche: null
   }
 
   constructor(private router: Router, private voitureService: VoitureService) { }

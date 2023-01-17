@@ -12,7 +12,8 @@ export const environment = {
 	GARAGE_BASE_URL: 'http://localhost:3000/api/garage/',
 	VOITURE: {
 		ajoutVoiture: 'depotvoiture',
-		getVoitureAReparer: 'listevoituregarage'
+		getVoitureAReparer: 'listevoituregarage',
+		getHistorique: 'listevoiturehistorique'
 	}
 
 }
