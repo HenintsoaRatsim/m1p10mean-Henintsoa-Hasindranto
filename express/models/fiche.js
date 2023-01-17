@@ -27,6 +27,7 @@ const ficheShema = new Schema({
         */
         required: true
     },
+    
     reparations: [{
         type: ObjectId,
         ref: "Reparation",

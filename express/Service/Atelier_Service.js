@@ -5,7 +5,8 @@ const Fiche = require("../models/Fiche");
 
 const Reparations = require("../models/Reparations");
 const {
-    transporter, SendMail
+    transporter,
+    SendMail
 } = require("../models/Mail");
 
 
@@ -48,7 +49,7 @@ const AjoutReparation = async (req, res) => {
                     path: "reparations"
                 }).exec().then(function (fiche) {
                     console.log(fiche);
-                    console.log("id reparation: "+idFiche)
+                    console.log("id reparation: " + idFiche)
                     sendResult(res, fiche);
                 })
             })
@@ -58,20 +59,42 @@ const AjoutReparation = async (req, res) => {
 const AjouterAvancement = async (req, res) => {
     let idReparation = new ObjectId(req.body.idreparation);
     let avancement = req.body.avancement;
-    let filter = {
+    let date = req.body.date;
+    if (avancement) {
+        console.log("avancement ty e")
+        // let filter = {
+        //     _id: idReparation
+        // };
+        // let update = {
+        //     avancement: avancement
+        // };
+        // Reparations.findOneAndUpdate(filter, update, {
+        //     new: true,
+        //     upsert: true
+        // }).then(function (reparation) {
+        //     console.log(reparation);
+        //     let idFiche = new ObjectId(reparation.fiche);
+        //     SetEtatFiche(idFiche, 0, 1); // Etat en reparation
+        //     SetFini(idFiche)
+        // })
+    }
+    if (date) {
+        console.log("avancement ty e")
+        SetDateDebutOuFin(date, idReparation)
+    }
+}
+
+function SetDateDebutOuFin(date, idReparation) {
+    Reparations.findById({
         _id: idReparation
-    };
-    let update = {
-        avancement: avancement
-    };
-    Reparations.findOneAndUpdate(filter, update, {
-        new: true,
-        upsert: true
     }).then(function (reparation) {
-        console.log(reparation);
-        let idFiche = new ObjectId(reparation.fiche);
-        SetEtatFiche(idFiche, 0, 1); // Etat en reparation
-        SetFini(idFiche)
+        console.log("date ="+reparation.datedebut);
+        // if (reparation.avancement == 0) {
+        //     console.log("avancement verif date 1=" + 0);
+        // }
+        // if (reparation.avancement == 100) {
+        //     console.log("avancement vrif date 2=" + 100);
+        // }
     })
 }
 
@@ -87,10 +110,10 @@ async function SetFini(idFiche) {
         }).then(async function (nbFini) {
             if (nbFini == nbReparation) {
                 SetEtatFiche(idFiche, 1, 2);
-                let Fiche_= await Fiche.findById(idFiche).populate('user');
+                let Fiche_ = await Fiche.findById(idFiche).populate('user');
                 console.log(Fiche_);
-                console.log("mandefa mail any @ "+Fiche_.user.mail)
-                SendMail(Fiche_.user.mail,"Reparation terminé","Bonjour!! la reparation de votre voiture est terminé avec succès")
+                console.log("mandefa mail any @ " + Fiche_.user.mail)
+                SendMail(Fiche_.user.mail, "Reparation terminé", "Bonjour!! la reparation de votre voiture est terminé avec succès")
             }
             // else{
             //     SetEtatFiche(idFiche,1)

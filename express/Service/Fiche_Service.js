@@ -7,6 +7,7 @@ const Voiture = require("../models/Voiture");
 
 const depotvoiture = (req, res) => {
     let idUser = new ObjectId(res.locals.user.id);
+    let datefiche = req.body.datefiche;
     let voiture = {
         matricule: req.body.matricule,
         marque: req.body.marque,
@@ -25,7 +26,7 @@ const depotvoiture = (req, res) => {
             function (user) {
                 let idvoiture = new ObjectId(voiture.id);
                 Fiche({
-                    datefiche: new Date(),
+                    datefiche: datefiche,
                     voiture: idvoiture,
                     user: idUser,
                     etat: 0,
@@ -52,6 +53,25 @@ const ListeVoitureGarage = async (req, res) => {
             etat: {
                 $lt: 2
             }
+        }).populate('user').populate('voiture').select().then(function (result) {
+            if (result.length == 0) {
+                return res.status(404).json({
+                    message: "Aucune  voiture à reparer"
+                })
+            }
+            return sendResult(res, result)
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
+
+const getHistorique = async (req,res)=>{
+    try {
+        Fiche.find({
+            user: new ObjectId(res.locals.user.id),
+            etat: 2
         }).populate('user').populate('voiture').select().then(function (result) {
             if (result.length == 0) {
                 return res.status(404).json({

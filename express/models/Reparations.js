@@ -18,6 +18,7 @@ const ReparationShema = new Schema({
     },
     avancement: {
         type: Number,
+        default:0,
         required: true
     },
     prix: {
