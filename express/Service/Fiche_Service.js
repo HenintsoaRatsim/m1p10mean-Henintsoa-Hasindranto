@@ -50,9 +50,9 @@ const getFicheDetail = async (req, res) => {
     let idFiche = new ObjectId(req.params.idfiche);
     Fiche.findOne({
         _id: idFiche
-    }).populate('voiture').populate("user").populate({
+    }).populate({
         path: "reparations"
-    }).exec().then(function (fiche) {
+    }).select("reparations etat").exec().then(function (fiche) {
         console.log(fiche);
         console.log("id reparation: " + idFiche)
         sendResult(res, fiche);
@@ -83,8 +83,7 @@ const ListeVoitureGarage = async (req, res) => {
 const getHistorique = async (req, res) => {
     try {
         Fiche.find({
-            user: new ObjectId(res.locals.user.id),
-            etat: 2
+            user: new ObjectId(res.locals.user.id)
         }).populate('user').populate('voiture').select().then(function (result) {
             if (result.length == 0) {
                 return res.status(404).json({

@@ -8,6 +8,7 @@ const {
     transporter,
     SendMail
 } = require("../models/Mail");
+const { AjoutFacture } = require("./Facture_Servie");
 
 
 const getListeVoitureAReparer = async (req, res) => {
@@ -26,6 +27,41 @@ const getListeVoitureAReparer = async (req, res) => {
     }
 }
 
+/**
+ * Update l'etat fiche
+ * @param {*} idfiche 
+ * @param {*} etat 
+ */
+async function UpdateEtatFiche(idfiche, etat) {
+    Fiche.findByIdAndUpdate({
+        _id: idfiche
+    }, {
+        etat: etat
+    }, {
+        new: true,
+        upsert: true
+    }).exec().then(function (fiche) {
+        console.log(fiche)
+        console.log("Etat set " + etat);
+    })
+}
+
+
+/**
+ * Reception d'un voiture par l'atelir 
+ * Update etat vers 1
+ * @param {*} req 
+ * @param {*} res 
+ */
+const ReceptionnerVoiture = async (req, res) => {
+    let idfiche = new ObjectId(req.query.idfiche);
+    UpdateEtatFiche(idfiche, 1);
+    AjoutFacture(idfiche);
+    res.status(200).json({message: "La voiture est receptionnée"});
+}
+/** 
+ * Ajout Reparation et Ajout Avancement reparation
+ */
 const AjoutReparation = async (req, res) => {
     let idFiche = new ObjectId(req.body.idfiche);
     let reparation = {
@@ -55,6 +91,14 @@ const AjoutReparation = async (req, res) => {
         })
     })
 }
+
+
+/**
+ * Ajouter avancement pour un reparation de vehicule
+ * @param {*} req 
+ * @param {*} res 
+ */
+
 const AjouterAvancement = async (req, res) => {
     let idReparation = new ObjectId(req.body.idreparation);
     let avancement = req.body.avancement;
@@ -73,7 +117,6 @@ const AjouterAvancement = async (req, res) => {
         }).then(function (reparation) {
             console.log(reparation);
             let idFiche = new ObjectId(reparation.fiche);
-            SetEtatFiche(idFiche, 0, 1); // Etat en reparation
             SetFini(idFiche)
         })
     }
@@ -83,28 +126,40 @@ const AjouterAvancement = async (req, res) => {
     }
 }
 
+
+/**
+ * Imsertion de la Date debut de la raparation 
+ * ou date fin de la reparation
+ * si l'avancement est egale a 100%
+ * @param {*} date 
+ * @param {*} idReparation 
+ */
+
+
 async function SetDateDebutOuFin(date, idReparation) {
     Reparations.findById({
         _id: idReparation
     }).then(function (reparation) {
         let idFiche = new ObjectId(reparation.fiche);
         if (reparation.datedebut) {
+            //insertion date fin
             Reparations.findByIdAndUpdate(idReparation, {
                 datefin: date
             }, {
                 new: true,
                 upsert: true
-            }).exec().then(function(){
+            }).exec().then(function () {
                 console.log("tafiditra ny date fin");
             })
         } else {
-            SetEtatFiche(idFiche, 0, 1); // Etat en reparation
+            //Insertion date debut
+            SetEtatFiche(idFiche, 1, 2); // Update  Etat to reparation
             Reparations.findByIdAndUpdate(idReparation, {
                 datedebut: date
             }, {
                 new: true,
                 upsert: true
-            }).exec().then(function(){
+            }).exec().then(function () {
                 console.log("tafiditra ny date debut");
             })
         }
@@ -112,7 +167,12 @@ async function SetDateDebutOuFin(date, idReparation) {
 }
 
 
-
+/**
+ * Verifier si l'avancement de la reparation est egale 100%
+ * donc on update l'etat de la reparation en 3
+ * 
+ * @param {*} idFiche 
+ */
 async function SetFini(idFiche) {
     Reparations.count({
         fiche: idFiche
@@ -122,10 +182,13 @@ async function SetFini(idFiche) {
             fiche: idFiche
         }).then(async function (nbFini) {
             if (nbFini == nbReparation) {
-                SetEtatFiche(idFiche, 1, 2);
+                SetEtatFiche(idFiche, 2, 3);// Set Etat fin de reparation
                 let Fiche_ = await Fiche.findById(idFiche).populate('user');
                 console.log(Fiche_);
                 console.log("mandefa mail any @ " + Fiche_.user.mail)
+                /**
+                 * Envoyer email fin reparation
+                 */
                 SendMail(Fiche_.user.mail, "Reparation terminé", "Bonjour!! la reparation de votre voiture est terminé avec succès")
             }
         })
@@ -136,19 +199,12 @@ function SetEtatFiche(idFiche, avant, nouveau) {
     Fiche.findById(idFiche).then(function (fiche) {
         let etat = fiche.etat;
         if (etat == avant) {
-            Fiche.findByIdAndUpdate({
-                _id: idFiche
-            }, {
-                etat: nouveau
-            }, {
-                new: true,
-                upsert: true
-            }).then(function (fiche) {
-                console.log(fiche);
-            })
+            UpdateEtatFiche(idFiche,nouveau)
         }
     })
 }
+
+
 
 
 function sendResult(res, result) {
@@ -167,4 +223,6 @@ module.exports = {
     getListeVoitureAReparer,
     AjoutReparation,
     AjouterAvancement,
+    ReceptionnerVoiture,
+    UpdateEtatFiche
 }

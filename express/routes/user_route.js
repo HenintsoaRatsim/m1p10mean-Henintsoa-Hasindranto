@@ -8,6 +8,8 @@ const {
     getUser,
     updateUser,
     deletUser,
+    DemmandeSortie,
+    DemandeSortie,
 } = require("../Service/User_Service");
 var router = express.Router();
 // rehefa find de atao tsika get 
@@ -30,6 +32,9 @@ router.route("/login").post(Login);
 
 router.route("/logout").post(Logout);
 
-// router.route("/inscription").post(Inscription);
+router.route("/inscription").post(Inscription);
+
+router.route("/demandesortie/:idfiche").get(DemandeSortie);
+
 
 module.exports = router;
