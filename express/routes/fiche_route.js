@@ -8,7 +8,7 @@ router.route("/listevoituregarage").get(ListeVoitureGarage);
 
 router.route("/listevoiturehistorique").get(getHistorique);
 
-router.route("/getfichedetail").get(getFicheDetail);
+router.route("/getfichedetail/:idfiche").get(getFicheDetail);
 
 
 module.exports = router;
