@@ -8,7 +8,7 @@ const Fiche = require("../models/Fiche");
 const getFacture = async (req, res) => {
     try {
         let idfiche = new ObjectId(req.params.idfiche);
-        Facture.findById(idfiche).populate({path:'fiche',populate:{path:'reparations.'}}).then(function(facture){
+        Facture.findById(idfiche).populate({path:'fiche',populate:{path:'user'}}).populate('role').then(function(facture){
             console.log(facture);
         })
     } catch (error) {

@@ -50,9 +50,9 @@ const getFicheDetail = async (req, res) => {
     let idFiche = new ObjectId(req.params.idfiche);
     Fiche.findOne({
         _id: idFiche
-    }).populate('voiture').populate("user").populate({
+    }).populate({
         path: "reparations"
-    }).exec().then(function (fiche) {
+    }).select("reparations etat").exec().then(function (fiche) {
         console.log(fiche);
         console.log("id reparation: " + idFiche)
         sendResult(res, fiche);
