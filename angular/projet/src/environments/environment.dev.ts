@@ -13,7 +13,8 @@ export const environment = {
 	VOITURE: {
 		ajoutVoiture: 'depotvoiture',
 		getVoitureAReparer: 'listevoituregarage',
-		getHistorique: 'listevoiturehistorique'
+		getHistorique: 'listevoiturehistorique',
+		getDetails: 'getfichedetail'
 	}
 
 }

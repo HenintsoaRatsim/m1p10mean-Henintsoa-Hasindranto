@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { VoitureService } from 'src/app/service/voiture.service';
 
 @Component({
   selector: 'app-details-reparation',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsReparationComponent implements OnInit {
 
-  constructor() { }
+  detailsFiche: any;
+
+  constructor(private voitureService: VoitureService) { }
 
   ngOnInit(): void {
+    this.getDetailFiche();
   }
+
+  getDetailFiche(){
+    this.voitureService.get_fiche_detail()
+    .subscribe(response => {
+      this.detailsFiche=response.data;
+      console.log(response.data);
+    })
+  
+  }
+
 
 }
