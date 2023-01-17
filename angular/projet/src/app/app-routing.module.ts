@@ -32,7 +32,7 @@ const routes: Routes = [
 				path: 'mes_historiques', component: VoitureHistoriqueComponent
 			},
 			{
-				path: 'details_reparation', component: DetailsReparationComponent
+				path: 'details_reparation/:idfiche', component: DetailsReparationComponent
 			}
 
 		]

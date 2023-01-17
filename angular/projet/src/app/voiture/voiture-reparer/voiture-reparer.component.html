@@ -29,7 +29,7 @@
                             <ng-template #pascours><td class="text-success">Pas en cours</td></ng-template>
                             <ng-template #encours><td class="text-success">En cours</td></ng-template>
                             <td>{{liste.datefiche | date: 'à HH:mm, le d MMMM yyyy'}} </td>
-                            <td><a href="Client/details_reparation"><button class="btn btn-info" >Voir détails<i class="fa fa-arrow-right" style="width: 30px;"></i></button></a></td>
+                            <td><a (click)="OnClick(liste._id)"><button class="btn btn-info" >Voir détails<i class="fa fa-arrow-right" style="width: 30px;"></i></button></a></td>
 
                           </tr>
                           
