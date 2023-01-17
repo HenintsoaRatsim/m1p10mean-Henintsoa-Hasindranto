@@ -26,7 +26,7 @@ export class DetailsReparationComponent implements OnInit {
         this.detailsFiche = resultat;
         this.huhu= Array.of(this.detailsFiche);
         console.log(this.huhu);
-        console.log(this.huhu[0].data.etat);
+        console.log(this.huhu[0].data.reparations[0].intitule);
       }
     )
     // .subscribe((data) => {

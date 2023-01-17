@@ -15,7 +15,6 @@
                             
                             <th scope="col">Nom client</th>
                             <th scope="col">Numéro voiture</th>
-                            <th scope="col">Etat réparation</th>
                             <th scope="col">Date de dépôt</th>
 
                           </tr>
@@ -25,8 +24,6 @@
                             
                             <td><i class="fa fa-user"></i> {{liste.user.nom}}</td>
                             <td><i class="fa fa-car" ></i> {{liste.voiture.matricule}}</td>
-                            <div  *ngIf="liste.etat==2;then terminer"></div>
-                            <ng-template #terminer><td class="text-success">Terminer</td></ng-template>
                             <td>{{liste.datefiche | date: 'à HH:mm, le d MMMM yyyy'}} </td>
                             <td><a href="details_reparation"><button class="btn btn-info" >Voir détails<i class="fa fa-arrow-right" style="width: 30px;"></i></button></a></td>
 
