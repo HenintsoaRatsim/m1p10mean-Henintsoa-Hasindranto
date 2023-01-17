@@ -21,14 +21,14 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let list of huhu">
+                          <tr *ngFor="let list of detailsFiche">
                             
                          
-                            <td><i class="fa fa-car" ></i> {{list.data.voiture.matricule}}</td>
-                            <td>{{list.data.reparations[0].intitule}}</td>
+                            <td><i class="fa fa-car" ></i> {{list.matricule}}</td>
+                            <td>{{list.intitule}}</td>
                             <td>
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">33%</div>
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">{{list.avancement}}%</div>
                                 </div></td>
                             
                           </tr>
