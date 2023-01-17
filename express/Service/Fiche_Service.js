@@ -46,6 +46,19 @@ const depotvoiture = (req, res) => {
     })
 }
 
+const getFicheDetail = async (req, res) => {
+    let idFiche = new ObjectId(req.body.idfiche);
+    Fiche.findOne({
+        _id: idFiche
+    }).populate('voiture').populate("user").populate({
+        path: "reparations"
+    }).exec().then(function (fiche) {
+        console.log(fiche);
+        console.log("id reparation: " + idFiche)
+        sendResult(res, fiche);
+    })
+}
+
 const ListeVoitureGarage = async (req, res) => {
     try {
         Fiche.find({
@@ -67,7 +80,7 @@ const ListeVoitureGarage = async (req, res) => {
     }
 }
 
-const getHistorique = async (req,res)=>{
+const getHistorique = async (req, res) => {
     try {
         Fiche.find({
             user: new ObjectId(res.locals.user.id),
@@ -101,5 +114,6 @@ function sendResult(res, data = null) {
 module.exports = {
     depotvoiture,
     ListeVoitureGarage,
-    getHistorique
+    getHistorique,
+    getFicheDetail
 }
