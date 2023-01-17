@@ -8,8 +8,17 @@ const Fiche = require("../models/Fiche");
 const getFacture = async (req, res) => {
     try {
         let idfiche = new ObjectId(req.params.idfiche);
-        Facture.findById(idfiche).populate({path:'fiche',populate:{path:'user'}}).populate('role').then(function(facture){
+        Facture.findById(idfiche).populate({path:'fiche'}).then(function(facture){
             console.log(facture);
+            Fiche.findOne({
+                _id: idFiche
+            }).populate({
+                path: "reparations"
+            }).select("reparations etat").exec().then(function (fiche) {
+                console.log(fiche);
+                console.log("id reparation: " + idFiche)
+                sendResult(res, fiche);
+            })
         })
     } catch (error) {
         console.log(error);
