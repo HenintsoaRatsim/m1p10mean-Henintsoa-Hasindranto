@@ -3,24 +3,34 @@ const {
 } = require("mongodb");
 const Facture = require("../models/Facture");
 const Fiche = require("../models/Fiche");
+const Reparations = require("../models/Reparations");
 
 
 const getFacture = async (req, res) => {
     try {
         let idfiche = new ObjectId(req.params.idfiche);
-        Facture.findById(idfiche).then(function(facture){
+        Facture.findById(idfiche).then(function (facture) {
             // console.log(facture);
             Fiche.findOne({
                 _id: new ObjectId(facture.fiche),
             }).populate({
                 path: "reparations"
-            }).select("reparations").exec().then(function (reparations) {
-                console.log(reparations);
-                resultat={
-                    facture:facture,
-                    reparations,
+            }).exec().then(function (fiche) {
+                // console.log(fiche);
+                resultat = {
+                    facture: facture,
+                    fiche,
                 }
-                sendResult(res, resultat);
+                Reparations.aggregate([{
+                    $group:{
+                        _id:"$fiche",
+                        total:{$sum:"$prix"},
+                    }
+                }]).then(function(res){
+                    console.log(res)
+                    // sendResult(res, resultat);
+
+                })
             })
         })
     } catch (error) {
@@ -29,12 +39,12 @@ const getFacture = async (req, res) => {
     }
 }
 
-async function AjoutFacture(idFiche){
+async function AjoutFacture(idFiche) {
     try {
-        let facture ={
+        let facture = {
             fiche: idFiche,
         }
-        Facture(facture).save().then(function(facture){
+        Facture(facture).save().then(function (facture) {
             console.log("Facture enregistrée");
         })
     } catch (error) {
@@ -56,7 +66,7 @@ function sendResult(res, data = null) {
 }
 
 
-module.exports ={
+module.exports = {
     getFacture,
     AjoutFacture
 }
