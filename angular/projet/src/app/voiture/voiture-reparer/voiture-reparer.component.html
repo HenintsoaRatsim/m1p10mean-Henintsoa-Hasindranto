@@ -21,33 +21,16 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
+                          <tr *ngFor="let liste of voitureListe">
                             
-                            <td><i class="fa fa-user"></i> Mark</td>
-                            <td><i class="fa fa-car" ></i> 1323 TBA</td>
+                            <td><i class="fa fa-user"></i> {{liste.user.nom}}</td>
+                            <td><i class="fa fa-car" ></i> {{liste.voiture.matricule}}</td>
                             <td class="text-success">En cours</td>
-                            <td>12/05/2023</td>
+                            <td>{{liste.datefiche}} </td>
                             <td><a href="details_reparation"><button class="btn btn-info" >Voir <i class="fa fa-arrow-right" style="width: 25px;"></i></button></a></td>
 
                           </tr>
-                          <tr>
-                            
-                            <td><i class="fa fa-user"></i> Mark</td>
-                            <td><i class="fa fa-car" ></i> 1257 TBD</td>
-                            <td class="text-success">Non en cours</td>
-                            <td>12/05/2023</td>
-                            <td><button class="btn btn-info" >Voir <i class="fa fa-arrow-right" style="width: 25px;"></i></button></td>
-
-                          </tr>
-                          <tr>
-                            
-                            <td><i class="fa fa-user"></i> Mark</td>
-                            <td><i class="fa fa-car" ></i> 1123 TAA</td>
-                            <td class="text-success">En cours</td>
-                            <td>12/05/2023</td>
-                            <td><button class="btn btn-info" >Voir <i class="fa fa-arrow-right" style="width: 25px;"></i></button></td>
-
-                          </tr>
+                          
                         </tbody>
                       </table>
                 </div>

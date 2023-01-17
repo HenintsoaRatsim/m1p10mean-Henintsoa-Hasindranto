@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AtelierComponent } from './atelier/atelier.component';
 import {LoginComponent} from './authentification/login/login.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -15,13 +16,9 @@ const routes: Routes = [
 	{ path: '', component: LoginComponent },
 	{ path: 'login', component: LoginComponent },
 	{
-		path: '',
+		path: 'Client',
 		component: NavigationComponent,
 		children: [
-			{
-				path: 'nav',
-				component: UserComponent
-			},
 			{
 				path: 'user/liste', component: ListeUserComponent
 			},
@@ -40,10 +37,23 @@ const routes: Routes = [
 
 		]
 	},
+	{
+		path: 'Atelier',
+		component: AtelierComponent,
+		children: [
+			{
+				path: 'depot_voiture', component: AjoutVoitureComponent
+			},
+			{
+				path: 'reparation_voiture', component: VoitureReparerComponent
+			},
+		]
+	},
 	{ path: 'inscription', component: AjoutUserComponent },
 	{ path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
 	{ path: 'navigation', loadChildren: () => import('./navigation/navigation.module').then(m => m.NavigationModule) },
 	{ path: 'voiture', loadChildren: () => import('./voiture/voiture.module').then(m => m.VoitureModule) },
+	{ path: 'atelier', loadChildren: () => import('./atelier/atelier.module').then(m => m.AtelierModule) },
 	{ path: '**', component: PageNotFoundComponent }
 ];
 

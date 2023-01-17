@@ -58,9 +58,9 @@
                                 aria-labelledby="userDropdown" id="setting">
                                
                                
-                                <a (click)="OnLogOut()" style="margin-left: 15px; cursor: pointer;">
+                                <a routerLinkActive="active" [routerLink]="'logout'" style="margin-left: 15px; cursor: pointer;">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                     Se déconnecter
+                                    Se déconnecter
                                 </a>
                                 <!-- <a routerLinkActive="active" [routerLink]="'login'" style="margin-left: 15px; cursor: pointer;">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../authentification/auth.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-logout',
+  templateUrl: './logout.component.html',
+  styleUrls: ['./logout.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class LogoutComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -19,5 +19,6 @@ export class HeaderComponent implements OnInit {
     this.authService.logOutUser();
     this.router.navigate(['']);
   }
+
 
 }

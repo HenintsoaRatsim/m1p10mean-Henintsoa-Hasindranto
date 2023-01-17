@@ -7,6 +7,7 @@ import { AjoutVoitureComponent } from './ajout-voiture/ajout-voiture.component';
 import { VoitureReparerComponent } from './voiture-reparer/voiture-reparer.component';
 import { VoitureHistoriqueComponent } from './voiture-historique/voiture-historique.component';
 import { DetailsReparationComponent } from './details-reparation/details-reparation.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { DetailsReparationComponent } from './details-reparation/details-reparat
   ],
   imports: [
     CommonModule,
-    VoitureRoutingModule
+    VoitureRoutingModule,
+    FormsModule
   ]
 })
 export class VoitureModule { }

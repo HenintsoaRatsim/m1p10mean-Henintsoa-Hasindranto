@@ -8,6 +8,11 @@ export const environment = {
 		updateUser: 'updatuser/:id',
 		deleteUser: 'deletuser/:id',
 		ajoutUser: 'inscription'
-	} 
+	},
+	GARAGE_BASE_URL: 'http://localhost:3000/api/garage/',
+	VOITURE: {
+		ajoutVoiture: 'depotvoiture',
+		getVoitureAReparer: 'listevoituregarage'
+	}
 
 }
