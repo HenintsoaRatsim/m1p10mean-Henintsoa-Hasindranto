@@ -47,7 +47,7 @@ const depotvoiture = (req, res) => {
 }
 
 const getFicheDetail = async (req, res) => {
-    let idFiche = new ObjectId(req.body.idfiche);
+    let idFiche = new ObjectId(req.params.idfiche);
     Fiche.findOne({
         _id: idFiche
     }).populate('voiture').populate("user").populate({

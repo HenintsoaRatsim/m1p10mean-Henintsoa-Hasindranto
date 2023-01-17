@@ -61,39 +61,53 @@ const AjouterAvancement = async (req, res) => {
     let date = req.body.date;
     if (avancement) {
         console.log("avancement ty e")
-        // let filter = {
-        //     _id: idReparation
-        // };
-        // let update = {
-        //     avancement: avancement
-        // };
-        // Reparations.findOneAndUpdate(filter, update, {
-        //     new: true,
-        //     upsert: true
-        // }).then(function (reparation) {
-        //     console.log(reparation);
-        //     let idFiche = new ObjectId(reparation.fiche);
-        //     SetEtatFiche(idFiche, 0, 1); // Etat en reparation
-        //     SetFini(idFiche)
-        // })
+        let filter = {
+            _id: idReparation
+        };
+        let update = {
+            avancement: avancement
+        };
+        Reparations.findOneAndUpdate(filter, update, {
+            new: true,
+            upsert: true
+        }).then(function (reparation) {
+            console.log(reparation);
+            let idFiche = new ObjectId(reparation.fiche);
+            SetEtatFiche(idFiche, 0, 1); // Etat en reparation
+            SetFini(idFiche)
+        })
     }
     if (date) {
-        console.log("avancement ty e")
+        console.log("date ty e")
         SetDateDebutOuFin(date, idReparation)
     }
 }
 
-function SetDateDebutOuFin(date, idReparation) {
+async function SetDateDebutOuFin(date, idReparation) {
     Reparations.findById({
         _id: idReparation
     }).then(function (reparation) {
-        console.log("date ="+reparation.datedebut);
-        // if (reparation.avancement == 0) {
-        //     console.log("avancement verif date 1=" + 0);
-        // }
-        // if (reparation.avancement == 100) {
-        //     console.log("avancement vrif date 2=" + 100);
-        // }
+        let idFiche = new ObjectId(reparation.fiche);
+        if (reparation.datedebut) {
+            Reparations.findByIdAndUpdate(idReparation, {
+                datefin: date
+            }, {
+                new: true,
+                upsert: true
+            }).exec().then(function(){
+                console.log("tafiditra ny date fin");
+            })
+        } else {
+            SetEtatFiche(idFiche, 0, 1); // Etat en reparation
+            Reparations.findByIdAndUpdate(idReparation, {
+                datedebut: date
+            }, {
+                new: true,
+                upsert: true
+            }).exec().then(function(){
+                console.log("tafiditra ny date debut");
+            })
+        }
     })
 }
 
@@ -114,9 +128,6 @@ async function SetFini(idFiche) {
                 console.log("mandefa mail any @ " + Fiche_.user.mail)
                 SendMail(Fiche_.user.mail, "Reparation terminé", "Bonjour!! la reparation de votre voiture est terminé avec succès")
             }
-            // else{
-            //     SetEtatFiche(idFiche,1)
-            // }
         })
     })
 }
