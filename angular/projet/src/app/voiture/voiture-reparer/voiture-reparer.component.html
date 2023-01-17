@@ -26,8 +26,8 @@
                             <td><i class="fa fa-user"></i> {{liste.user.nom}}</td>
                             <td><i class="fa fa-car" ></i> {{liste.voiture.matricule}}</td>
                             <td class="text-success">En cours</td>
-                            <td>{{liste.datefiche}} </td>
-                            <td><a href="details_reparation"><button class="btn btn-info" >Voir <i class="fa fa-arrow-right" style="width: 25px;"></i></button></a></td>
+                            <td>{{liste.datefiche | date: 'à HH:mm, le d MMMM yyyy'}} </td>
+                            <td><a href="details_reparation"><button class="btn btn-info" >Voir détails<i class="fa fa-arrow-right" style="width: 30px;"></i></button></a></td>
 
                           </tr>
                           
