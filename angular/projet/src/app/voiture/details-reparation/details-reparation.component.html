@@ -5,7 +5,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12 d-flex flex-column mx-auto">
-                <h1 style="padding-bottom: 20px;">Détails du réparation</h1>
+                <h1 style="padding-bottom: 20px;">Détails des réparations</h1>
               <div class="card card-plain mt-8">
                 
                 <div class="card-body">
@@ -21,41 +21,18 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
+                          <tr *ngFor="let list of huhu">
                             
                          
-                            <td><i class="fa fa-car" ></i> 1323 TBA</td>
-                            <td>Moteur</td>
+                            <td><i class="fa fa-car" ></i> {{list.data.voiture.matricule}}</td>
+                            <td>{{list.data.reparations.intitule}}</td>
                             <td>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">33%</div>
                                 </div></td>
                             
                           </tr>
-                          <tr>
-                            
-                            <td><i class="fa fa-car" ></i> 1323 TBA</td>
-                            <td>Pneu</td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100">66%</div>
-                                </div></td>
-                            
-
-                          </tr>
-                          <tr>
-                            
-                           
-                            <td><i class="fa fa-car" ></i> 1323 TBA</td>
-                            <td>Carosserie</td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
-                                </div></td>
-                            
-
-
-                          </tr>
+                          
                         </tbody>
                       </table>
                 </div>

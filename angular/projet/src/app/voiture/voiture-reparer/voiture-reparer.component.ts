@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VoitureService } from 'src/app/service/voiture.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class VoitureReparerComponent implements OnInit {
 
   voitureListe: any;
 
-  constructor(private voitureService: VoitureService) { }
+  constructor(private voitureService: VoitureService, private router: Router) { }
 
   ngOnInit(): void {
     this.getVoitureReparerListe();
@@ -23,16 +24,10 @@ export class VoitureReparerComponent implements OnInit {
       console.log(response.data);
       // console.log(response.data[0].etat);
     })
-    // .subscribe(data =>{
-    //   this.voitureListe=data;
-    //   console.log(this.voitureListe);
-    //   console.log('etat oh: '+ this.voitureListe.etat);
-    // })
-  //   .subscribe((data: any) => {
-  //     this.voitureResults = data;
-  //     // this.voitureListe = this.voitureResults.results;
-  //     console.log(this.voitureResults);
-  // });
+  }
+
+  OnClick(idfiche: any){ 
+    this.router.navigate(['Client/details_reparation', idfiche]); 
   }
 
 }
