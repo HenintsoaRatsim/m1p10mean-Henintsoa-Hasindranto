@@ -58,7 +58,6 @@ module.exports = (req,res,next)=>{
     } catch (error) {
         console.log(error);
         sendErreur(res,"Pas de Token trouvé");
-
         // return res.status(200).json({message :"token invalide",error})
     }
 }

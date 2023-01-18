@@ -13,11 +13,7 @@ const {
     DemandeSortie,
 } = require("../Service/User_Service");
 var router = express.Router();
-// rehefa find de atao tsika get 
-// rehefa insertion de atao tika post
 
-
-//http://localhost:3000/api/user/ajouteruser/ lien web service
 
 router.route("/ajouteruser").post(AjoutUser);
 

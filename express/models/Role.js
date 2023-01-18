@@ -7,6 +7,8 @@ const RoleSchema = new Schema({
         required: true
     }
 });
+module.exports = mongoose.model("Role", RoleSchema);
+
 const ajouterRole = async (req, res) => {
     let role = {
         intitule: req.body.intitule,
@@ -20,5 +22,3 @@ const ajouterRole = async (req, res) => {
 module.exports = {
     ajouterRole,
 }
-
-module.exports = mongoose.model("Role", RoleSchema);
