@@ -173,13 +173,13 @@ const Login = async (req, res) => {
             mail: mail
         });
         if (!existClient) {
-            return res.status(404).json({
+            return res.status(200).json({
                 message: "Utilisateur introuvable"
             });
         }
         const verifMdp = await bcrypt.compare(mdp, existClient.mdp)
         if (!verifMdp) {
-            return res.status(400).json({
+            return res.status(200).json({
                 message: "mots de passe ou mail incorrecte"
             })
         }
