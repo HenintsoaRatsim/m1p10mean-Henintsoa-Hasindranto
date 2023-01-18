@@ -17,6 +17,8 @@ const getFacture = async (req, res) => {
             }).populate({
                 path: "reparations"
             }).populate({
+                path: "user"
+            }).populate({
                 path: "voiture"
             }).select("reparations etatpayement").exec().then(function (detailfacture) {
                 console.log("reparations")
@@ -24,14 +26,14 @@ const getFacture = async (req, res) => {
                 console.log(detailfacture.reparations)
                 let montantapayer = 0;
                 for (const element of detailfacture.reparations) {
-                    montantapayer=montantapayer+element.prix;
+                    montantapayer = montantapayer + element.prix;
                 }
-                console.log("montant a payer ="+montantapayer);
+                console.log("montant a payer =" + montantapayer);
                 let resultat = {
                     detailfacture,
                     montantapayer
                 }
-                    sendResult(res, resultat);
+                sendResult(res, resultat);
                 // Reparations.aggregate([{
                 //     $group: {
                 //         _id: "$fiche",

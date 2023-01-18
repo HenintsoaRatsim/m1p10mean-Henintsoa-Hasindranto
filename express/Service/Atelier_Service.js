@@ -8,7 +8,9 @@ const {
     transporter,
     SendMail
 } = require("../models/Mail");
-const { AjoutFacture } = require("./Facture_Servie");
+const {
+    AjoutFacture
+} = require("./Facture_Servie");
 
 
 const getListeVoitureAReparer = async (req, res) => {
@@ -57,7 +59,9 @@ const ReceptionnerVoiture = async (req, res) => {
     let idfiche = new ObjectId(req.query.idfiche);
     UpdateEtatFiche(idfiche, 1);
     AjoutFacture(idfiche);
-    res.status(200).json({message: "La voiture est receptionnée"});
+    res.status(200).json({
+        message: "La voiture est receptionnée"
+    });
 }
 /** 
  * Ajout Reparation et Ajout Avancement reparation
@@ -182,7 +186,7 @@ async function SetFini(idFiche) {
             fiche: idFiche
         }).then(async function (nbFini) {
             if (nbFini == nbReparation) {
-                SetEtatFiche(idFiche, 2, 3);// Set Etat fin de reparation
+                SetEtatFiche(idFiche, 2, 3); // Set Etat fin de reparation
                 let Fiche_ = await Fiche.findById(idFiche).populate('user');
                 console.log(Fiche_);
                 console.log("mandefa mail any @ " + Fiche_.user.mail)
@@ -199,7 +203,7 @@ function SetEtatFiche(idFiche, avant, nouveau) {
     Fiche.findById(idFiche).then(function (fiche) {
         let etat = fiche.etat;
         if (etat == avant) {
-            UpdateEtatFiche(idFiche,nouveau)
+            UpdateEtatFiche(idFiche, nouveau)
         }
     })
 }
@@ -210,15 +214,41 @@ function SetEtatFiche(idFiche, avant, nouveau) {
  * @param {*} res 
  * @param {*} req 
  */
-const ValiderSortie = async (req,res)=>{
+const ValiderSortie = async (req, res) => {
     let idfiche = new ObjectId(req.params.idfiche);
     UpdateEtatFiche(idfiche, 5);
-    res.status(200).json({message: "La demande de sortie est validé."});
+    res.status(200).json({
+        message: "La demande de sortie est validé."
+    });
 }
 
-// const getDemandeSortie = async(req,res)=>{
-//     Fiche.find({etat:4}).then(function)
-// }
+const getDemandeSortie = async (req, res) => {
+    Fiche.find({
+        etat: 4
+    }).then(function (fiche) {
+        console.log(fiche)
+    })
+}
+
+
+const getTempsMoyenneReparationVoiture = async (req, res) => {
+    let idFiche = new ObjectId(req.params.idfiche);
+    Reparations.find({
+        fiche: idFiche
+    }).then(function(reparations){
+        // console.log(reparations);
+        let datediff=0;
+        for (const reparation of reparations) {
+            let datedebut = new Date(reparation.datedebut);
+            let datefin = new Date(reparation.datedebut);
+            datediff = (datefin.getTime()-datedebut.getTime());
+            console.log(datediff)
+            console.log(datefin.getTime())
+            console.log(datedebut.getTime())
+        }
+        // console.log(datediff);
+    })
+}
 
 
 
@@ -240,5 +270,7 @@ module.exports = {
     AjouterAvancement,
     ReceptionnerVoiture,
     UpdateEtatFiche,
-    ValiderSortie
+    ValiderSortie,
+    getDemandeSortie,
+    getTempsMoyenneReparationVoiture
 }
