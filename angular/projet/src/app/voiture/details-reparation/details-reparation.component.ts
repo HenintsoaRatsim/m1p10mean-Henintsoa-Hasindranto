@@ -10,7 +10,6 @@ import { VoitureService } from 'src/app/service/voiture.service';
 export class DetailsReparationComponent implements OnInit {
 
   detailsFiche: any;
-  huhu: any;
   voiture: any;
 
   constructor(private voitureService: VoitureService, private activated: ActivatedRoute) { }
@@ -25,8 +24,9 @@ export class DetailsReparationComponent implements OnInit {
     .subscribe(
       resultat => {
         this.detailsFiche = resultat.data.reparations;
-        // this.huhu= Array.of(this.detailsFiche.data.reparations);
+        this.voiture= Array.of(resultat.data.voiture);
         console.log(this.detailsFiche);
+        console.log(this.voiture);
       }
     )
     // .subscribe((data) => {
