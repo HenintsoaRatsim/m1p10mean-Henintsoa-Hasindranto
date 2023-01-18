@@ -204,7 +204,7 @@ const Login = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        res.status(500).json({
+        res.status(200).json({
             message: "Erreur dans votre code de connexion",
             error
         });

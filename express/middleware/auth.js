@@ -19,7 +19,7 @@ function sendErreur(res, message) {
 
 
 async function redirectLogin(res){
-    return res.redirect('https://www.google.com');
+    return res.redirect('/');
 }
 module.exports = (req,res,next)=>{
     try {
@@ -57,6 +57,8 @@ module.exports = (req,res,next)=>{
         }
     } catch (error) {
         console.log(error);
+        redirectLogin(res);
+
         sendErreur(res,"Pas de Token trouvé");
         // return res.status(200).json({message :"token invalide",error})
     }

@@ -29,7 +29,6 @@ const ficheShema = new Schema({
         */
         required: true
     },
-    
     reparations: [{
         type: ObjectId,
         ref: "Reparation",
@@ -37,7 +36,12 @@ const ficheShema = new Schema({
     }],
     etatpayement: {
         type: Number,
+        default:0,
         required: true
+        /**
+         * 0 non payer
+         * 1 payer
+         */
     }
 });
 
