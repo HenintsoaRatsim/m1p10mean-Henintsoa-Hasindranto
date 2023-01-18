@@ -1,4 +1,5 @@
 const express = require("express");
+const { ajouterRole } = require("../models/Role");
 const {
     Login,
     Logout,
@@ -31,6 +32,8 @@ router.route("/deleteuser/:id").delete(deletUser);
 router.route("/login").post(Login);
 
 router.route("/logout").post(Logout);
+
+router.route("/ajouterrole").post(ajouterRole);
 
 router.route("/inscription").post(Inscription);
 
