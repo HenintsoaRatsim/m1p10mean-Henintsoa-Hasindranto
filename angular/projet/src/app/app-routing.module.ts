@@ -54,10 +54,10 @@ const routes: Routes = [
 				path: 'reception_voiture', component: ReceptionVoitureComponent
 			},
 			{
-				path: 'ajout_reparation', component: AjoutReparationComponent
+				path: 'ajout_reparation/:idvoiture', component: AjoutReparationComponent
 			},
 			{
-				path: 'liste_reception/:idfiche', component: ListeReceptionnerComponent
+				path: 'liste_reception', component: ListeReceptionnerComponent
 			},
 		]
 	},

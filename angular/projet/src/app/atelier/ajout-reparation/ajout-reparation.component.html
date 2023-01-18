@@ -1,1 +1,80 @@
-<p>ajout-reparation works!</p>
+
+  <main class="main-content  mt-0" >
+    <section>
+      <div class="page-header min-vh-75">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 d-flex flex-column mx-auto">
+                    
+                <div class="card-header"  style="background-color: rgb(49, 48, 67);">
+                    <h5 style="color: white;">Ajout des réparations à faire</h5>
+                </div>
+                  <div class="card card-plain mt-8">
+                    
+                    <div class="card-body">
+                        <form role="form" (ngSubmit)="OnSubmit()">
+                            <div class="row">
+                              <div class="col">
+                                <label>Intitule</label>
+                                  <div class="mb-3">
+                                      <input type="text" class="form-control" autocomplete="intitule" placeholder="Exemple: Moteur, pneu, ..." aria-label="Intitule" [(ngModel)]="form.intitule" #nom="ngModel" required>
+                                  </div>
+                              </div>
+                              <div class="col">
+                                <label>Description</label>
+                                  <div class="mb-3">
+                                      <input type="text" class="form-control" autocomplete="description" placeholder="Description de la réparation" aria-label="Description" [(ngModel)]="form.description" #nom="ngModel" required>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <label>Prix de la réparation</label>
+                                  <div class="mb-3">
+                                      <input type="text" class="form-control" autocomplete="prix" placeholder="Exemple: 20000 (en Ariary)" aria-label="Prix" [(ngModel)]="form.prix" #nom="ngModel" required>
+                                  </div>
+                              </div>
+                              <div class="col">
+                                
+                                  <div class="mb-3">
+                                      <input type="hidden" class="form-control" [(ngModel)]="form.idvam" #nom="ngModel" required>
+                                  </div>
+                              </div>
+                              
+                            </div>
+                            
+                          <div style="margin-top: 20px;">
+                                  
+                            <button type="submit" class="btn btn-info w-100 text-gradient">Valider</button>
+                          
+                          </div>              
+                            
+                          </form>
+                    </div>
+                    
+                  </div>
+                </div>
+                
+              </div>
+              <div class="row">
+                <div class="col-md-12 d-flex flex-column mx-auto">
+                    
+                <div class="card-header"  style="background-color: rgb(49, 48, 67);">
+                    <h5 style="color: white;">Liste des réparations à faire</h5>
+                </div>
+                  <div class="card card-plain mt-8">
+                    
+                    <div class="card-body">
+                        
+                    </div>
+                    
+                  </div>
+                </div>
+                
+              </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  
