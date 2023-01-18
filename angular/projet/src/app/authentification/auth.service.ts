@@ -24,6 +24,15 @@ export class AuthService {
     );
   }
 
+  InscrireUser(form: any){
+    return this.userService.inscrire_user(form).pipe(
+      tap((response: any) => {
+        localStorage.setItem(this.TOKEN_NAME, response.token);
+        // this._isLoggedIn$.next(true);
+      })
+    );
+  }
+
   logOutUser(){
       localStorage.removeItem(this.TOKEN_NAME);
   }

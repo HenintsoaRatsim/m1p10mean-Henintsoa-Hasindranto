@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/authentification/auth.service';
 import { UserService } from 'src/app/service/user.service';
 
 
@@ -18,18 +19,22 @@ export class AjoutUserComponent implements OnInit {
     mdp: null,
     contact: null
   }
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   OnSubmit(){
     console.log('donnee entree: ', this.form);
-    this.userService.inscrire_user(this.form)
+    this.authService.InscrireUser(this.form)
     .subscribe((response) => {
       console.log(response);
-      this.router.navigate(['Client/depot_voiture']);
-    });
+      if(response.role.intitule=='client'){
+        this.router.navigate(['Client/depot_voiture']);
+      }else{
+        this.router.navigate(['']);
+      }
+   });
   }
 
 }
