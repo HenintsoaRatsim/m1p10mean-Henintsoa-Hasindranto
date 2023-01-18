@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit {
       if(response.role.intitule=='client'){
         this.router.navigate(['Client/depot_voiture']);
       }else{
-        this.router.navigate(['Atelier/depot_voiture']);
+        this.router.navigate(['']);
       }
-    
+     
     });
   }
 

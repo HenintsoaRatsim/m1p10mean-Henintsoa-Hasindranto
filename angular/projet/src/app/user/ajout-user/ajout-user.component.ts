@@ -28,7 +28,7 @@ export class AjoutUserComponent implements OnInit {
     this.userService.inscrire_user(this.form)
     .subscribe((response) => {
       console.log(response);
-      this.router.navigateByUrl('');
+      this.router.navigate(['Client/depot_voiture']);
     });
   }
 
