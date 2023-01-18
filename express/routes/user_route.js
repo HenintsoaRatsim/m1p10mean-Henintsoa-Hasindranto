@@ -9,7 +9,7 @@ const {
     getUser,
     updateUser,
     deletUser,
-    DemmandeSortie,
+    // DemmandeSortie,
     DemandeSortie,
 } = require("../Service/User_Service");
 var router = express.Router();
@@ -29,7 +29,7 @@ router.route("/login").post(Login);
 
 router.route("/logout").post(Logout);
 
-router.route("/ajouterrole").post(ajouterRole);
+// router.route("/ajouterrole").post(ajouterRole);
 
 router.route("/inscription").post(Inscription);
 

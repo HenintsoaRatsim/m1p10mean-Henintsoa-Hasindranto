@@ -9,16 +9,16 @@ const RoleSchema = new Schema({
 });
 module.exports = mongoose.model("Role", RoleSchema);
 
-const ajouterRole = async (req, res) => {
-    let role = {
-        intitule: req.body.intitule,
-    }
-    mongoose.model("Role", RoleSchema)(role).save().then((result) => {
-        console.log(result)
-    }).catch((err) => {
+// const ajouterRole = async (req, res) => {
+//     let role = {
+//         intitule: req.body.intitule,
+//     }
+//     mongoose.model("Role", RoleSchema)(role).save().then((result) => {
+//         console.log(result)
+//     }).catch((err) => {
 
-    });
-}
-module.exports = {
-    ajouterRole,
-}
+//     });
+// }
+// module.exports = {
+//     ajouterRole,
+// }
