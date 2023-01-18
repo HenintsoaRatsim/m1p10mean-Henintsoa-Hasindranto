@@ -1,5 +1,5 @@
 const express = require("express");
-const { getListeVoitureAReparer,AjoutReparation, AjouterAvancement, ReceptionnerVoiture, ValiderSortie, getDemandeSortie, getTempsMoyenneReparationVoiture } = require("../Service/Atelier_Service");
+const { getListeVoitureAReparer,AjoutReparation, AjouterAvancement, ReceptionnerVoiture, ValiderSortie, getDemandeSortie } = require("../Service/Atelier_Service");
 
 var router = express.Router();
 
@@ -15,6 +15,5 @@ router.route("/validersortie/:idfiche").get(ValiderSortie);
 
 router.route("/getdemandesortie/").get(getDemandeSortie);
 
-router.route("/gettempsmoyenne/:idfiche").get(getTempsMoyenneReparationVoiture);
 
 module.exports = router;
