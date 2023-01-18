@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { VoitureService } from 'src/app/service/voiture.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class VoitureHistoriqueComponent implements OnInit {
 
   historiqueListe: any;
 
-  constructor(private voitureService: VoitureService) { }
+  constructor(private voitureService: VoitureService, private router: Router) { }
 
   ngOnInit(): void {
     this.getListeHistorique();
@@ -19,10 +20,14 @@ export class VoitureHistoriqueComponent implements OnInit {
   getListeHistorique(){
     this.voitureService.get_historique()
     .subscribe(response => {
-      this.historiqueListe=response.data;
+      this.historiqueListe=response.data; 
       console.log(response.data);
     })
   
+  }
+
+  OnClick(idfiche: any){ 
+    this.router.navigate(['Client/details_historique', idfiche]); 
   }
 
   

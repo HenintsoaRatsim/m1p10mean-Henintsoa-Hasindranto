@@ -5,7 +5,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12 d-flex flex-column mx-auto">
-                <h1 style="padding-bottom: 20px;">Historique des voitures</h1>
+                <h1 style="padding-bottom: 20px;">Réception des voitures</h1>
               <div class="card card-plain mt-8">
                 
                 <div class="card-body">
@@ -20,12 +20,12 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let liste of historiqueListe">
+                          <tr>
                             
-                            <td><i class="fa fa-user"></i> {{liste.user.nom}}</td>
-                            <td><i class="fa fa-car" ></i> {{liste.voiture.matricule}}</td>
-                            <td>{{liste.datefiche | date: 'à HH:mm, le d MMMM yyyy'}} </td>
-                            <td><a (click)="OnClick(liste._id)"><button class="btn btn-info" >Voir détails<i class="fa fa-arrow-right" style="width: 30px;"></i></button></a></td>
+                            <td><i class="fa fa-user"></i> Jack</td>
+                            <td><i class="fa fa-car" ></i> 1555 Test</td>
+                            <td>daty</td>
+                            <td><a><button class="btn btn-info" >Voir détails<i class="fa fa-arrow-right" style="width: 30px;"></i></button></a></td>
 
                           </tr>
                           

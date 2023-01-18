@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AtelierComponent } from './atelier/atelier.component';
+import { NavigationAtelierComponent } from './navigation-atelier/navigation-atelier.component';
 import {LoginComponent} from './authentification/login/login.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AjoutUserComponent } from './user/ajout-user/ajout-user.component';
 import {ListeUserComponent} from './user/liste-user/liste-user.component';
-import { UserComponent } from './user/user.component';
 import { AjoutVoitureComponent } from './voiture/ajout-voiture/ajout-voiture.component';
 import { DetailsReparationComponent } from './voiture/details-reparation/details-reparation.component';
 import { VoitureHistoriqueComponent } from './voiture/voiture-historique/voiture-historique.component';
@@ -33,13 +32,16 @@ const routes: Routes = [
 			},
 			{
 				path: 'details_reparation/:idfiche', component: DetailsReparationComponent
+			},
+			{
+				path: 'details_historique/:idfiche', component: DetailsReparationComponent
 			}
 
 		]
 	},
 	{
 		path: 'Atelier',
-		component: AtelierComponent,
+		component: NavigationAtelierComponent,
 		children: [
 			{
 				path: 'depot_voiture', component: AjoutVoitureComponent
@@ -53,7 +55,7 @@ const routes: Routes = [
 	{ path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
 	{ path: 'navigation', loadChildren: () => import('./navigation/navigation.module').then(m => m.NavigationModule) },
 	{ path: 'voiture', loadChildren: () => import('./voiture/voiture.module').then(m => m.VoitureModule) },
-	{ path: 'atelier', loadChildren: () => import('./atelier/atelier.module').then(m => m.AtelierModule) },
+	{ path: 'navigationAtelier', loadChildren: () => import('./navigation-atelier/navigation-atelier.module').then(m => m.NavigationAtelierModule) },
 	{ path: '**', component: PageNotFoundComponent }
 ];
 
