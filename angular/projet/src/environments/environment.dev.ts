@@ -19,6 +19,11 @@ export const environment = {
 	FACTURE_BASE_URL: 'http://localhost:3000/api/facture/',
 	FACTURE: {
 		getFactureFiche: 'getfacture'
+	},
+	ATELIER_BASE_URL: 'http://localhost:3000/api/atelier/',
+	ATELIER: {
+		getListeVoitureAReparer: 'getlistevoitureareparer',
+		receptionnerVoiture: 'receptionnervoiture'
 	}
 
 }

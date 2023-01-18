@@ -13,6 +13,7 @@ import { VoitureReparerComponent } from './voiture/voiture-reparer/voiture-repar
 import { ReceptionVoitureComponent } from './atelier/reception-voiture/reception-voiture.component';
 import { AjoutReparationComponent } from './atelier/ajout-reparation/ajout-reparation.component';
 import { FactureFicheComponent } from './facture/facture-fiche/facture-fiche.component';
+import { ListeReceptionnerComponent } from './atelier/liste-receptionner/liste-receptionner.component';
 
 const routes: Routes = [
 	{ path: '', component: LoginComponent },
@@ -54,6 +55,9 @@ const routes: Routes = [
 			},
 			{
 				path: 'ajout_reparation', component: AjoutReparationComponent
+			},
+			{
+				path: 'liste_reception/:idfiche', component: ListeReceptionnerComponent
 			},
 		]
 	},

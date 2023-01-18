@@ -14,18 +14,18 @@
                           <tr>
                             
                             <th scope="col">Nom client</th>
-                            <th scope="col">Numéro voiture</th>
+                            <th scope="col">Matricule voiture</th>
                             <th scope="col">Date de dépôt</th>
 
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
+                          <tr *ngFor="let liste of voitureListe">
                             
-                            <td><i class="fa fa-user"></i> Jack</td>
-                            <td><i class="fa fa-car" ></i> 1555 Test</td>
-                            <td>daty</td>
-                            <td><a><button class="btn btn-info" >Réceptioner<i class="fa fa-arrow-right" style="width: 30px;"></i></button></a></td>
+                            <td><i class="fa fa-user"></i> {{liste.user.nom}} {{liste.user.prenom}}</td>
+                            <td><i class="fa fa-car" ></i> {{liste.voiture.matricule}}</td>
+                            <td>{{liste.datefiche | date: 'à HH:mm, le d MMMM yyyy'}}</td>
+                            <td><a (click)="receptionner(liste._id)"><button class="btn btn-info" >Réceptioner<i class="fa fa-arrow-right" style="width: 30px;"></i></button></a></td>
 
                           </tr>
                           
