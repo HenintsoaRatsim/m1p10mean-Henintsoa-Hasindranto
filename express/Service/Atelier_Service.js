@@ -29,12 +29,27 @@ const getListeVoitureAReparer = async (req, res) => {
     }
 }
 
+const getListeVoituReceptionner = async (req, res) => {
+    try {
+        Fiche.find({
+            etat: 1
+        }).populate("voiture").populate("user").then(function (fiche) {
+            if (fiche.length > 0) {
+                return sendResult(res, fiche);
+            }
+            return sendErreur(res, "Pas de voiture à reparer")
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
 /**
  * Update l'etat fiche
  * @param {*} idfiche 
  * @param {*} etat 
  */
-async function UpdateEtatFiche(idfiche, etat) {
+async function UpdateEtatFiche(idfiche, etat, res) {
     Fiche.findByIdAndUpdate({
         _id: idfiche
     }, {
@@ -216,8 +231,16 @@ function SetEtatFiche(idFiche, avant, nouveau) {
  */
 const ValiderSortie = async (req, res) => {
     let idfiche = new ObjectId(req.params.idfiche);
-    UpdateEtatFiche(idfiche, 5);
-    res.status(200).json({
+    let fiche = await Fiche.findOne({
+        _id: idfiche
+    });
+    if (fiche.length == 0)
+        return sendErreur(res, "Fiche introuvable")
+    else if (fiche.etatpayement == 0)
+        return sendErreur(res, "Impossible de valider car la facture  n'est pas encore payée")
+    else
+        UpdateEtatFiche(idfiche, 5);
+    return res.status(200).json({
         message: "La demande de sortie est validé."
     });
 }
@@ -231,48 +254,6 @@ const getDemandeSortie = async (req, res) => {
 }
 
 
-const getTempsMoyenneReparationVoiture = async (req, res) => {
-    let idFiche = new ObjectId(req.params.idfiche);
-    Reparations.find({
-        fiche: idFiche
-    }).then(function (reparations) {
-        let TempsTotalMs = 0;
-        let countReparation = 0;
-        for (const reparation of reparations) {
-            countReparation++;
-            let datedebut = new Date(reparation.datedebut);
-            let datefin = new Date(reparation.datefin);
-            TempsTotalMs = TempsTotalMs + (datefin.getTime() - datedebut.getTime());
-        }
-        let tempsMoyenne = ConvertMsToTime(TempsTotalMs / countReparation);
-        let tempsTotal = ConvertMsToTime(TempsTotalMs)
-        let result = {
-            tempsTotal,
-            tempsMoyenne,
-            reparations
-        }
-        sendResult(res, result)
-    })
-}
-
-function padTo2Digits(num) {
-    return num.toString().padStart(2, '0');
-}
-
-function ConvertMsToTime(milliseconds) {
-    let seconds = Math.floor(milliseconds / 1000);
-    let minutes = Math.floor(seconds / 60);
-    let hours = Math.floor(minutes / 60);
-
-    seconds = seconds % 60;
-    minutes = minutes % 60;
-    hours = hours % 24;
-
-    return `${padTo2Digits(hours)} heure(s) ${padTo2Digits(minutes)} minute(s) ${padTo2Digits(
-      seconds,
-    )} seconde(s)`;
-}
-
 function sendResult(res, result) {
     return res.status(200).json({
         result
@@ -280,18 +261,19 @@ function sendResult(res, result) {
 }
 
 function sendErreur(res, message) {
-    res.status(404).json({
+    return res.status(202).json({
         message: message
     })
 }
 
 module.exports = {
     getListeVoitureAReparer,
+    getListeVoituReceptionner,
     AjoutReparation,
     AjouterAvancement,
     ReceptionnerVoiture,
     UpdateEtatFiche,
     ValiderSortie,
     getDemandeSortie,
-    getTempsMoyenneReparationVoiture
+
 }
