@@ -204,6 +204,21 @@ function SetEtatFiche(idFiche, avant, nouveau) {
     })
 }
 
+/**
+ * Demmande de sortie de voiture
+ * update etat fiche to 4
+ * @param {*} res 
+ * @param {*} req 
+ */
+const ValiderSortie = async (req,res)=>{
+    let idfiche = new ObjectId(req.params.idfiche);
+    UpdateEtatFiche(idfiche, 5);
+    res.status(200).json({message: "La demande de sortie est validé."});
+}
+
+// const getDemandeSortie = async(req,res)=>{
+//     Fiche.find({etat:4}).then(function)
+// }
 
 
 
@@ -224,5 +239,6 @@ module.exports = {
     AjoutReparation,
     AjouterAvancement,
     ReceptionnerVoiture,
-    UpdateEtatFiche
+    UpdateEtatFiche,
+    ValiderSortie
 }

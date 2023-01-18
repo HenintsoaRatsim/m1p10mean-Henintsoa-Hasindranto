@@ -10,27 +10,38 @@ const getFacture = async (req, res) => {
     try {
         let idfiche = new ObjectId(req.params.idfiche);
         Facture.findById(idfiche).then(function (facture) {
-            // console.log(facture);
+            // console.log("facture:");
+            console.log(facture);
             Fiche.findOne({
                 _id: new ObjectId(facture.fiche),
             }).populate({
                 path: "reparations"
-            }).exec().then(function (fiche) {
-                // console.log(fiche);
-                resultat = {
-                    facture: facture,
-                    fiche,
+            }).populate({
+                path: "voiture"
+            }).select("reparations etatpayement").exec().then(function (detailfacture) {
+                console.log("reparations")
+                // console.log(detailfacture);
+                console.log(detailfacture.reparations)
+                let montantapayer = 0;
+                for (const element of detailfacture.reparations) {
+                    montantapayer=montantapayer+element.prix;
                 }
-                Reparations.aggregate([{
-                    $group:{
-                        _id:"$fiche",
-                        total:{$sum:"$prix"},
-                    }
-                }]).then(function(res){
-                    console.log(res)
-                    // sendResult(res, resultat);
-
-                })
+                console.log("montant a payer ="+montantapayer);
+                let resultat = {
+                    detailfacture,
+                    montantapayer
+                }
+                    sendResult(res, resultat);
+                // Reparations.aggregate([{
+                //     $group: {
+                //         _id: "$fiche",
+                //         total: {
+                //             $sum: "$prix"
+                //         },
+                //     }
+                // }]).then(function (res) {
+                //     console.log(res)
+                // })
             })
         })
     } catch (error) {
