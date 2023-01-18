@@ -1,6 +1,7 @@
 const {
     ObjectId
 } = require("mongodb");
+const Facture = require("../models/Facture");
 const Fiche = require("../models/Fiche");
 const Reparations = require("../models/Reparations");
 const {
@@ -8,7 +9,8 @@ const {
 } = require("./Atelier_Service");
 
 const ValiderPaiement = async (req, res) => {
-    let idFiche = new ObjectId(req.params.idfiche);
+    let idFiche = new ObjectId(req.body.idfiche);
+    let datefacture = req.body.date; //Mapiditra daty rehefa valider facture
     Fiche.find({
         _id: idFiche
     }).then(function (fiche) {
@@ -21,12 +23,34 @@ const ValiderPaiement = async (req, res) => {
             }, {
                 new: true,
                 upsert: true
-            }).exec().then(function (fiche) {
-                console.log(fiche)
-                console.log("Paiment valider");
-                sendResult(res, fiche);
+            }).populate('reparations').exec().then(function (fiche) {
+
+                // console.log(fiche)
+
+                let montantapayer = 0;
+                for (const element of fiche.reparations) {
+                    montantapayer = montantapayer + element.prix;
+                }
+                console.log(montantapayer)
+                let facture = {
+                    fiche: idFiche,
+                    montantpayer: montantapayer,
+                    datefacture: datefacture
+                }
+                Facture(facture).save().then(function (facture) {
+                    console.log(facture);
+
+                    console.log("Etat facture est payé");
+                    console.log("Facture inserer");
+                    sendResult(res, fiche);
+                })
+
             })
     })
+}
+
+function calculeMontantApayer(idFiche) {
+    Reparations.find()
 }
 
 
@@ -85,7 +109,22 @@ function ConvertMsToTime(milliseconds) {
 }
 
 
-// const 
+const ChiffreDaffaire = async (req, res) => {
+    let chiffre = await Fiche.aggregate([{
+        $group: {
+            _id: {
+                $dateToString: {
+                    format: "%Y-",
+                    date: "$datefiche"
+                }
+            },
+            "totalUnitsVendu": {
+                $sum: "$etat"
+            }
+        }
+    }, ]).exec()
+    console.log(chiffre);
+}
 
 
 
@@ -104,5 +143,6 @@ function sendErreur(res, result) {
 
 module.exports = {
     ValiderPaiement,
-    getTempsMoyenneReparationVoiture
+    getTempsMoyenneReparationVoiture,
+    ChiffreDaffaire
 }

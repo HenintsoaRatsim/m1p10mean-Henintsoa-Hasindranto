@@ -29,6 +29,21 @@ const getListeVoitureAReparer = async (req, res) => {
     }
 }
 
+const getListeVoituReceptionner = async (req, res) => {
+    try {
+        Fiche.find({
+            etat: 1
+        }).populate("voiture").populate("user").then(function (fiche) {
+            if (fiche.length > 0) {
+                return sendResult(res, fiche);
+            }
+            return sendErreur(res, "Pas de voiture à reparer")
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
 /**
  * Update l'etat fiche
  * @param {*} idfiche 
@@ -253,6 +268,7 @@ function sendErreur(res, message) {
 
 module.exports = {
     getListeVoitureAReparer,
+    getListeVoituReceptionner,
     AjoutReparation,
     AjouterAvancement,
     ReceptionnerVoiture,
