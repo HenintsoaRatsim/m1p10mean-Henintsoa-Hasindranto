@@ -1,22 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SidebarAtelierComponent } from '../sidebar-atelier/sidebar-atelier.component';
-import { AtelierRoutingModule } from './atelier-routing.module';
-import { AtelierComponent } from './atelier.component';
+
+import { NavigationAtelierRoutingModule } from './navigation-atelier-routing.module';
+import { NavigationAtelierComponent } from './navigation-atelier.component';
 import { HeaderAtelierComponent } from '../header-atelier/header-atelier.component';
+import { SidebarAtelierComponent } from '../sidebar-atelier/sidebar-atelier.component';
 import { FooterAtelierComponent } from '../footer-atelier/footer-atelier.component';
 
 
 @NgModule({
   declarations: [
-    AtelierComponent,
+    NavigationAtelierComponent,
     HeaderAtelierComponent,
     SidebarAtelierComponent,
-    FooterAtelierComponent,
+    FooterAtelierComponent
   ],
   imports: [
     CommonModule,
-    AtelierRoutingModule
+    NavigationAtelierRoutingModule
   ]
 })
-export class AtelierModule { }
+export class NavigationAtelierModule { }
