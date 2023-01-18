@@ -10,6 +10,9 @@ import { AjoutVoitureComponent } from './voiture/ajout-voiture/ajout-voiture.com
 import { DetailsReparationComponent } from './voiture/details-reparation/details-reparation.component';
 import { VoitureHistoriqueComponent } from './voiture/voiture-historique/voiture-historique.component';
 import { VoitureReparerComponent } from './voiture/voiture-reparer/voiture-reparer.component';
+import { ReceptionVoitureComponent } from './atelier/reception-voiture/reception-voiture.component';
+import { AjoutReparationComponent } from './atelier/ajout-reparation/ajout-reparation.component';
+import { FactureFicheComponent } from './facture/facture-fiche/facture-fiche.component';
 
 const routes: Routes = [
 	{ path: '', component: LoginComponent },
@@ -35,6 +38,9 @@ const routes: Routes = [
 			},
 			{
 				path: 'details_historique/:idfiche', component: DetailsReparationComponent
+			},
+			{
+				path: 'facture_fiche/:idfiche', component: FactureFicheComponent
 			}
 
 		]
@@ -44,10 +50,10 @@ const routes: Routes = [
 		component: NavigationAtelierComponent,
 		children: [
 			{
-				path: 'depot_voiture', component: AjoutVoitureComponent
+				path: 'reception_voiture', component: ReceptionVoitureComponent
 			},
 			{
-				path: 'reparation_voiture', component: VoitureReparerComponent
+				path: 'ajout_reparation', component: AjoutReparationComponent
 			},
 		]
 	},
@@ -56,6 +62,7 @@ const routes: Routes = [
 	{ path: 'navigation', loadChildren: () => import('./navigation/navigation.module').then(m => m.NavigationModule) },
 	{ path: 'voiture', loadChildren: () => import('./voiture/voiture.module').then(m => m.VoitureModule) },
 	{ path: 'navigationAtelier', loadChildren: () => import('./navigation-atelier/navigation-atelier.module').then(m => m.NavigationAtelierModule) },
+	{ path: 'facture', loadChildren: () => import('./facture/facture.module').then(m => m.FactureModule) },
 	{ path: '**', component: PageNotFoundComponent }
 ];
 
