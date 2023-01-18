@@ -12,6 +12,7 @@ import { AuthInterceptorProvider } from './authentification/auth.interceptor';
 import { LogoutComponent } from './authentification/logout/logout.component';
 import { ReceptionVoitureComponent } from './atelier/reception-voiture/reception-voiture.component';
 import { AjoutReparationComponent } from './atelier/ajout-reparation/ajout-reparation.component';
+import { ListeReceptionnerComponent } from './atelier/liste-receptionner/liste-receptionner.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AjoutReparationComponent } from './atelier/ajout-reparation/ajout-repar
     PageNotFoundComponent,
     LogoutComponent,
     ReceptionVoitureComponent,
-    AjoutReparationComponent
+    AjoutReparationComponent,
+    ListeReceptionnerComponent
   ],
   imports: [
     BrowserModule,

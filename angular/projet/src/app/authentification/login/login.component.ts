@@ -26,6 +26,8 @@ export class LoginComponent implements OnInit {
       console.log(response);
       if(response.role.intitule=='client'){
         this.router.navigate(['Client/depot_voiture']);
+      }else if(response.role.intitule=='atelier'){
+        this.router.navigate(['Atelier/reception_voiture']);
       }else{
         this.router.navigate(['']);
       }
