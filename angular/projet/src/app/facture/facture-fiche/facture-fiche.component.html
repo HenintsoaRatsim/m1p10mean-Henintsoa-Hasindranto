@@ -5,7 +5,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12 d-flex flex-column mx-auto">
-                <h1 style="padding-bottom: 20px;">Facture du voiture: </h1>
+                <h1 style="padding-bottom: 20px;" *ngFor="let vam of voiture">Facture du voiture: {{vam.matricule}}</h1>
               <div class="card card-plain mt-8">
                 
                 <div class="card-body">
@@ -14,34 +14,32 @@
                           <tr>
                             
                             <th scope="col">Client</th>
-                            <th scope="col">Numéro</th>
                             <th scope="col">Marque</th>
                             <th scope="col">Type</th>
                             <th scope="col">Réparation</th>
-                            <th scope="col">Avancement de la réparation</th>
-                            <th scope="col">Prix</th>
-
+                            <th scope="col">Date de réparation</th>
+                            <th scope="col">Prix (Ariary)</th>
+                            
                           </tr>
                         </thead>
                         <tbody>
                           <tr *ngFor="let list of detailsReparation">
-                            <div *ngFor="let vam of voiture">
-                                <td>{{vam.matricule}}</td>
-                                <td ><i class="fa fa-car" ></i> </td>
-                                <td></td>
-                            </div>
+                            
+                                <td *ngFor="let user of detailsUser"><i class="fa fa-user"></i> {{user.nom}} {{user.prenom}}</td>
+                                <td *ngFor="let vam of voiture">{{vam.marque}}</td>
+                            
+                            <td *ngFor="let vam of voiture">{{vam.type}}</td>
                             <td>{{list.intitule}}</td>
                             <td></td>
-                            <!-- <td>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" [ngStyle]="{'width.%': list.avancement}"  aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">{{list.avancement}}%</div>
-                                </div>
-                            </td> -->
-                            <td></td>
+                            <td>{{list.prix}}</td>
                           </tr>
                           
                         </tbody>
                       </table>
+                      <div class="row">
+                        <div class="col-md-10"></div>
+                        <div class="col-md-2" *ngFor="let montant of somme">Total: {{montant}}</div>
+                      </div>
                       
                 </div>
                 
