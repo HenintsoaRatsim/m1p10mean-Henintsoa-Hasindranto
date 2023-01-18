@@ -235,22 +235,43 @@ const getTempsMoyenneReparationVoiture = async (req, res) => {
     let idFiche = new ObjectId(req.params.idfiche);
     Reparations.find({
         fiche: idFiche
-    }).then(function(reparations){
-        // console.log(reparations);
-        let datediff=0;
+    }).then(function (reparations) {
+        let TempsTotalMs = 0;
+        let countReparation = 0;
         for (const reparation of reparations) {
+            countReparation++;
             let datedebut = new Date(reparation.datedebut);
-            let datefin = new Date(reparation.datedebut);
-            datediff = (datefin.getTime()-datedebut.getTime());
-            console.log(datediff)
-            console.log(datefin.getTime())
-            console.log(datedebut.getTime())
+            let datefin = new Date(reparation.datefin);
+            TempsTotalMs = TempsTotalMs + (datefin.getTime() - datedebut.getTime());
         }
-        // console.log(datediff);
+        let tempsMoyenne = ConvertMsToTime(TempsTotalMs / countReparation);
+        let tempsTotal = ConvertMsToTime(TempsTotalMs)
+        let result = {
+            tempsTotal,
+            tempsMoyenne,
+            reparations
+        }
+        sendResult(res, result)
     })
 }
 
+function padTo2Digits(num) {
+    return num.toString().padStart(2, '0');
+}
 
+function ConvertMsToTime(milliseconds) {
+    let seconds = Math.floor(milliseconds / 1000);
+    let minutes = Math.floor(seconds / 60);
+    let hours = Math.floor(minutes / 60);
+
+    seconds = seconds % 60;
+    minutes = minutes % 60;
+    hours = hours % 24;
+
+    return `${padTo2Digits(hours)} heure(s) ${padTo2Digits(minutes)} minute(s) ${padTo2Digits(
+      seconds,
+    )} seconde(s)`;
+}
 
 function sendResult(res, result) {
     return res.status(200).json({
