@@ -5,39 +5,44 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12 d-flex flex-column mx-auto">
-                <h1 style="padding-bottom: 20px;">Détails des réparations</h1>
+                <h1 style="padding-bottom: 20px;">Facture du voiture: </h1>
               <div class="card card-plain mt-8">
                 
                 <div class="card-body">
                     <table class="table">
                         <thead>
                           <tr>
-                        
-                            <th scope="col">Numéro voiture</th>
+                            
+                            <th scope="col">Client</th>
+                            <th scope="col">Numéro</th>
+                            <th scope="col">Marque</th>
+                            <th scope="col">Type</th>
                             <th scope="col">Réparation</th>
                             <th scope="col">Avancement de la réparation</th>
-                            
+                            <th scope="col">Prix</th>
 
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let list of detailsFiche">
-                            
-                         
-                            <td *ngFor="let vam of voiture"><i class="fa fa-car" ></i> {{vam.matricule}}</td>
+                          <tr *ngFor="let list of detailsReparation">
+                            <div *ngFor="let vam of voiture">
+                                <td>{{vam.matricule}}</td>
+                                <td ><i class="fa fa-car" ></i> </td>
+                                <td></td>
+                            </div>
                             <td>{{list.intitule}}</td>
-                            <td>
+                            <td></td>
+                            <!-- <td>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" [ngStyle]="{'width.%': list.avancement}"  aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">{{list.avancement}}%</div>
-                                </div></td>
-                            
+                                </div>
+                            </td> -->
+                            <td></td>
                           </tr>
                           
                         </tbody>
                       </table>
-                      <div *ngFor="let id of idFiche">
-                        <a (click)="OnClick(id)"><button class="btn btn-success">Voir facture <i class="fa fa-arrow-right" style="width: 30px;"></i></button></a>
-                      </div>
+                      
                 </div>
                 
               </div>

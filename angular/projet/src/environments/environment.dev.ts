@@ -15,6 +15,10 @@ export const environment = {
 		getVoitureAReparer: 'listevoituregarage',
 		getHistorique: 'listevoiturehistorique',
 		getDetails: 'getfichedetail'
+	},
+	FACTURE_BASE_URL: 'http://localhost:3000/api/facture/',
+	FACTURE: {
+		getFactureFiche: 'getfacture'
 	}
 
 }
