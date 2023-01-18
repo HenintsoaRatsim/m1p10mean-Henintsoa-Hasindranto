@@ -20,7 +20,7 @@ const getFacture = async (req, res) => {
                 path: "user"
             }).populate({
                 path: "voiture"
-            }).select("reparations etatpayement").exec().then(function (detailfacture) {
+            }).select("reparations etatpayement datefiche").exec().then(function (detailfacture) {
                 console.log("reparations")
                 // console.log(detailfacture);
                 console.log(detailfacture.reparations)
