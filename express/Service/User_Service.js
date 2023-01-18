@@ -116,7 +116,7 @@ const Inscription = async (req, res) => {
             mail: mail
         });
         if (existClient) {
-            return res.status(400).json({
+            return res.status(200).json({
                 message: "address e-mail déjà utilisé"
             });
         }
@@ -156,7 +156,7 @@ const Inscription = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        res.status(500).json({
+        res.status(200).json({
             message: "Erreur d'inscription",
             error
         });
