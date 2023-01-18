@@ -1,5 +1,5 @@
 const express = require("express");
-const { getListeVoitureAReparer,AjoutReparation, AjouterAvancement, ReceptionnerVoiture } = require("../Service/Atelier_Service");
+const { getListeVoitureAReparer,AjoutReparation, AjouterAvancement, ReceptionnerVoiture, ValiderSortie } = require("../Service/Atelier_Service");
 
 var router = express.Router();
 
@@ -10,6 +10,8 @@ router.route("/ajoutreparation").post(AjoutReparation);
 router.route("/ajouteravancement").post(AjouterAvancement);
 
 router.route("/receptionnervoiture").post(ReceptionnerVoiture);
+
+router.route("/validersortie/:idfiche").get(ValiderSortie);
 
 // router.route("/finirreparation").post(CommencerReparation);
 

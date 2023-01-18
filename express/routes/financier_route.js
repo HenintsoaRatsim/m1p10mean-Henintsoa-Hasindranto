@@ -4,7 +4,6 @@ const {
 } = require("../Service/Financier_Sevice");
 var router = express.Router();
 
-router.route("/validersortie/:idfiche").get(ValiderSortie);
 
 
 
