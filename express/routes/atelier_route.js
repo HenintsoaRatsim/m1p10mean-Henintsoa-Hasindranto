@@ -1,5 +1,13 @@
 const express = require("express");
-const { getListeVoitureAReparer,AjoutReparation, AjouterAvancement, ReceptionnerVoiture, ValiderSortie, getDemandeSortie, getListeVoituReceptionner } = require("../Service/Atelier_Service");
+const {
+    getListeVoitureAReparer,
+    AjoutReparation,
+    AjouterAvancement,
+    ReceptionnerVoiture,
+    ValiderSortie,
+    getDemandeSortie,
+    getListeVoituReceptionner
+} = require("../Service/Atelier_Service");
 
 var router = express.Router();
 

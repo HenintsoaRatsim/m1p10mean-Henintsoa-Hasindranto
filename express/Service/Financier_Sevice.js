@@ -34,12 +34,11 @@ const ValiderPaiement = async (req, res) => {
                 console.log(montantapayer)
                 let facture = {
                     fiche: idFiche,
-                    montantpayer: montantapayer,
+                    montantapayer: montantapayer,
                     datefacture: datefacture
                 }
                 Facture(facture).save().then(function (facture) {
                     console.log(facture);
-
                     console.log("Etat facture est payé");
                     console.log("Facture inserer");
                     sendResult(res, fiche);
@@ -48,11 +47,6 @@ const ValiderPaiement = async (req, res) => {
             })
     })
 }
-
-function calculeMontantApayer(idFiche) {
-    Reparations.find()
-}
-
 
 function sendErreur(res, message) {
     res.status(200).json({
@@ -109,21 +103,47 @@ function ConvertMsToTime(milliseconds) {
 }
 
 
-const ChiffreDaffaire = async (req, res) => {
-    let chiffre = await Fiche.aggregate([{
-        $group: {
-            _id: {
-                $dateToString: {
-                    format: "%Y-",
-                    date: "$datefiche"
+const ChiffreDaffaireParJours = async (req, res) => {
+    chiffredaffaire(res, "%d/%m/%Y");
+}
+const ChiffreDaffaireParMois = async (req, res) => {
+    chiffredaffaire(res, "%m/%Y");
+}
+
+async function chiffredaffaire(res, Filtre) {
+    try {
+        let chiffredaffaire = await Facture.aggregate([
+            // {
+            //     $match: {
+            //         $expr: {
+            //             $and: [{
+            //                 "$eq": [{
+            //                     "$year": "$datefacture"
+            //                 }, 2023]
+            //             }]
+            //         }
+            //     }
+            // },
+            {
+                $group: {
+                    _id: {
+                        $dateToString: {
+                            format: Filtre,
+                            date: "$datefacture"
+                        }
+                    },
+                    "montantapayer": {
+                        $sum: "$montantapayer"
+                    }
                 }
             },
-            "totalUnitsVendu": {
-                $sum: "$etat"
-            }
-        }
-    }, ]).exec()
-    console.log(chiffre);
+        ]).exec()
+        sendResult(res, chiffredaffaire);
+        console.log(chiffredaffaire);
+    } catch (error) {
+
+    }
+
 }
 
 
@@ -144,5 +164,6 @@ function sendErreur(res, result) {
 module.exports = {
     ValiderPaiement,
     getTempsMoyenneReparationVoiture,
-    ChiffreDaffaire
+    ChiffreDaffaireParJours,
+    ChiffreDaffaireParMois
 }

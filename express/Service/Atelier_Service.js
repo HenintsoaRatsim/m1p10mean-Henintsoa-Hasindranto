@@ -37,7 +37,7 @@ const getListeVoituReceptionner = async (req, res) => {
             if (fiche.length > 0) {
                 return sendResult(res, fiche);
             }
-            return sendErreur(res, "Pas de voiture à reparer")
+            return sendErreur(res, "Pas de voiture receptionnée")
         })
     } catch (error) {
         console.log(error);
