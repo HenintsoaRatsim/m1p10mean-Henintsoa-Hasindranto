@@ -37,7 +37,7 @@ function sendErreur(res, message) {
 }
 
 /**
- * Avoir le temps de reparations moyenne
+ * Avoir le temps de reparations moyenne par fiche de voiture
  * 
  * @param {*} req 
  * @param {*} res 
@@ -85,11 +85,22 @@ function ConvertMsToTime(milliseconds) {
 }
 
 
+const 
+
+
+
 function sendResult(res, result) {
     return res.status(200).json({
         result
     });
 }
+
+function sendErreur(res, result) {
+    return res.status(200).json({
+        result
+    });
+}
+
 
 module.exports = {
     ValiderPaiement,
