@@ -84,7 +84,15 @@
                             <td>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" [ngStyle]="{'width.%': list.avancement}"  aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">{{list.avancement}}%</div>
-                                </div></td>
+                                </div>
+                            </td>
+                            <td>
+                              <form role="form" (ngSubmit)="OnSubmit()">
+                                
+                                  <input type="datetime-local" class="form-control" aria-label="daty" [(ngModel)]="form.date" #nom="ngModel" required>
+                              
+                              </form>
+                            </td>
                             
                           </tr>
                           

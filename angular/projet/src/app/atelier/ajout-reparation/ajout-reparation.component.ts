@@ -54,9 +54,13 @@ export class AjoutReparationComponent implements OnInit {
     this.atelierService.ajout_reparation(this.form)
     .subscribe((response) => {
       console.log(response);
-      this.router.navigate(['Atelier/ajout_reparation', id]);
+      // this.router.navigate(['Atelier/liste_reception']);
+      // window.location.reload();
+      this.getDetailFiche(id);
     });
-   
+    // this.form.intitule=null;
+    // this.form.description=null;
+    // this.form.prix=null;
     
   }
 
