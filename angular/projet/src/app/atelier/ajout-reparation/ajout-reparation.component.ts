@@ -21,6 +21,16 @@ export class AjoutReparationComponent implements OnInit {
   voiture: any;
   idFiche: any;
 
+  input: any={
+    idreparation: null,
+    date: null
+  }
+
+  entre: any={
+    idreparation: null,
+    avancement: null
+  }
+
 
   constructor(
     private router: Router,
@@ -41,6 +51,8 @@ export class AjoutReparationComponent implements OnInit {
         this.detailsFiche = resultat.data.reparations;
         this.voiture= Array.of(resultat.data.voiture);
         this.idFiche= Array.of(resultat.data._id);
+        console.log(resultat.data);
+        console.log(resultat.data.reparations[0].etatareparation);
         console.log(this.detailsFiche);
         console.log(this.idFiche);
         console.log(this.voiture);
@@ -58,6 +70,34 @@ export class AjoutReparationComponent implements OnInit {
       // window.location.reload();
       this.getDetailFiche(id);
     });
+    // this.form.intitule=null;
+    // this.form.description=null;
+    // this.form.prix=null;
+    
+  }
+
+  OnDate(){
+    let id= this.form.idfiche= this.activated.snapshot.params['idfiche'];
+    console.log('donnee date: ', this.input);
+    this.atelierService.ajout_reparation(this.input)
+    .subscribe((response) => {
+      console.log(response);
+      this.getDetailFiche(id);
+    });
+    // this.form.intitule=null;
+    // this.form.description=null;
+    // this.form.prix=null;
+    
+  }
+
+  OnAvancement(){
+    let id= this.form.idfiche= this.activated.snapshot.params['idfiche'];
+    console.log('donnee avacement: ', this.entre);
+    // this.atelierService.ajout_reparation(this.entre)
+    // .subscribe((response) => {
+    //   console.log(response);
+    //   this.getDetailFiche(id);
+    // });
     // this.form.intitule=null;
     // this.form.description=null;
     // this.form.prix=null;

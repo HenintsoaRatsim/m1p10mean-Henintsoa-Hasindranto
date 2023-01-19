@@ -86,13 +86,41 @@
                                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" [ngStyle]="{'width.%': list.avancement}"  aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">{{list.avancement}}%</div>
                                 </div>
                             </td>
-                            <td>
-                              <form role="form" (ngSubmit)="OnSubmit()">
-                                
-                                  <input type="datetime-local" class="form-control" aria-label="daty" [(ngModel)]="form.date" #nom="ngModel" required>
-                              
-                              </form>
-                            </td>
+                            <div *ngIf="list.etatareparation==0;then daty"></div>
+                              <ng-template #daty>
+                                <td>
+                                  <form role="form" (ngSubmit)="OnDate()">
+                                   
+                                    <input type="hidden" class="form-control" [(ngModel)]="input.idreparation" #idreparation="ngModel" required>
+                                    <input type="datetime-local" class="form-control" aria-label="daty" [(ngModel)]="input.date" #date="ngModel" required>
+                                    <button type="submit" class="btn btn-info w-100 text-gradient">Commencer réparation</button>
+                                  </form>
+                                </td>
+                              </ng-template>
+                              <div *ngIf="list.etatareparation==1;then avancement"></div>
+                              <ng-template #avancement>
+                                <td>
+                                  <form role="form" (ngSubmit)="OnAvancement()">
+                                    <input type="hidden" class="form-control" [(ngModel)]="entre.idreparation" #idreparation="ngModel" value="{{list._id}}" >
+                                    <input type="number" class="form-control" aria-label="daty" [(ngModel)]="entre.avancement" #avacement="ngModel"  required min="0" max="100">
+                                    <button type="submit" class="btn btn-info w-100 text-gradient">Valider avancement</button>
+                                  </form>
+                                </td>
+                              </ng-template>
+                              <div *ngIf="list.etatareparation==2;then daty"></div>
+                              <ng-template #daty>
+                                <td>
+                                  <form role="form" (ngSubmit)="OnDate()">
+                                    <input type="hidden" class="form-control" [(ngModel)]="input.idreparation" #idreparation="ngModel" required>
+                                    <input type="datetime-local" class="form-control" aria-label="daty" [(ngModel)]="input.date" #date="ngModel" required>
+                                    <button type="submit" class="btn btn-info w-100 text-gradient">Commencer réparation</button>
+                                  </form>
+                                </td>
+                              </ng-template>
+                              <div *ngIf="list.etatareparation==3;then fini"></div>
+                              <ng-template #fini><td>Réparation finie</td></ng-template>
+                           
+                            
                             
                           </tr>
                           

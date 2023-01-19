@@ -31,5 +31,10 @@ export class AtelierService {
     return this.httpClient.post(url, form);
   }
 
+  ajout_avancement(form: any){
+    let url = environment.ATELIER_BASE_URL+environment.ATELIER.ajoutAvancement; 
+    return this.httpClient.post(url, form);
+  }
+
 
 }
