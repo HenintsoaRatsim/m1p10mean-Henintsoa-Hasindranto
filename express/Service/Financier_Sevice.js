@@ -118,8 +118,8 @@ function ConvertMsToTime(milliseconds) {
 /**
  * Avoir la liste des chiffres d'affaire
  * à partir des filtre
- * par mois "%M/%Y"
- * par jour "%d/%M/%Y"
+ * par mois "%m/%Y"
+ * par jour "%d/%m/%Y"
  * @param {*} req 
  * @param {*} res 
  */
@@ -166,9 +166,114 @@ async function getChriffreAffaire(res, Filtre) {
         sendResult(res, chiffredaffaire);
         console.log(chiffredaffaire);
     } catch (error) {
-
+        console.log(error);
+        return res.status(500).json(error);
     }
 
+}
+/**
+ * Get Depense par mois et annee
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+const getDepense = async (req, res) => {
+    try {
+        let mois = parseInt(req.body.mois);
+        let annee = parseInt(req.body.annee);
+        if (verifNull(res, mois, "Choisissez un mois svp")) return;
+        if (verifNull(res, annee, "Inserez une année svp")) return;
+        let chiffredaffaire = await getSumChiffreDaffaire(mois, annee);
+        console.log("Chiffre d'affaire = " + chiffredaffaire)
+        let depense = await getTotalDepense(mois, annee);
+        console.log("Depense = " + depense);
+        let Benefice = chiffredaffaire - depense;
+        console.log("Benefice = " + Benefice);
+        let data = {
+            mois,
+            annee,
+            chiffredaffaire: chiffredaffaire,
+            depense: depense,
+            benefice: Benefice
+        }
+        sendResult(res, data);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json(error);
+    }
+}
+
+async function getSumChiffreDaffaire(mois, annee) {
+    let chiffredaffaireSum = await Facture.aggregate([{
+            $match: {
+                $expr: {
+                    $and: [{
+                            "$eq": [{
+                                "$month": "$datefacture"
+                            }, mois]
+                        },
+                        {
+                            "$eq": [{
+                                "$year": "$datefacture"
+                            }, annee]
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            $group: {
+                _id: {
+                    $dateToString: {
+                        format: "%m/%Y",
+                        date: "$datefacture"
+                    }
+                },
+                "montantapayer": {
+                    $sum: "$montantapayer"
+                }
+            }
+        },
+    ]).exec();
+    if (chiffredaffaireSum.length == 0) return 0;
+    return chiffredaffaireSum[0].montantapayer;
+}
+
+async function getTotalDepense(mois, annee) {
+    let depenseSum = await Depense.aggregate([{
+            $match: {
+                $expr: {
+                    $and: [{
+                            "$eq": [{
+                                "$month": "$datedepense"
+                            }, mois]
+                        },
+                        {
+                            "$eq": [{
+                                "$year": "$datedepense"
+                            }, annee]
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            $group: {
+                _id: {
+                    $dateToString: {
+                        format: "%m/%Y",
+                        date: "$datedepense"
+                    }
+                },
+                "depensetotal": {
+                    $sum: "$montant"
+                }
+            }
+        },
+    ]).exec();
+    if (depenseSum.length == 0) return 0;
+    return depenseSum[0].depensetotal;
 }
 
 /**
@@ -201,7 +306,7 @@ const AjoutDepense = async (req, res) => {
     let typedepense = new ObjectId(req.body.idtypedepense);
     let montant = req.body.montant;
     if (verifNull(res, datedepense, "Inserer la date svp")) return;
-    if (verifNull(res, req.body.idtypedepense, "Inserer l type de depense svp")) return;
+    if (verifNull(res, req.body.idtypedepense, "Inserer un type de depense svp")) return;
     if (verifNull(res, montant, "Inserer le montant svp")) return;
     let Dep = {
         datedepense: datedepense,
@@ -226,5 +331,6 @@ module.exports = {
     getTempsMoyenneReparationVoiture,
     ChiffreAffaire,
     AjoutTypeDeDepense,
-    AjoutDepense
+    AjoutDepense,
+    getDepense
 }

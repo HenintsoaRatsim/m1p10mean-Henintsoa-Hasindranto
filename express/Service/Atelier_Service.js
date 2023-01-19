@@ -157,12 +157,14 @@ const AjouterAvancement = async (req, res) => {
         }).then(function (reparation) {
             console.log(reparation);
             let idFiche = new ObjectId(reparation.fiche);
-            SetFini(idFiche)
+             SetFini(idFiche)
+             res.status(200).json("insertion avancement "+avancement)
         })
     }
     if (date) {
         console.log("date ty e")
-        SetDateDebutOuFin(date, idReparation)
+        SetDateDebutOuFin(date, idReparation);
+        res.status(200).json("insertion date "+date);
     }
 }
 

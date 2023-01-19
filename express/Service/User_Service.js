@@ -187,7 +187,8 @@ const Login = async (req, res) => {
         let role = await Role.findById(idRole).exec()
         const token = jwt.sign({
             mail: existClient.mail,
-            id: existClient._id
+            id: existClient._id,
+            date:new Date()
         }, SECRET_KEY, {
             expiresIn: maxAge
         });
