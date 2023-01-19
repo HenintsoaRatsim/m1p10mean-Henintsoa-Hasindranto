@@ -72,6 +72,8 @@ async function UpdateEtatFiche(idfiche, etat, res) {
  */
 const ReceptionnerVoiture = async (req, res) => {
     let idfiche = new ObjectId(req.params.idfiche);
+    // console.log(req.params.idfiche);
+    // console.log(idfiche);
     UpdateEtatFiche(idfiche, 1);
     // AjoutFacture(idfiche);
     res.status(200).json({

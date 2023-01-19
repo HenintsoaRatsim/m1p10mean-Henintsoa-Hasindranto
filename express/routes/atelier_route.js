@@ -19,7 +19,7 @@ router.route("/ajoutreparation").post(AjoutReparation);
 
 router.route("/ajouteravancement").post(AjouterAvancement);
 
-router.route("/receptionnervoiture").get(ReceptionnerVoiture);
+router.route("/receptionnervoiture/:idfiche").get(ReceptionnerVoiture);
 
 router.route("/validersortie/:idfiche").get(ValiderSortie);
 
