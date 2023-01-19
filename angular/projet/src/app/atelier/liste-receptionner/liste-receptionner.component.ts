@@ -36,8 +36,9 @@ export class ListeReceptionnerComponent implements OnInit {
     )
   }
 
-  reparer(idvam: any){
-    this.router.navigate(['Atelier/ajout_reparation', idvam]); 
+  reparer(idfiche: any){
+    this.router.navigate(['Atelier/ajout_reparation', idfiche]); 
   }
+
 
 }
