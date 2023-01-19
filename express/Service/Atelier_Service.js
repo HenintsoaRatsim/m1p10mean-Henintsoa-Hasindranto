@@ -15,6 +15,7 @@ const {
 
 const getListeVoitureAReparer = async (req, res) => {
     try {
+        console.log("liste voiture receptionner")
         Fiche.find({
             etat: 0
         }).populate("voiture").populate("user").then(function (fiche) {
@@ -31,6 +32,7 @@ const getListeVoitureAReparer = async (req, res) => {
 
 const getListeVoituReceptionner = async (req, res) => {
     try {
+        // console.log("liste voiture receptionner")
         Fiche.find({
             etat: 1
         }).populate("voiture").populate("user").then(function (fiche) {
@@ -125,7 +127,13 @@ const AjouterAvancement = async (req, res) => {
     let avancement = req.body.avancement;
     let date = req.body.date;
     if (avancement) {
-        console.log("avancement ty e")
+        /** *******************************
+         * set Eta de reparation fini
+         */
+        if (avancement == 100) {
+            setEtatReparation(idReparation, 2)
+        }
+        /******************************************* */
         let filter = {
             _id: idReparation
         };
@@ -151,12 +159,10 @@ const AjouterAvancement = async (req, res) => {
 /**
  * Imsertion de la Date debut de la raparation 
  * ou date fin de la reparation
- * si l'avancement est egale a 100%
+ * 
  * @param {*} date 
  * @param {*} idReparation 
  */
-
-
 async function SetDateDebutOuFin(date, idReparation) {
     Reparations.findById({
         _id: idReparation
@@ -165,7 +171,8 @@ async function SetDateDebutOuFin(date, idReparation) {
         if (reparation.datedebut) {
             //insertion date fin
             Reparations.findByIdAndUpdate(idReparation, {
-                datefin: date
+                datefin: date,
+                etatareparation: 3
             }, {
                 new: true,
                 upsert: true
@@ -176,7 +183,8 @@ async function SetDateDebutOuFin(date, idReparation) {
             //Insertion date debut
             SetEtatFiche(idFiche, 1, 2); // Update  Etat to reparation
             Reparations.findByIdAndUpdate(idReparation, {
-                datedebut: date
+                datedebut: date,
+                etatareparation: 1
             }, {
                 new: true,
                 upsert: true
@@ -190,7 +198,7 @@ async function SetDateDebutOuFin(date, idReparation) {
 
 /**
  * Verifier si l'avancement de la reparation est egale 100%
- * donc on update l'etat de la reparation en 3
+ * donc on update l'etat de la Fiche en 3
  * 
  * @param {*} idFiche 
  */
@@ -255,6 +263,20 @@ const getDemandeSortie = async (req, res) => {
     })
 }
 
+
+function setEtatReparation(idReparations, etat) {
+    Reparations.findByIdAndUpdate({
+        _id: idReparations
+    }, {
+        etat: etat
+    }, {
+        new: true,
+        upsert: true
+    }).exec().then(function (fiche) {
+        console.log(fiche)
+        console.log("Etat reparation set " + etat);
+    })
+}
 
 function sendResult(res, result) {
     return res.status(200).json({
