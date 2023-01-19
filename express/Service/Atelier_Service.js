@@ -57,7 +57,7 @@ async function UpdateEtatFiche(idfiche, etat, res) {
     }, {
         new: true,
         upsert: true
-    }).exec().then(function (fiche) {
+    }).populate('user').populate('voiture').exec().then(function (fiche) {
         console.log(fiche)
         console.log("Etat set " + etat);
     })
@@ -73,7 +73,7 @@ async function UpdateEtatFiche(idfiche, etat, res) {
 const ReceptionnerVoiture = async (req, res) => {
     let idfiche = new ObjectId(req.params.idfiche);
     UpdateEtatFiche(idfiche, 1);
-    AjoutFacture(idfiche);
+    // AjoutFacture(idfiche);
     res.status(200).json({
         message: "La voiture est receptionnée"
     });
