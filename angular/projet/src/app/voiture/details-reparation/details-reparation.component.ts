@@ -27,6 +27,7 @@ export class DetailsReparationComponent implements OnInit {
         this.detailsFiche = resultat.data.reparations;
         this.voiture= Array.of(resultat.data.voiture);
         this.idFiche= Array.of(resultat.data._id);
+        console.log(resultat);
         console.log(this.detailsFiche);
         console.log(this.idFiche);
         console.log(this.voiture);
