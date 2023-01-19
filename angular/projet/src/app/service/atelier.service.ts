@@ -17,6 +17,7 @@ export class AtelierService {
 
   receptionner_voiture(fiche: any): Observable<any>{
     let url = environment.ATELIER_BASE_URL+environment.ATELIER.receptionnerVoiture+'?idfiche='+fiche; 
+    console.log(url);
     return this.httpClient.get<any>(url);
   }
 

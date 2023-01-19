@@ -28,9 +28,8 @@ export class ReceptionVoitureComponent implements OnInit {
   }
 
   receptionner(id: any){
-    // this.atelierService.receptionner_voiture(id);
+    this.atelierService.receptionner_voiture(id);
     console.log('huhu :', id);
-    this.router.navigate(['Atelier/liste_reception', id]); 
+    // this.router.navigate(['Atelier/liste_reception']); 
   }
-
 }

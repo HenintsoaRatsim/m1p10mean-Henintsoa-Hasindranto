@@ -10,9 +10,7 @@ import { LoginComponent } from './authentification/login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthInterceptorProvider } from './authentification/auth.interceptor';
 import { LogoutComponent } from './authentification/logout/logout.component';
-import { ReceptionVoitureComponent } from './atelier/reception-voiture/reception-voiture.component';
-import { AjoutReparationComponent } from './atelier/ajout-reparation/ajout-reparation.component';
-import { ListeReceptionnerComponent } from './atelier/liste-receptionner/liste-receptionner.component';
+
 
 
 @NgModule({
@@ -20,10 +18,7 @@ import { ListeReceptionnerComponent } from './atelier/liste-receptionner/liste-r
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
-    LogoutComponent,
-    ReceptionVoitureComponent,
-    AjoutReparationComponent,
-    ListeReceptionnerComponent
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

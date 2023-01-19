@@ -25,7 +25,7 @@
                             <td><i class="fa fa-user"></i> {{liste.user.nom}} {{liste.user.prenom}}</td>
                             <td><i class="fa fa-car" ></i> {{liste.voiture.matricule}}</td>
                             <td>{{liste.datefiche | date: 'à HH:mm, le d MMMM yyyy'}}</td>
-                            <td><a (click)="reparer(liste.voiture._id)"><button class="btn btn-info" >Réparer <i class="fa fa-wrench" style="width: 30px;"></i></button></a></td>
+                            <td><a (click)="reparer(liste._id)"><button class="btn btn-info" >Réparer <i class="fa fa-wrench" style="width: 30px;"></i></button></a></td>
 
                           </tr>
                           
