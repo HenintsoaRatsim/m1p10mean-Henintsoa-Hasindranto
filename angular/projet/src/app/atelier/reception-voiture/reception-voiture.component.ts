@@ -28,7 +28,10 @@ export class ReceptionVoitureComponent implements OnInit {
   }
 
   receptionner(id: any){
-    this.atelierService.receptionner_voiture(id);
+    this.atelierService.receptionner_voiture(id)
+    .subscribe(response => {
+      console.log(response);
+    })
     console.log('huhu :', id);
     // this.router.navigate(['Atelier/liste_reception']); 
   }
