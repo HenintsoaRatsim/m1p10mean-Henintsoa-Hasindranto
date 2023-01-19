@@ -1,12 +1,26 @@
 const {
     ObjectId
 } = require("mongodb");
+const Depense = require("../models/Depense");
 const Facture = require("../models/Facture");
 const Fiche = require("../models/Fiche");
 const Reparations = require("../models/Reparations");
+const Typedepense = require("../models/Typedepense");
 const {
     UpdateEtatFiche
 } = require("./Atelier_Service");
+
+function sendResult(res, result) {
+    return res.status(200).json({
+        result
+    });
+}
+
+function sendErreur(res, result) {
+    return res.status(200).json({
+        result
+    });
+}
 
 const ValiderPaiement = async (req, res) => {
     let idFiche = new ObjectId(req.body.idfiche);
@@ -26,7 +40,6 @@ const ValiderPaiement = async (req, res) => {
             }).populate('reparations').exec().then(function (fiche) {
 
                 // console.log(fiche)
-
                 let montantapayer = 0;
                 for (const element of fiche.reparations) {
                     montantapayer = montantapayer + element.prix;
@@ -104,7 +117,7 @@ function ConvertMsToTime(milliseconds) {
 
 
 const ChiffreDaffaireParJours = async (req, res) => {
-    chiffredaffaire(res, "%d/%m/%Y");
+    chiffredaffaire(res, "%d/%MM/%Y");
 }
 const ChiffreDaffaireParMois = async (req, res) => {
     chiffredaffaire(res, "%m/%Y");
@@ -146,18 +159,46 @@ async function chiffredaffaire(res, Filtre) {
 
 }
 
-
-
-function sendResult(res, result) {
-    return res.status(200).json({
-        result
-    });
+/**
+ * Ajouter type de depense
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+const AjoutTypeDeDepense = async (req, res) => {
+    let intitule = req.body.intitule;
+    if (verifNull(res, intitule, "Inserer l'intitule svp")) return;
+    let typedepense = {
+        intitule: intitule,
+    }
+    let TD = await Typedepense(typedepense).save()
+    return sendResult(res, TD);
 }
 
-function sendErreur(res, result) {
-    return res.status(200).json({
-        result
-    });
+function verifNull(res, input, message) {
+    if (!input || input == "" || input == null || input == undefined || input === undefined || input === null || input.length === 0) {
+        sendErreur(res, message)
+        return true;
+    }
+    return false;
+}
+
+const AjoutDepense = async (req, res) => {
+    let datedepense = req.body.date;
+    let typedepense = new ObjectId(req.body.idtypedepense);
+    let montant = req.body.montant;
+    if (verifNull(res, datedepense, "Inserer la date svp")) return;
+    if (verifNull(res, req.body.idtypedepense, "Inserer l type de depense svp")) return;
+    if (verifNull(res, montant, "Inserer le montant svp")) return;
+    let Dep = {
+        datedepense: datedepense,
+        typedepense: typedepense,
+        montant: montant
+    };
+    let depense = await Depense(Dep).save();
+    return sendResult(res, depense)
+
 }
 
 
@@ -165,5 +206,7 @@ module.exports = {
     ValiderPaiement,
     getTempsMoyenneReparationVoiture,
     ChiffreDaffaireParJours,
-    ChiffreDaffaireParMois
+    ChiffreDaffaireParMois,
+    AjoutTypeDeDepense,
+    AjoutDepense
 }
