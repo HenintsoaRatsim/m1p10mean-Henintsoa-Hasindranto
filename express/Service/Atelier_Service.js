@@ -12,7 +12,11 @@ const {
     AjoutFacture
 } = require("./Facture_Servie");
 
-
+/**
+ * La liste des voitures dans l'etat du fiche est egale a 0
+ * @param {*} req 
+ * @param {*} res 
+ */
 const getListeVoitureAReparer = async (req, res) => {
     try {
         console.log("liste voiture receptionner")
@@ -30,6 +34,11 @@ const getListeVoitureAReparer = async (req, res) => {
     }
 }
 
+/**
+ * La liste voiture dans l'etat du fiche est egale a 1
+ * @param {*} req 
+ * @param {*} res 
+ */
 const getListeVoituReceptionner = async (req, res) => {
     try {
         // console.log("liste voiture receptionner")
@@ -82,8 +91,10 @@ const ReceptionnerVoiture = async (req, res) => {
         message: "La voiture est receptionnée"
     });
 }
-/** 
- * Ajout Reparation et Ajout Avancement reparation
+/**
+ * Ajouter Reparation 
+ * @param {*} req 
+ * @param {*} res 
  */
 const AjoutReparation = async (req, res) => {
     let idFiche = new ObjectId(req.body.idfiche);
@@ -197,7 +208,7 @@ async function SetDateDebutOuFin(date, idReparation) {
 
 
 /**
- * Verifier si l'avancement de la reparation est egale 100%
+ * Verifier si le nombre d'avancement  100% est egale aux nombre de reparations
  * donc on update l'etat de la Fiche en 3
  * 
  * @param {*} idFiche 
@@ -224,6 +235,13 @@ async function SetFini(idFiche) {
     })
 }
 
+/**
+ * Update l'etat du fiche
+ * 
+ * @param {} idFiche 
+ * @param {*} avant 
+ * @param {*} nouveau 
+ */
 function SetEtatFiche(idFiche, avant, nouveau) {
     Fiche.findById(idFiche).then(function (fiche) {
         let etat = fiche.etat;
@@ -255,6 +273,11 @@ const ValiderSortie = async (req, res) => {
     });
 }
 
+/**
+ * la liste de demande de sortie etat fiche =4
+ * @param {*} req 
+ * @param {*} res 
+ */
 const getDemandeSortie = async (req, res) => {
     Fiche.find({
         etat: 4
@@ -264,6 +287,13 @@ const getDemandeSortie = async (req, res) => {
 }
 
 
+/**
+ * update l'etat de la reparation pour l'input date et 
+ * avancement
+ *  
+ * @param {*} idReparations 
+ * @param {number} etat 
+ */
 function setEtatReparation(idReparations, etat) {
     Reparations.findByIdAndUpdate({
         _id: idReparations
@@ -278,6 +308,16 @@ function setEtatReparation(idReparations, etat) {
     })
 }
 
+
+
+
+/**
+ * Envoyer les resutats Json
+ * 
+ * @param {*} res 
+ * @param {*} result 
+ * @returns 
+ */
 function sendResult(res, result) {
     return res.status(200).json({
         result

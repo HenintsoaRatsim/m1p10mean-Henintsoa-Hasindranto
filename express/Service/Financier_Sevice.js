@@ -22,6 +22,11 @@ function sendErreur(res, result) {
     });
 }
 
+/**
+ * Update l'etat paiement fiche 1 donc etat de paiement est egale a payé
+ * @param {*} req 
+ * @param {*} res 
+ */
 const ValiderPaiement = async (req, res) => {
     let idFiche = new ObjectId(req.body.idfiche);
     let datefacture = req.body.date; //Mapiditra daty rehefa valider facture
@@ -61,11 +66,6 @@ const ValiderPaiement = async (req, res) => {
     })
 }
 
-function sendErreur(res, message) {
-    res.status(200).json({
-        message: message
-    })
-}
 
 /**
  * Avoir le temps de reparations moyenne par fiche de voiture
@@ -115,15 +115,27 @@ function ConvertMsToTime(milliseconds) {
     )} seconde(s)`;
 }
 
+/**
+ * Avoir la liste des chiffres d'affaire
+ * à partir des filtre
+ * par mois "%M/%Y"
+ * par jour "%d/%M/%Y"
+ * @param {*} req 
+ * @param {*} res 
+ */
 
-const ChiffreDaffaireParJours = async (req, res) => {
-    chiffredaffaire(res, "%d/%MM/%Y");
-}
-const ChiffreDaffaireParMois = async (req, res) => {
-    chiffredaffaire(res, "%m/%Y");
+const ChiffreAffaire = async (req, res) => {
+    let filtre = req.body.filtre;
+    getChriffreAffaire(res, filtre);
 }
 
-async function chiffredaffaire(res, Filtre) {
+/**
+ * Fonction calcule chiffre d'affaire
+ * 
+ * @param {*} res 
+ * @param {*} Filtre 
+ */
+async function getChriffreAffaire(res, Filtre) {
     try {
         let chiffredaffaire = await Facture.aggregate([
             // {
@@ -202,11 +214,17 @@ const AjoutDepense = async (req, res) => {
 }
 
 
+function sendErreur(res, message) {
+    res.status(200).json({
+        message: message
+    })
+}
+
+
 module.exports = {
     ValiderPaiement,
     getTempsMoyenneReparationVoiture,
-    ChiffreDaffaireParJours,
-    ChiffreDaffaireParMois,
+    ChiffreAffaire,
     AjoutTypeDeDepense,
     AjoutDepense
 }
