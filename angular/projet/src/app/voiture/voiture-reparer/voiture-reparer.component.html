@@ -23,7 +23,7 @@
                         <tbody>
                           <tr *ngFor="let liste of voitureListe">
                             
-                            <td><i class="fa fa-user"></i> {{liste.user.nom}}</td>
+                            <td><i class="fa fa-user"></i> {{liste.user.nom}} {{liste.user.prenom}}</td>
                             <td><i class="fa fa-car" ></i> {{liste.voiture.matricule}}</td>
                             <div  *ngIf="liste.etat==0;then pascours else encours"></div>
                             <ng-template #pascours><td class="text-success">Pas en cours</td></ng-template>

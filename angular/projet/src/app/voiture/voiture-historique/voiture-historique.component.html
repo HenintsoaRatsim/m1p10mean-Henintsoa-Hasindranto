@@ -22,7 +22,7 @@
                         <tbody>
                           <tr *ngFor="let liste of historiqueListe">
                             
-                            <td><i class="fa fa-user"></i> {{liste.user.nom}}</td>
+                            <td><i class="fa fa-user"></i> {{liste.user.nom}} {{liste.user.prenom}}</td>
                             <td><i class="fa fa-car" ></i> {{liste.voiture.matricule}}</td>
                             <td>{{liste.datefiche | date: 'à HH:mm, le d MMMM yyyy'}} </td>
                             <td><a (click)="OnClick(liste._id)"><button class="btn btn-info" >Voir détails <i class="fa fa-arrow-right" style="width: 30px;"></i></button></a></td>
