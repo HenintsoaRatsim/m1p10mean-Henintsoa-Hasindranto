@@ -23,7 +23,9 @@ export const environment = {
 	ATELIER_BASE_URL: 'http://localhost:3000/api/atelier/',
 	ATELIER: {
 		getListeVoitureAReparer: 'getlistevoitureareparer',
-		receptionnerVoiture: 'receptionnervoiture'
+		receptionnerVoiture: 'receptionnervoiture',
+		getListeVoitureReceptionner: 'getlistevoiturereceptionner',
+		ajoutReparation: 'ajoutreparation'
 	}
 
 }

@@ -1,1 +1,45 @@
-<p>liste-receptionner works!</p>
+
+  <main class="main-content  mt-0" >
+    <section>
+      <div class="page-header min-vh-75">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 d-flex flex-column mx-auto">
+                <h1 style="padding-bottom: 20px;">Voitures réceptionnés</h1>
+              <div class="card card-plain mt-8">
+                
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            
+                            <th scope="col">Nom client</th>
+                            <th scope="col">Matricule voiture</th>
+                            <th scope="col">Date de dépôt</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let liste of listeReceptionner">
+                            
+                            <td><i class="fa fa-user"></i> {{liste.user.nom}} {{liste.user.prenom}}</td>
+                            <td><i class="fa fa-car" ></i> {{liste.voiture.matricule}}</td>
+                            <td>{{liste.datefiche | date: 'à HH:mm, le d MMMM yyyy'}}</td>
+                            <td><a (click)="reparer(liste.voiture._id)"><button class="btn btn-info" >Réparer <i class="fa fa-wrench" style="width: 30px;"></i></button></a></td>
+
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                </div>
+                
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  
