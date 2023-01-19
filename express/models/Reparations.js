@@ -6,7 +6,7 @@ const ReparationShema = new Schema({
     intitule: {
         type: String,
         required: true,
-        trim:true,
+        trim: true,
     },
     datedebut: {
         type: Date,
@@ -18,13 +18,13 @@ const ReparationShema = new Schema({
     },
     avancement: {
         type: Number,
-        default:0,
+        default: 0,
         required: true
     },
     prix: {
         type: Number,
         required: true,
-        trim:true,
+        trim: true,
     },
     fiche: {
         type: ObjectId,
@@ -34,7 +34,19 @@ const ReparationShema = new Schema({
     description: {
         type: String,
         required: false,
-        trim:true,
+        trim: true,
+    },
+    etatareparation: {
+        /**
+         * 0 diagnostique 
+         * 1 Apres ajouter date debut ,encours de reparations de et ajouter avancement
+         * 2 reparation fini zany hoe insertion 100 avancement de mivoka ny imput date
+         * 3 apres insertion date fin
+         * 
+         */
+        type: Number,
+        default: 0,
+        required: true
     }
 });
 
