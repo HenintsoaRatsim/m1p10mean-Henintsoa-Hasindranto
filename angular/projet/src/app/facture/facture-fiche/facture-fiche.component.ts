@@ -27,7 +27,7 @@ export class FactureFicheComponent implements OnInit {
     this.factureService.get_facture(id)
     .subscribe(
       resultat => {
-        this.detailsFacture = resultat.data;
+        this.detailsFacture =  Array.of(resultat.data.detailfacture.datefiche);
         this.detailsReparation = resultat.data.detailfacture.reparations;
         this.voiture= Array.of(resultat.data.detailfacture.voiture);
         this.detailsUser= Array.of(resultat.data.detailfacture.user);

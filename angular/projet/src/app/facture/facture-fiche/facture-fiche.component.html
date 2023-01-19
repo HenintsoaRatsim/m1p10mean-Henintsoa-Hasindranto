@@ -14,8 +14,8 @@
                           <tr>
                             
                             <th scope="col">Client</th>
-                            <th scope="col">Marque</th>
-                            <th scope="col">Type</th>
+                            <th scope="col">Marque voiture</th>
+                            <th scope="col">Type voiture</th>
                             <th scope="col">Réparation</th>
                             <th scope="col">Date de réparation</th>
                             <th scope="col">Prix (Ariary)</th>
@@ -30,7 +30,7 @@
                             
                             <td *ngFor="let vam of voiture">{{vam.type}}</td>
                             <td>{{list.intitule}}</td>
-                            <td></td>
+                            <td *ngFor="let detfac of detailsFacture">{{detfac | date: 'à HH:mm, le d MMMM yyyy'}}</td>
                             <td>{{list.prix}}</td>
                           </tr>
                           
@@ -38,7 +38,7 @@
                       </table>
                       <div class="row">
                         <div class="col-md-10"></div>
-                        <div class="col-md-2" *ngFor="let montant of somme">Total: {{montant}}</div>
+                        <div class="col-md-2" *ngFor="let montant of somme" style="text-align: center;">Total: {{montant}}</div>
                       </div>
                       
                 </div>
