@@ -58,6 +58,7 @@ async function AjoutFacture(idFiche) {
             fiche: idFiche,
         }
         Facture(facture).save().then(function (facture) {
+            console.log(facture)
             console.log("Facture enregistrée");
         })
     } catch (error) {
