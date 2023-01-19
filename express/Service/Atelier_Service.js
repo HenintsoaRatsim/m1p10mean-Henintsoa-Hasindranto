@@ -86,7 +86,7 @@ const ReceptionnerVoiture = async (req, res) => {
     // console.log(req.params.idfiche);
     // console.log(idfiche);
     UpdateEtatFiche(idfiche, 1);
-    // AjoutFacture(idfiche);
+    AjoutFacture(idfiche);
     res.status(200).json({
         message: "La voiture est receptionnée"
     });
