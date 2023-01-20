@@ -26,6 +26,11 @@ export class AtelierService {
     return this.httpClient.get<any>(url);
   }
 
+  get_liste_voiture_en_reparation(): Observable<any>{
+    let url = environment.ATELIER_BASE_URL+environment.ATELIER.voitureEnReparation; 
+    return this.httpClient.get<any>(url);
+  }
+
   ajout_reparation(form: any){
     let url = environment.ATELIER_BASE_URL+environment.ATELIER.ajoutReparation; 
     return this.httpClient.post(url, form);

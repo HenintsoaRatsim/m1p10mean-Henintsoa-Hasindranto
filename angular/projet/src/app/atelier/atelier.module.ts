@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AjoutReparationComponent } from './ajout-reparation/ajout-reparation.component';
 import { ListeReceptionnerComponent } from './liste-receptionner/liste-receptionner.component';
 import { ReceptionVoitureComponent } from './reception-voiture/reception-voiture.component';
+import { VoitureEnReparationComponent } from './voiture-en-reparation/voiture-en-reparation.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ReceptionVoitureComponent } from './reception-voiture/reception-voiture
     AtelierComponent,
     AjoutReparationComponent,
     ListeReceptionnerComponent,
-    ReceptionVoitureComponent
+    ReceptionVoitureComponent,
+    VoitureEnReparationComponent
   ],
   imports: [
     CommonModule,
