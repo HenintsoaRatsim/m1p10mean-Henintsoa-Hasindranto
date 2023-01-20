@@ -18,6 +18,8 @@ import { VoitureEnReparationComponent } from './atelier/voiture-en-reparation/vo
 import { ListeDemandeComponent } from './atelier/liste-demande/liste-demande.component';
 import { NavigationFinancierComponent } from './navigation-financier/navigation-financier.component';
 import { ListePaiementComponent } from './financier/liste-paiement/liste-paiement.component';
+import { ListeTermineComponent } from './financier/liste-termine/liste-termine.component';
+import { TempsMoyenneComponent } from './financier/temps-moyenne/temps-moyenne.component';
 
 
 const routes: Routes = [
@@ -78,6 +80,12 @@ const routes: Routes = [
 		children: [
 			{
 				path: 'liste_paiement', component: ListePaiementComponent
+			},
+			{
+				path: 'liste_termine', component: ListeTermineComponent
+			},
+			{
+				path: 'temps_moyenne/:idfiche', component: TempsMoyenneComponent
 			}
 		]
 	},

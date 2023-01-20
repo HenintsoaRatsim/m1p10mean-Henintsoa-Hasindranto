@@ -21,4 +21,15 @@ export class FinancierService {
     return this.httpClient.get<any>(url);
   }
 
+  get_liste_termine(): Observable<any>{
+    let url = environment.FINANCIER_BASE_URL+environment.FINANCIER.getListeTermine; 
+    return this.httpClient.get<any>(url);
+  }
+
+  get_temps_moyenne(fiche: any): Observable<any>{
+    let url = environment.FINANCIER_BASE_URL+environment.FINANCIER.getTempsMoyenne+'/'+fiche; 
+    return this.httpClient.get<any>(url);
+  }
+
+
 }
