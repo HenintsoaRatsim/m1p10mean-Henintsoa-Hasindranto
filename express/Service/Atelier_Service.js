@@ -160,15 +160,26 @@ const AjouterAvancement = async (req, res) => {
             upsert: true
         }).then(function (reparation) {
             console.log(reparation);
-            let idFiche = new ObjectId(reparation.fiche);
-            SetFini(idFiche)
+            
             res.status(200).json("insertion avancement " + avancement)
         })
     }
     if (date) {
-        console.log("date ty e")
-        SetDateDebutOuFin(date, idReparation);
+        
+        
+        
+        Reparations.findOne({
+          _id: idReparation
+        }).then(function (reparation) {
+           
+        let idFiche = new ObjectId(reparation.fiche);
+            
+        
+         console.log("date ty e")
+        SetDateDebutOuFin(date, idReparation,idFiche);
         res.status(200).json("insertion date " + date);
+        
+        })
     }
 }
 
@@ -180,13 +191,15 @@ const AjouterAvancement = async (req, res) => {
  * @param {*} date 
  * @param {*} idReparation 
  */
-async function SetDateDebutOuFin(date, idReparation) {
+async function SetDateDebutOuFin(date, idReparation,idFiche) {
     Reparations.findById({
         _id: idReparation
     }).then(function (reparation) {
         let idFiche = new ObjectId(reparation.fiche);
         if (reparation.datedebut && reparation.avancement == 100) {
             //insertion date fin
+
+SetFini(idFiche)
             Reparations.findByIdAndUpdate(idReparation, {
                 datefin: date,
                 etatareparation: 3
