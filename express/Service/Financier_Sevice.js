@@ -349,6 +349,26 @@ const getListeVoiturePaiement = async (req, res) => {
         res.status(500).json(error);
     }
 }
+
+const getlistevoitureTempsMoyenne = async (req, res) => {
+    try {
+        console.log("validation paiement");
+        Fiche.find({
+            etat:{
+                $gte:3
+            }
+        }).populate("voiture").populate("user").then(function (fiche) {
+            if (fiche.length > 0) {
+                return sendResult(res, fiche);
+            }
+            return sendErreur(res, "Pas de voiture")
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
+
 module.exports = {
     ValiderPaiement,
     getTempsMoyenneReparationVoiture,
@@ -356,5 +376,6 @@ module.exports = {
     AjoutTypeDeDepense,
     AjoutDepense,
     getDepense,
-    getListeVoiturePaiement
+    getListeVoiturePaiement,
+    getlistevoitureTempsMoyenne
 }
