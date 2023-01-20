@@ -183,7 +183,7 @@ async function SetDateDebutOuFin(date, idReparation) {
         _id: idReparation
     }).then(function (reparation) {
         let idFiche = new ObjectId(reparation.fiche);
-        if (reparation.datedebut) {
+        if (reparation.datedebut || reparation.avancement ==100) {
             //insertion date fin
             Reparations.findByIdAndUpdate(idReparation, {
                 datefin: date,
