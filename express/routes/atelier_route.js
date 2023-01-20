@@ -6,7 +6,8 @@ const {
     ReceptionnerVoiture,
     ValiderSortie,
     getDemandeSortie,
-    getListeVoituReceptionner
+    getListeVoituReceptionner,
+    getVoitureEnReparation
 } = require("../Service/Atelier_Service");
 
 var router = express.Router();
@@ -24,6 +25,8 @@ router.route("/receptionnervoiture/:idfiche").get(ReceptionnerVoiture);
 router.route("/validersortie/:idfiche").get(ValiderSortie);
 
 router.route("/getdemandesortie/").get(getDemandeSortie);
+
+router.route("/getvoitureenreparation/").get(getVoitureEnReparation);
 
 
 module.exports = router;
