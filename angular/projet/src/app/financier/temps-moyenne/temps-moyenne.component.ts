@@ -12,6 +12,8 @@ export class TempsMoyenneComponent implements OnInit {
   tempsMoyenne: any;
   tempsTotal: any;
   listeReparation: any;
+  detailsVoiture: any;
+  client: any;
 
   constructor(private router: Router, private activated: ActivatedRoute, private financierService: FinancierService) { }
 
@@ -26,8 +28,15 @@ export class TempsMoyenneComponent implements OnInit {
       resultat => {
         this.tempsMoyenne = resultat.result.tempsMoyenne;
         this.tempsTotal = resultat.result.tempsTotal;
-        this.listeReparation = resultat.result.reparation;
+        this.listeReparation = resultat.result.reparations;
+        this.detailsVoiture = resultat.result.fiche[0].voiture;
+        this.client = resultat.result.fiche[0].user;
         console.log(resultat.result);
+        console.log(this.tempsMoyenne);
+        console.log(this.tempsTotal);
+        console.log(this.listeReparation);
+        console.log(this.detailsVoiture);
+        console.log(this.client);
       }
     )
   }

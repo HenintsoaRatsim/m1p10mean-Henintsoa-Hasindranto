@@ -7,6 +7,7 @@ import { ListePaiementComponent } from './liste-paiement/liste-paiement.componen
 import { FormsModule } from '@angular/forms';
 import { ListeTermineComponent } from './liste-termine/liste-termine.component';
 import { TempsMoyenneComponent } from './temps-moyenne/temps-moyenne.component';
+import { ListeReparerComponent } from './liste-reparer/liste-reparer.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { TempsMoyenneComponent } from './temps-moyenne/temps-moyenne.component';
     FinancierComponent,
     ListePaiementComponent,
     ListeTermineComponent,
-    TempsMoyenneComponent
+    TempsMoyenneComponent,
+    ListeReparerComponent
   ],
   imports: [
     CommonModule,
