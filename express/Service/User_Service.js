@@ -254,10 +254,16 @@ const Logout = async (req, res) => {
 const DemandeSortie = async (req, res) => {
     if (req.params.idfiche) {
         let idfiche = new ObjectId(req.params.idfiche);
+        
+        Fiche.findOne({
+        _id: idfiche
+    }).then(function (fiche) {
+        if(fiche.etatpayement==0)return res.status(200).json("Votre facture doit être payée avant de pouvoir effectuer une demande de sortie");
         UpdateEtatFiche(idfiche, 4);
         res.status(200).json({
             message: "Votre Demande de sortie est envoyé"
         });
+    })
     } else {
         res.status(200).json({
             message: "Impossible ajouter un id svp"
