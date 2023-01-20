@@ -77,6 +77,7 @@ const routes: Routes = [
 	{ path: 'navigationAtelier', loadChildren: () => import('./navigation-atelier/navigation-atelier.module').then(m => m.NavigationAtelierModule) },
 	{ path: 'facture', loadChildren: () => import('./facture/facture.module').then(m => m.FactureModule) },
 	{ path: 'atelier', loadChildren: () => import('./atelier/atelier.module').then(m => m.AtelierModule) },
+	{ path: 'financier', loadChildren: () => import('./financier/financier.module').then(m => m.FinancierModule) },
 	{ path: '**', component: PageNotFoundComponent }
 ];
 
