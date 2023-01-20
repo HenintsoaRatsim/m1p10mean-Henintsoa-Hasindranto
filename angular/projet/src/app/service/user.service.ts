@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.dev';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -37,6 +38,12 @@ export class UserService {
   inscrire_user(form: any){
     let url = environment.BASE_URL+"/"+environment.USER.ajoutUser; 
     return this.httpClient.post(url, form);
+  }
+
+  demande_sortie(fiche: any): Observable<any>{
+    let url = environment.USER_BASE_URL+environment.USER.demandeSortie+'/'+fiche; 
+    console.log(url);
+    return this.httpClient.get<any>(url);
   }
 
 }
