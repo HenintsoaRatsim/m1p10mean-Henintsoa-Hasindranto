@@ -31,8 +31,8 @@ export class FactureFicheComponent implements OnInit {
         this.detailsReparation = resultat.data.detailfacture.reparations;
         this.voiture= Array.of(resultat.data.detailfacture.voiture);
         this.detailsUser= Array.of(resultat.data.detailfacture.user);
-        this.somme= Array.of(resultat.data.montantapayer);
-        this.etat= Array.of(resultat.data.detailfacture.etatpayement);
+        this.somme= resultat.data.montantapayer;
+        this.etat= resultat.data.detailfacture.etatpayement;
         console.log(this.detailsFacture);     
         console.log(this.detailsReparation);
         console.log(this.voiture);    

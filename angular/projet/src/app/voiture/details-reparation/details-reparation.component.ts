@@ -55,6 +55,7 @@ export class DetailsReparationComponent implements OnInit {
       resultat => {
         this.message = resultat;
         console.log(this.message);
+        this.getDetailFiche(idfiche);
       }
     )
   }

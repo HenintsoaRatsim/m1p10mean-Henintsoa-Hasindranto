@@ -28,7 +28,8 @@ export const environment = {
 		getListeVoitureReceptionner: 'getlistevoiturereceptionner',
 		ajoutReparation: 'ajoutreparation',
 		ajoutAvancement: 'ajouteravancement',
-		voitureEnReparation: 'getvoitureenreparation'
+		voitureEnReparation: 'getvoitureenreparation',
+		listedemande: 'getdemandesortie'
 	}
 
 }

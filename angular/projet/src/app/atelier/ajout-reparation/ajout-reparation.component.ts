@@ -73,11 +73,11 @@ export class AjoutReparationComponent implements OnInit {
     .subscribe((response) => {
       console.log(response);
       this.getDetailFiche(id);
-      
+      this.form.intitule=null;
+      this.form.description=null;
+      this.form.prix=null;
     });
-    // this.form.intitule=null;
-    // this.form.description=null;
-    // this.form.prix=null;
+    
     
   }
 
