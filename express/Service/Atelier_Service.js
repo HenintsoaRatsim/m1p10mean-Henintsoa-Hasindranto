@@ -136,13 +136,14 @@ const AjoutReparation = async (req, res) => {
 const AjouterAvancement = async (req, res) => {
     let idReparation = new ObjectId(req.body.idreparation);
     let avancement = parseInt(req.body.avancement);
-    if(avancement>100)return sendErreur(res,"Avancement ne doit pas depasser le 100");
+    if (avancement > 100 || avancement < 0) return sendErreur(res, "Avancement invalide");
     let date = req.body.date;
     if (avancement) {
         /** *******************************
          * set Eta de reparation fini
          */
         if (avancement == 100) {
+            console.log("set etat reparation 2")
             setEtatReparation(idReparation, 2)
         }
         /******************************************* */
@@ -289,12 +290,12 @@ function setEtatReparation(idReparations, etat) {
     Reparations.findByIdAndUpdate({
         _id: idReparations
     }, {
-        etat: etat
+        etatareparation: etat
     }, {
         new: true,
         upsert: true
-    }).exec().then(function (fiche) {
-        console.log(fiche)
+    }).exec().then(function (Reparations) {
+        console.log(Reparations)
         console.log("Etat reparation set " + etat);
     })
 }
