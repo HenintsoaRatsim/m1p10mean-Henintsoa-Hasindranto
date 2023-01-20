@@ -183,7 +183,7 @@ async function SetDateDebutOuFin(date, idReparation) {
         _id: idReparation
     }).then(function (reparation) {
         let idFiche = new ObjectId(reparation.fiche);
-        if (reparation.datedebut) {
+        if (reparation.datedebut && reparation.avancement == 100) {
             //insertion date fin
             Reparations.findByIdAndUpdate(idReparation, {
                 datefin: date,
@@ -194,7 +194,8 @@ async function SetDateDebutOuFin(date, idReparation) {
             }).exec().then(function () {
                 console.log("tafiditra ny date fin");
             })
-        } else {
+        }
+        if (!reparation.datedebut) {
             //Insertion date debut
             SetEtatFiche(idFiche, 1, 2); // Update  Etat to reparation
             Reparations.findByIdAndUpdate(idReparation, {
