@@ -25,9 +25,19 @@
                             
                             <td><i class="fa fa-user"></i> {{liste.user.nom}} {{liste.user.prenom}}</td>
                             <td><i class="fa fa-car" ></i> {{liste.voiture.matricule}}</td>
-                            <div  *ngIf="liste.etat==0;then pascours else encours"></div>
-                            <ng-template #pascours><td class="text-success">Pas en cours</td></ng-template>
-                            <ng-template #encours><td class="text-success">En cours</td></ng-template>
+                            <div  *ngIf="liste.etat==0;then pascours"></div>
+                            <ng-template #pascours>
+                              <td class="text-success">En attente</td>
+                            </ng-template>
+                            <div  *ngIf="liste.etat==1;then recep"></div>
+                            <ng-template #recep>
+                              <td class="text-success">Réceptionné</td>
+                            </ng-template>
+                            <div  *ngIf="liste.etat==2;then encours"></div>
+                            <ng-template #encours>
+                              <td class="text-success">En cours</td>
+                            </ng-template>
+
                             <td>{{liste.datefiche | date: 'à HH:mm, le d MMMM yyyy'}} </td>
                             <td><a (click)="OnClick(liste._id)"><button class="btn btn-info" >Voir détails <i class="fa fa-arrow-right" style="width: 30px;"></i></button></a></td>
 
