@@ -5,8 +5,21 @@ const {
 } = require("mongodb");
 const Voiture = require("../models/Voiture");
 
+function verifNull(res, input, message) {
+    if (!input || input == "" || input == null || input == undefined || input === undefined || input === null || input.length === 0) {
+        sendErreur(res, message)
+        return true;
+    }
+    return false;
+}
+
 const depotvoiture = (req, res) => {
+    if (verifNull(res, res.locals.user.id, "ajouter un idUser svp")) return;
     let idUser = new ObjectId(res.locals.user.id);
+    if (verifNull(res, req.body.datefiche, "ajouter la date svp")) return;
+    if (verifNull(res, req.body.matricule, "ajouter le matricule")) return;
+    if (verifNull(res, req.body.marque, "ajouter la marque")) return;
+    if (verifNull(res, req.body.type, "ajouter le type ")) return;
     let datefiche = req.body.datefiche;
     let voiture = {
         matricule: req.body.matricule,

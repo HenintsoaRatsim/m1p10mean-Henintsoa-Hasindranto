@@ -98,6 +98,8 @@ const ReceptionnerVoiture = async (req, res) => {
  */
 const AjoutReparation = async (req, res) => {
     let idFiche = new ObjectId(req.body.idfiche);
+    if (!req.body.prix || parseInt(req.body.prix) <= 0) return sendErreur(res, "Impossible ,inserer un montant svp");
+    if (!req.body.intitule) return sendErreur(res, "Impossible ,inserer un intitule svp");
     let reparation = {
         fiche: idFiche,
         intitule: req.body.intitule,
@@ -330,7 +332,7 @@ const getVoitureEnReparation = async (req, res) => {
  */
 const getDemandeSortie = async (req, res) => {
     try {
-        console.log("liste de mande de sortie");
+        console.log("liste demande de sortie");
         Fiche.find({
             etat: 4
         }).populate("voiture").populate("user").then(function (fiche) {
