@@ -307,8 +307,7 @@ const AjoutDepense = async (req, res) => {
     let montant = req.body.montant;
     if (verifNull(res, datedepense, "Inserer la date svp")) return;
     if (verifNull(res, req.body.idtypedepense, "Inserer un type de depense svp")) return;
-    if (verifNull(res, montant, "Inserer le montant svp")) return;
-    if (parseInt(montant) <= 0) return sendErreur(res, "Ajouter un montant valide svp");
+    if (!montant || parseInt(montant) <= 0) return sendErreur(res, "Ajouter un montant valide svp");
     let Dep = {
         datedepense: datedepense,
         typedepense: typedepense,
@@ -326,12 +325,35 @@ function sendErreur(res, message) {
     })
 }
 
-
+/**
+ * La liste des voiture dans la reparation est fini
+ * pour permettre le paiemenet de la facture;
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ */
+const getListeVoiturePaiement = async (req, res) => {
+    try {
+        console.log("validation paiement");
+        Fiche.find({
+            etat: 3
+        }).populate("voiture").populate("user").then(function (fiche) {
+            if (fiche.length > 0) {
+                return sendResult(res, fiche);
+            }
+            return sendErreur(res, "Pas de voiture")
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
 module.exports = {
     ValiderPaiement,
     getTempsMoyenneReparationVoiture,
     ChiffreAffaire,
     AjoutTypeDeDepense,
     AjoutDepense,
-    getDepense
+    getDepense,
+    getListeVoiturePaiement
 }
