@@ -31,6 +31,11 @@ export class AjoutReparationComponent implements OnInit {
     avancement: null
   }
 
+  haha: any={
+    idreparation: null,
+    date: null
+  }
+
 
   constructor(
     private router: Router,
@@ -61,16 +66,12 @@ export class AjoutReparationComponent implements OnInit {
   }
 
   OnSubmit(){
-    let id= this.form.idfiche= this.activated.snapshot.params['idfiche'];
+    let id= this.activated.snapshot.params['idfiche'];
+    this.form.idfiche= this.activated.snapshot.params['idfiche'];
     console.log('donnee entree: ', this.form);
     this.atelierService.ajout_reparation(this.form)
     .subscribe((response) => {
       console.log(response);
-      // this.router.navigate(['Atelier/liste_reception']);
-      // window.location.reload();
-      this.form.intitule=null;
-      this.form.description=null;
-      this.form.prix=null;
       this.getDetailFiche(id);
       
     });
@@ -81,7 +82,7 @@ export class AjoutReparationComponent implements OnInit {
   }
 
   OnDate(idrep:any){
-    let id= this.form.idfiche= this.activated.snapshot.params['idfiche'];
+    let id= this.activated.snapshot.params['idfiche'];
     this.input.idreparation=idrep;
     console.log('donnee date: ', this.input);
     this.atelierService.ajout_avancement(this.input)
@@ -93,7 +94,7 @@ export class AjoutReparationComponent implements OnInit {
   }
 
   OnAvancement(idrep:any){    
-    let id= this.form.idfiche= this.activated.snapshot.params['idfiche'];
+    let id= this.activated.snapshot.params['idfiche'];
     this.entre.idreparation=idrep;
     console.log('donnee avacement: ', this.entre);
     this.atelierService.ajout_avancement(this.entre)
@@ -103,6 +104,18 @@ export class AjoutReparationComponent implements OnInit {
       
     });
     
+  }
+
+  OnDateFin(idrep:any){
+    let id= this.activated.snapshot.params['idfiche'];
+    this.haha.idreparation=idrep;
+    console.log('donnee date: ', this.haha);
+    this.atelierService.ajout_avancement(this.haha)
+    .subscribe((response) => {
+      console.log(response);
+      this.getDetailFiche(id);
+      
+    });    
   }
 
 }

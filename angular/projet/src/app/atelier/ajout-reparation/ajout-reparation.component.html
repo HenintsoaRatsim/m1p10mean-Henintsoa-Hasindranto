@@ -16,13 +16,13 @@
                               <div class="col">
                                 <label>Intitule</label>
                                   <div class="mb-3">
-                                      <input type="text" class="form-control"  placeholder="Exemple: Moteur, pneu, ..." aria-label="Intitule" [(ngModel)]="form.intitule" #nom="ngModel" required>
+                                      <input type="text" class="form-control"  placeholder="Exemple: Moteur, pneu, ..." aria-label="Intitule" [(ngModel)]="form.intitule" #intitule="ngModel" required>
                                   </div>
                               </div>
                               <div class="col">
                                 <label>Description</label>
                                   <div class="mb-3">
-                                      <input type="text" class="form-control"  placeholder="Description de la réparation" aria-label="Description" [(ngModel)]="form.description" #nom="ngModel" required>
+                                      <input type="text" class="form-control"  placeholder="Description de la réparation" aria-label="Description" [(ngModel)]="form.description" #description="ngModel" required>
                                   </div>
                               </div>
                             </div>
@@ -30,13 +30,13 @@
                               <div class="col">
                                 <label>Prix de la réparation</label>
                                   <div class="mb-3">
-                                      <input type="text" class="form-control"  placeholder="Exemple: 20000 (en Ariary)" aria-label="Prix" [(ngModel)]="form.prix" #nom="ngModel" required>
+                                      <input type="text" class="form-control"  placeholder="Exemple: 20000 (en Ariary)" aria-label="Prix" [(ngModel)]="form.prix" #prix="ngModel" required>
                                   </div>
                               </div>
                               <div class="col">
                                 
                                   <div class="mb-3">
-                                      <input type="hidden" class="form-control" [(ngModel)]="form.idfiche" #nom="ngModel" >
+                                      <input type="hidden" class="form-control" [(ngModel)]="form.idfiche" #idfiche="ngModel" >
                                   </div>
                               </div>
                               
@@ -92,13 +92,14 @@
                                   <form  (ngSubmit)="OnDate(list._id)">
                                     <div class="row">
                                       <div class="col">
-                                        <input type="datetime-local" class="form-control" aria-label="daty" [(ngModel)]="input.date" #date="ngModel" required style="width: 200px;">
+                                        <input type="hidden" class="form-control" [(ngModel)]="input.idreparation" #idreparation="ngModel">
+                                        <input [attr.id]="'Location'+list._id" type="datetime-local" class="form-control" aria-label="daty" [(ngModel)]="input.date" #date="ngModel" required style="width: 200px;">
                                       </div>
                                       <div class="col">
                                         <button type="submit" class="btn btn-info w-100 text-gradient">Commencer</button>
                                       </div>
                                     </div>
-                                    <input type="hidden" class="form-control" [(ngModel)]="input.idreparation" #idreparation="ngModel">
+                                    
                                   
                                   </form>
                                 </td>
@@ -110,7 +111,7 @@
                                     <div class="row">
                                       <div class="col">
                                         <input type="hidden" class="form-control" [(ngModel)]="entre.idreparation" #idreparation="ngModel"  >
-                                        <input type="number" class="form-control" aria-label="daty" [(ngModel)]="entre.avancement" #avacement="ngModel"  required min="0" max="100" style="width: 200px;">
+                                        <input type="number" class="form-control" aria-label="avancement" [(ngModel)]="entre.avancement" #avacement="ngModel"  required min="0" max="100" style="width: 200px;">
                                       </div>
                                       <div class="col">
                                         <button type="submit" class="btn btn-info w-100 text-gradient">Valider avancement</button>
@@ -119,19 +120,20 @@
                                   </form>
                                 </td>
                               </ng-template>
-                              <div *ngIf="list.etatareparation==2;then daty"></div>
-                              <ng-template #daty>
+                              <div *ngIf="list.etatareparation==2;then datyfin"></div>
+                              <ng-template #datyfin>
                                 <td>
-                                  <form  (ngSubmit)="OnDate(list._id)">
+                                  <form  (ngSubmit)="OnDateFin(list._id)">
                                     <div class="row">
                                       <div class="col">
-                                        <input type="datetime-local" class="form-control" aria-label="daty" [(ngModel)]="input.date" #date="ngModel" required style="width: 200px;">
+                                        <input type="hidden" class="form-control" [(ngModel)]="haha.idreparation" #idreparation="ngModel">
+                                        <input type="datetime-local" class="form-control" aria-label="datyfin" [(ngModel)]="haha.date" #date="ngModel" required style="width: 200px;">
                                       </div>
                                       <div class="col">
-                                        <button type="submit" class="btn btn-info w-100 text-gradient">Commencer</button>
+                                        <button type="submit" class="btn btn-info w-100 text-gradient">Date fin </button>
                                       </div>
                                     </div>
-                                    <input type="hidden" class="form-control" [(ngModel)]="input.idreparation" #idreparation="ngModel">
+                                   
                                   
                                   </form>
                                 </td>

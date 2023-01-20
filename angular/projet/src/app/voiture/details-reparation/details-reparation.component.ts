@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/service/user.service';
 import { VoitureService } from 'src/app/service/voiture.service';
 
 @Component({
@@ -12,8 +13,16 @@ export class DetailsReparationComponent implements OnInit {
   detailsFiche: any;
   voiture: any;
   idFiche: any;
+  etatfiche: any;
 
-  constructor(private voitureService: VoitureService, private activated: ActivatedRoute, private router: Router) { }
+  message: any;
+
+  constructor(
+    private voitureService: VoitureService, 
+    private activated: ActivatedRoute, 
+    private router: Router, 
+    private userService: UserService
+    ) { }
 
   ngOnInit(): void {
     let id= this.activated.snapshot.params['idfiche'];
@@ -26,7 +35,8 @@ export class DetailsReparationComponent implements OnInit {
       resultat => {
         this.detailsFiche = resultat.data.reparations;
         this.voiture= Array.of(resultat.data.voiture);
-        this.idFiche= Array.of(resultat.data._id);
+        this.idFiche= resultat.data._id;
+        this.etatfiche= resultat.data.etat;
         console.log(resultat);
         console.log(this.detailsFiche);
         console.log(this.idFiche);
@@ -37,6 +47,16 @@ export class DetailsReparationComponent implements OnInit {
 
   OnClick(idfiche: any){ 
     this.router.navigate(['Client/facture_fiche', idfiche]); 
+  }
+
+  OnDemande(idfiche: any){ 
+    this.userService.demande_sortie(idfiche)
+    .subscribe(
+      resultat => {
+        this.message = resultat;
+        console.log(this.message);
+      }
+    )
   }
 
 }
