@@ -1,4 +1,4 @@
-const User = require("../models/User")
+const User = require("../models/User");
 const connect = require("../db/connect");
 const {
     ObjectId
@@ -12,6 +12,8 @@ const {
 const {
     UpdateEtatFiche
 } = require("./Atelier_Service");
+
+const Fiche = require("../models/Fiche");
 const SECRET_KEY = "NOTESAPI"; //cle de securite ze tina atao fa tsy votery io NOTES... io
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
