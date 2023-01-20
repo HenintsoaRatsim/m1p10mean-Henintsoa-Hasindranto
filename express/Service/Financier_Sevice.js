@@ -75,15 +75,9 @@ const ValiderPaiement = async (req, res) => {
  */
 const getTempsMoyenneReparationVoiture = async (req, res) => {
     let idFiche = new ObjectId(req.params.idfiche);
-    
-    
    let fiche = await Fiche.find({
             _id:idFiche
         }).populate("voiture").populate("user");
-    
-    
-    
-    
     Reparations.find({
         fiche: idFiche
     }).then(function (reparations) {
