@@ -157,14 +157,14 @@ const AjouterAvancement = async (req, res) => {
         }).then(function (reparation) {
             console.log(reparation);
             let idFiche = new ObjectId(reparation.fiche);
-             SetFini(idFiche)
-             res.status(200).json("insertion avancement "+avancement)
+            SetFini(idFiche)
+            res.status(200).json("insertion avancement " + avancement)
         })
     }
     if (date) {
         console.log("date ty e")
         SetDateDebutOuFin(date, idReparation);
-        res.status(200).json("insertion date "+date);
+        res.status(200).json("insertion date " + date);
     }
 }
 
@@ -311,6 +311,22 @@ function setEtatReparation(idReparations, etat) {
 }
 
 
+const getVoitureEnReparation = async (req, res) => {
+    try {
+        // console.log("liste voiture receptionner")
+        Fiche.find({
+            etat: 2
+        }).populate("voiture").populate("user").then(function (fiche) {
+            if (fiche.length > 0) {
+                return sendResult(res, fiche);
+            }
+            return sendErreur(res, "Pas de voiture receptionnée")
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
 
 
 /**
@@ -341,5 +357,6 @@ module.exports = {
     UpdateEtatFiche,
     ValiderSortie,
     getDemandeSortie,
+    getVoitureEnReparation
 
 }
