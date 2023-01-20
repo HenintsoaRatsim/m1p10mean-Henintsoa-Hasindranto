@@ -9,7 +9,6 @@ const Reparations = require("../models/Reparations");
 const getFacture = async (req, res) => {
     try {
         let idfiche = new ObjectId(req.params.idfiche);
-        console.log(idfiche)
         Facture.findOne({
             fiche: idfiche
         }).then(function (facture) {

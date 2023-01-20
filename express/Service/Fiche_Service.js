@@ -64,7 +64,7 @@ const ListeVoitureGarage = async (req, res) => {
         Fiche.find({
             user: new ObjectId(res.locals.user.id),
             etat: {
-                $lt: 2
+                $lt: 5
             }
         }).populate('user').populate('voiture').select().then(function (result) {
             if (result.length == 0) {
