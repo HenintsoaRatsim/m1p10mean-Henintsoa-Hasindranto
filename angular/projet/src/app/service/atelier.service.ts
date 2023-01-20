@@ -15,6 +15,11 @@ export class AtelierService {
     return this.httpClient.get<any>(url);
   }
 
+  get_demande_sortie(): Observable<any>{
+    let url = environment.ATELIER_BASE_URL+environment.ATELIER.listedemande; 
+    return this.httpClient.get<any>(url);
+  }
+
   receptionner_voiture(fiche: any): Observable<any>{
     let url = environment.ATELIER_BASE_URL+environment.ATELIER.receptionnerVoiture+'/'+fiche; 
     console.log(url);

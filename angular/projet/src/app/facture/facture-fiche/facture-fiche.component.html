@@ -37,8 +37,13 @@
                         </tbody>
                       </table>
                       <div class="row">
-                        <div class="col-md-10"></div>
-                        <div class="col-md-2" *ngFor="let montant of somme" style="text-align: center;">Total: {{montant}}</div>
+                        <div class="col-md-10">
+                          <div *ngIf="etat==0;then non else oui"></div>
+                          <ng-template #non><p><u>Etat facture:</u> <em style="color: red;"> Non payé</em></p></ng-template>
+                          <ng-template #oui><p><u>Etat facture:</u> <em style="color: red;"> Payé</em></p></ng-template>
+                        </div>
+                          
+                        <div class="col-md-2"  style="text-align: center;"><strong> Total: {{somme}} </strong></div>
                       </div>
                       
                 </div>

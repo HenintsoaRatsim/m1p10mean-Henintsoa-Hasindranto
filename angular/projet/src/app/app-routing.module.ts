@@ -15,6 +15,7 @@ import { ReceptionVoitureComponent } from './atelier/reception-voiture/reception
 import { AjoutReparationComponent } from './atelier/ajout-reparation/ajout-reparation.component';
 import { ListeReceptionnerComponent } from './atelier/liste-receptionner/liste-receptionner.component';
 import { VoitureEnReparationComponent } from './atelier/voiture-en-reparation/voiture-en-reparation.component';
+import { ListeDemandeComponent } from './atelier/liste-demande/liste-demande.component';
 
 
 const routes: Routes = [
@@ -63,6 +64,9 @@ const routes: Routes = [
 			},
 			{
 				path: 'liste_en_reparation', component: VoitureEnReparationComponent
+			},
+			{
+				path: 'demande_sortie', component: ListeDemandeComponent
 			},
 		]
 	},
