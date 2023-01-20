@@ -135,7 +135,8 @@ const AjoutReparation = async (req, res) => {
 
 const AjouterAvancement = async (req, res) => {
     let idReparation = new ObjectId(req.body.idreparation);
-    let avancement = req.body.avancement;
+    let avancement = parseInt(req.body.avancement);
+    if(avancement>100)return sendErreur(res,"Avancement ne doit pas depasser le 100");
     let date = req.body.date;
     if (avancement) {
         /** *******************************
@@ -275,18 +276,6 @@ const ValiderSortie = async (req, res) => {
     });
 }
 
-/**
- * la liste de demande de sortie etat fiche =4
- * @param {*} req 
- * @param {*} res 
- */
-const getDemandeSortie = async (req, res) => {
-    Fiche.find({
-        etat: 4
-    }).then(function (fiche) {
-        console.log(fiche)
-    })
-}
 
 
 /**
@@ -310,12 +299,38 @@ function setEtatReparation(idReparations, etat) {
     })
 }
 
-
+/**
+ * get Liste voiture a reparer etat =2
+ * @param {*} req 
+ * @param {*} res 
+ */
 const getVoitureEnReparation = async (req, res) => {
     try {
-        // console.log("liste voiture receptionner")
+        console.log("liste en reparation");
         Fiche.find({
             etat: 2
+        }).populate("voiture").populate("user").then(function (fiche) {
+            if (fiche.length > 0) {
+                return sendResult(res, fiche);
+            }
+            return sendErreur(res, "Pas de voiture receptionnée")
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
+
+/**
+ * la liste de demande de sortie etat fiche =4
+ * @param {*} req 
+ * @param {*} res 
+ */
+const getDemandeSortie = async (req, res) => {
+    try {
+        console.log("liste de mande de sortie");
+        Fiche.find({
+            etat: 4
         }).populate("voiture").populate("user").then(function (fiche) {
             if (fiche.length > 0) {
                 return sendResult(res, fiche);
