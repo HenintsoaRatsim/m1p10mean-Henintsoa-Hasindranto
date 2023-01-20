@@ -180,8 +180,15 @@ const Inscription = async (req, res) => {
         });
     }
 }
+function sendErreur(res, message) {
+    return res.status(200).json({
+        message: message
+    })
+}
 
 const Login = async (req, res) => {
+    console.log(req.body.mdp)
+    if(verifNull(res,req.body.mail,"Veuillez inserer votre adresse e-mail svp")) return ;
     const {
         mail,
         mdp
