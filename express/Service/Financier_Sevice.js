@@ -308,6 +308,7 @@ const AjoutDepense = async (req, res) => {
     if (verifNull(res, datedepense, "Inserer la date svp")) return;
     if (verifNull(res, req.body.idtypedepense, "Inserer un type de depense svp")) return;
     if (verifNull(res, montant, "Inserer le montant svp")) return;
+    if (parseInt(montant) <= 0) return sendErreur(res, "Ajouter un montant valide svp");
     let Dep = {
         datedepense: datedepense,
         typedepense: typedepense,

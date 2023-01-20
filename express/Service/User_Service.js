@@ -6,8 +6,12 @@ const {
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Role = require("../models/Role");
-const { SendMail } = require("../models/Mail");
-const { UpdateEtatFiche } = require("./Atelier_Service");
+const {
+    SendMail
+} = require("../models/Mail");
+const {
+    UpdateEtatFiche
+} = require("./Atelier_Service");
 const SECRET_KEY = "NOTESAPI"; //cle de securite ze tina atao fa tsy votery io NOTES... io
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
@@ -37,7 +41,7 @@ const getAllUser = async (req, res) => {
 function sendResult(res, result) {
     return res.status(200).json({
         user: result,
-        token:res.token
+        token: res.token
     });
 }
 
@@ -103,7 +107,21 @@ const deletUser = async (req, res) => {
     }
 }
 
+function verifNull(res, input, message) {
+    if (!input || input == "" || input == null || input == undefined || input === undefined || input === null || input.length === 0) {
+        sendErreur(res, message)
+        return true;
+    }
+    return false;
+}
+
 const Inscription = async (req, res) => {
+
+    if (verifNull(res, req.body.nom, "ajouter un nom svp")) return;
+    if (verifNull(res, req.body.prenom, "ajouter un prenom")) return;
+    if (verifNull(res, req.body.mail, "ajouter un mail")) return;
+    if (verifNull(res, req.body.mpd, "ajouter un mots de passe svp")) return;
+    if (verifNull(res, req.body.contact, "ajouter un contact svp")) return;
     const {
         nom,
         prenom,
@@ -120,7 +138,7 @@ const Inscription = async (req, res) => {
                 message: "address e-mail déjà utilisé"
             });
         }
-        let idRole=new ObjectId('63c7e2c18eb320722db1e0e8');
+        let idRole = new ObjectId('63c7e2c18eb320722db1e0e8');
         const hasshedPassord = await bcrypt.hash(mdp, 10);
         let role = await Role.findById(idRole).exec()
         // console.log(req.body);
@@ -133,7 +151,7 @@ const Inscription = async (req, res) => {
             role: idRole
         }).save().then(function (user) {
             console.log(user);
-            SendMail(mail,"inscription garage mada","Bonjour "+ prenom+" "+nom +" !! votre inscription chez garage mada est terminée avec succès")
+            SendMail(mail, "inscription garage mada", "Bonjour " + prenom + " " + nom + " !! votre inscription chez garage mada est terminée avec succès")
             const token = jwt.sign({
                 mail: user.mail,
                 id: user._id
@@ -148,7 +166,7 @@ const Inscription = async (req, res) => {
                 nom: user.nom,
                 prenom: user.prenom,
                 mail: user.mail,
-                token:token,
+                token: token,
                 role
 
             })
@@ -188,7 +206,7 @@ const Login = async (req, res) => {
         const token = jwt.sign({
             mail: existClient.mail,
             id: existClient._id,
-            date:new Date()
+            date: new Date()
         }, SECRET_KEY, {
             expiresIn: maxAge
         });
@@ -200,7 +218,7 @@ const Login = async (req, res) => {
             nom: existClient.nom,
             prenom: existClient.prenom,
             mail: existClient.mail,
-            token:token,
+            token: token,
             role
         });
     } catch (error) {
@@ -226,10 +244,19 @@ const Logout = async (req, res) => {
  * @param {*} req 
  */
 
-const DemandeSortie = async (req,res)=>{
-    let idfiche = new ObjectId(req.params.idfiche);
-    UpdateEtatFiche(idfiche, 4);
-    res.status(200).json({message: "Votre Demande de sortie est envoyé"});
+const DemandeSortie = async (req, res) => {
+    if (req.params.idfiche) {
+        let idfiche = new ObjectId(req.params.idfiche);
+        UpdateEtatFiche(idfiche, 4);
+        res.status(200).json({
+            message: "Votre Demande de sortie est envoyé"
+        });
+    } else {
+        res.status(200).json({
+            message: "Impossible ajouter un id svp"
+        });
+    }
+
 }
 
 
