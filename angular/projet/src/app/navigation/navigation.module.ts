@@ -12,7 +12,7 @@ import { NavigationComponent } from './navigation.component';
     NavigationComponent,
     HeaderComponent,
     SidebarComponent,
-    FooterComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

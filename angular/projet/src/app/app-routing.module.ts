@@ -16,6 +16,8 @@ import { AjoutReparationComponent } from './atelier/ajout-reparation/ajout-repar
 import { ListeReceptionnerComponent } from './atelier/liste-receptionner/liste-receptionner.component';
 import { VoitureEnReparationComponent } from './atelier/voiture-en-reparation/voiture-en-reparation.component';
 import { ListeDemandeComponent } from './atelier/liste-demande/liste-demande.component';
+import { NavigationFinancierComponent } from './navigation-financier/navigation-financier.component';
+import { ListePaiementComponent } from './financier/liste-paiement/liste-paiement.component';
 
 
 const routes: Routes = [
@@ -70,6 +72,15 @@ const routes: Routes = [
 			},
 		]
 	},
+	{
+		path: 'Financier',
+		component: NavigationFinancierComponent,
+		children: [
+			{
+				path: 'liste_paiement', component: ListePaiementComponent
+			}
+		]
+	},
 	{ path: 'inscription', component: AjoutUserComponent },
 	{ path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
 	{ path: 'navigation', loadChildren: () => import('./navigation/navigation.module').then(m => m.NavigationModule) },
@@ -78,6 +89,7 @@ const routes: Routes = [
 	{ path: 'facture', loadChildren: () => import('./facture/facture.module').then(m => m.FactureModule) },
 	{ path: 'atelier', loadChildren: () => import('./atelier/atelier.module').then(m => m.AtelierModule) },
 	{ path: 'financier', loadChildren: () => import('./financier/financier.module').then(m => m.FinancierModule) },
+	{ path: 'navigationFinancier', loadChildren: () => import('./navigation-financier/navigation-financier.module').then(m => m.NavigationFinancierModule) },
 	{ path: '**', component: PageNotFoundComponent }
 ];
 

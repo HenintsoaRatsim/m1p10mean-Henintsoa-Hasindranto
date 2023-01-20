@@ -11,8 +11,13 @@ export class FinancierService {
   constructor(private httpClient: HttpClient) { }
 
   valider_paiement(fiche: any): Observable<any>{
-    let url = environment.ATELIER_BASE_URL+environment.ATELIER.receptionnerVoiture+'/'+fiche; 
+    let url = environment.FINANCIER_BASE_URL+environment.FINANCIER.validerPaiement; 
     console.log(url);
+    return this.httpClient.post<any>(url,fiche);
+  }
+
+  get_liste_voiture_paiement(): Observable<any>{
+    let url = environment.FINANCIER_BASE_URL+environment.FINANCIER.getListePaiement; 
     return this.httpClient.get<any>(url);
   }
 

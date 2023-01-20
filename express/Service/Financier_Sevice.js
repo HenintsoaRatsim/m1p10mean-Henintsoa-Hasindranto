@@ -336,7 +336,8 @@ const getListeVoiturePaiement = async (req, res) => {
     try {
         console.log("validation paiement");
         Fiche.find({
-            etat: 3
+            etat: 3,
+            etatpayement:0
         }).populate("voiture").populate("user").then(function (fiche) {
             if (fiche.length > 0) {
                 return sendResult(res, fiche);

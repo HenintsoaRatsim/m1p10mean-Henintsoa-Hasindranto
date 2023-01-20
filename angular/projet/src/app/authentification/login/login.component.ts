@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['Client/depot_voiture']);
       }else if(response.role.intitule=='atelier'){
         this.router.navigate(['Atelier/reception_voiture']);
+      }else if(response.role.intitule=='financier'){
+        this.router.navigate(['Financier/liste_paiement']);
       }else{
         this.router.navigate(['']);
       }

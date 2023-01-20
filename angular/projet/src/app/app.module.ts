@@ -10,9 +10,6 @@ import { LoginComponent } from './authentification/login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthInterceptorProvider } from './authentification/auth.interceptor';
 import { LogoutComponent } from './authentification/logout/logout.component';
-import { HeaderFinancierComponent } from './header-financier/header-financier.component';
-import { FooterFinancierComponent } from './footer-financier/footer-financier.component';
-import { SidebarFinancierComponent } from './sidebar-financier/sidebar-financier.component';
 
 
 
@@ -21,10 +18,7 @@ import { SidebarFinancierComponent } from './sidebar-financier/sidebar-financier
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
-    LogoutComponent,
-    HeaderFinancierComponent,
-    FooterFinancierComponent,
-    SidebarFinancierComponent
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

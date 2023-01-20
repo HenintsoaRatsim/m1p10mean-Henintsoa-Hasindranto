@@ -33,7 +33,8 @@ export const environment = {
 	},
 	FINANCIER_BASE_URL: 'http://localhost:3000/api/financier/',
 	FINANCIER: {
-		validerPaiement: 'validerpaiement'
+		validerPaiement: 'validerpaiement',
+		getListePaiement: 'getlistevoiturepaiement'
 	}
 
 }
