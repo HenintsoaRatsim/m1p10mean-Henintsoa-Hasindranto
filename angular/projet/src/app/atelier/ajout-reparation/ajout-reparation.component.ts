@@ -68,7 +68,11 @@ export class AjoutReparationComponent implements OnInit {
       console.log(response);
       // this.router.navigate(['Atelier/liste_reception']);
       // window.location.reload();
+      this.form.intitule=null;
+      this.form.description=null;
+      this.form.prix=null;
       this.getDetailFiche(id);
+      
     });
     // this.form.intitule=null;
     // this.form.description=null;
@@ -76,31 +80,28 @@ export class AjoutReparationComponent implements OnInit {
     
   }
 
-  OnDate(){
+  OnDate(idrep:any){
     let id= this.form.idfiche= this.activated.snapshot.params['idfiche'];
+    this.input.idreparation=idrep;
     console.log('donnee date: ', this.input);
-    this.atelierService.ajout_reparation(this.input)
+    this.atelierService.ajout_avancement(this.input)
     .subscribe((response) => {
       console.log(response);
       this.getDetailFiche(id);
-    });
-    // this.form.intitule=null;
-    // this.form.description=null;
-    // this.form.prix=null;
-    
+      
+    });    
   }
 
-  OnAvancement(){
+  OnAvancement(idrep:any){    
     let id= this.form.idfiche= this.activated.snapshot.params['idfiche'];
+    this.entre.idreparation=idrep;
     console.log('donnee avacement: ', this.entre);
-    // this.atelierService.ajout_reparation(this.entre)
-    // .subscribe((response) => {
-    //   console.log(response);
-    //   this.getDetailFiche(id);
-    // });
-    // this.form.intitule=null;
-    // this.form.description=null;
-    // this.form.prix=null;
+    this.atelierService.ajout_avancement(this.entre)
+    .subscribe((response) => {
+      console.log(response);
+      this.getDetailFiche(id);
+      
+    });
     
   }
 
