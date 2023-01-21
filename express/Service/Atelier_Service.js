@@ -160,25 +160,25 @@ const AjouterAvancement = async (req, res) => {
             upsert: true
         }).then(function (reparation) {
             console.log(reparation);
-            
+
             res.status(200).json("insertion avancement " + avancement)
         })
     }
     if (date) {
-        
-        
-        
+
+
+
         Reparations.findOne({
-          _id: idReparation
+            _id: idReparation
         }).then(function (reparation) {
-           
-        let idFiche = new ObjectId(reparation.fiche);
-            
-        
-         console.log("date ty e")
-        SetDateDebutOuFin(date, idReparation,idFiche);
-        res.status(200).json("insertion date " + date);
-        
+
+            let idFiche = new ObjectId(reparation.fiche);
+
+
+            console.log("date ty e")
+            SetDateDebutOuFin(date, idReparation, idFiche);
+            res.status(200).json("insertion date " + date);
+
         })
     }
 }
@@ -191,7 +191,7 @@ const AjouterAvancement = async (req, res) => {
  * @param {*} date 
  * @param {*} idReparation 
  */
-async function SetDateDebutOuFin(date, idReparation,idFiche) {
+async function SetDateDebutOuFin(date, idReparation, idFiche) {
     Reparations.findById({
         _id: idReparation
     }).then(function (reparation) {
@@ -199,7 +199,7 @@ async function SetDateDebutOuFin(date, idReparation,idFiche) {
         if (reparation.datedebut && reparation.avancement == 100) {
             //insertion date fin
 
-SetFini(idFiche)
+            SetFini(idFiche)
             Reparations.findByIdAndUpdate(idReparation, {
                 datefin: date,
                 etatareparation: 3
@@ -276,21 +276,30 @@ function SetEtatFiche(idFiche, avant, nouveau) {
  * update etat fiche to 4
  * @param {*} res 
  * @param {*} req 
+ * 
  */
 const ValiderSortie = async (req, res) => {
     let idfiche = new ObjectId(req.params.idfiche);
     let fiche = await Fiche.findOne({
         _id: idfiche
     });
-    if (fiche.length == 0)
+    let etatpayement = fiche.etatpayement;
+    if (fiche.length == 0) {
         return sendErreur(res, "Fiche introuvable")
-    else if (fiche.etatpayement == 0)
-        return sendErreur(res, "Impossible de valider car la facture  n'est pas encore payée")
-    else
+    } else if (fiche.etatpayement == 0) {
+        let resultat={
+            etatpayement,
+            message:"Impossible de valider le bon de sortie car le paiement n'est pas encore validé"
+        }
+        return sendResult(res, resultat)
+    } else {
         UpdateEtatFiche(idfiche, 5);
-    return res.status(200).json({
-        message: "Le bon de sortie est validé."
-    });
+        return res.status(200).json({
+            message: "Le bon de sortie est validé.",
+            f
+        });
+    }
+
 }
 
 

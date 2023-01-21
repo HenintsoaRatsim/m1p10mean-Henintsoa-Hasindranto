@@ -28,7 +28,4 @@ router.route("/getvoiturereparationfini/").get(getListeVoitureReparationFini);
 
 router.route("/validerbondesortie/:idfiche").get(ValiderSortie);
 
-
-
-
 module.exports = router;
