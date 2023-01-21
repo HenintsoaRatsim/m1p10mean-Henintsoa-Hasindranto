@@ -6,15 +6,7 @@
           <div class="row">
             <div class="col-md-12 d-flex flex-column mx-auto">
                 <h1 style="padding-bottom: 20px;">Détails des réparations</h1>
-                <div *ngIf="etatfiche==4;then message"></div>
-                <ng-template #message>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  En attente de la validation de la demande de sortie de votre voiture
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                </ng-template>
+                
               <div class="card card-plain mt-8">
                 
                 <div class="card-body">
@@ -48,8 +40,8 @@
                         <div class="col">
                           
                             <a (click)="OnClick(idFiche)"><button class="btn btn-success">Voir facture <i class="fa fa-arrow-right" style="width: 30px;"></i></button></a>
-                            <div *ngIf="etatfiche==3;then demande"></div>
-                            <ng-template #demande><a (click)="OnDemande(idFiche)" style="margin-left: 10px;"><button class="btn btn-info">Demande de sortie</button></a></ng-template>
+                            <div *ngIf="etatfiche==4;then demande"></div>
+                            <ng-template #demande><a (click)="OnDemande(idFiche)" style="margin-left: 10px;"><button class="btn btn-info">Récuperer voiture</button></a></ng-template>
                             
                         </div>
                         
