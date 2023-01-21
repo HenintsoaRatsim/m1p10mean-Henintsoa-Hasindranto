@@ -1,5 +1,7 @@
 const express = require("express");
-const { ajouterRole } = require("../models/Role");
+const {
+    ajouterRole
+} = require("../models/Role");
 const {
     Login,
     Logout,
@@ -8,9 +10,12 @@ const {
     getAllUser,
     getUser,
     updateUser,
-    deletUser,
+    // DemandeSortie,
     // DemmandeSortie,
-    DemandeSortie,
+    deletUser,
+    getListeVoitureRecuperable,
+    RecupererVoiture
+
 } = require("../Service/User_Service");
 var router = express.Router();
 
@@ -33,7 +38,14 @@ router.route("/logout").post(Logout);
 
 router.route("/inscription").post(Inscription);
 
-router.route("/demandesortie/:idfiche").get(DemandeSortie);
+// router.route("/demandesortie/:idfiche").get(DemandeSortie);
+
+router.route("/getlistevoiturerecuperable").get(getListeVoitureRecuperable);
+
+router.route("/recuperervoiture/:idfiche").get(RecupererVoiture);
+
+
+
 
 
 module.exports = router;

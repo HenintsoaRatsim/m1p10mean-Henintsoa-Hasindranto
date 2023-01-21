@@ -5,7 +5,7 @@ const {
     AjouterAvancement,
     ReceptionnerVoiture,
     ValiderSortie,
-    getDemandeSortie,
+    getListeVoitureReparationFini,
     getListeVoituReceptionner,
     getVoitureEnReparation
 } = require("../Service/Atelier_Service");
@@ -22,11 +22,13 @@ router.route("/ajouteravancement").post(AjouterAvancement);
 
 router.route("/receptionnervoiture/:idfiche").get(ReceptionnerVoiture);
 
-router.route("/validersortie/:idfiche").get(ValiderSortie);
-
-router.route("/getdemandesortie/").get(getDemandeSortie);
-
 router.route("/getvoitureenreparation/").get(getVoitureEnReparation);
+
+router.route("/getvoiturereparationfini/").get(getListeVoitureReparationFini);
+
+router.route("/validerbondesortie/:idfiche").get(ValiderSortie);
+
+
 
 
 module.exports = router;

@@ -182,6 +182,7 @@ const Inscription = async (req, res) => {
         });
     }
 }
+
 function sendErreur(res, message) {
     return res.status(200).json({
         message: message
@@ -190,7 +191,7 @@ function sendErreur(res, message) {
 
 const Login = async (req, res) => {
     console.log(req.body.mdp)
-    if(verifNull(res,req.body.mail,"Veuillez inserer votre adresse e-mail svp")) return ;
+    if (verifNull(res, req.body.mail, "Veuillez inserer votre adresse e-mail svp")) return;
     const {
         mail,
         mdp
@@ -253,27 +254,55 @@ const Logout = async (req, res) => {
  * @param {*} req 
  */
 
-const DemandeSortie = async (req, res) => {
-    if (req.params.idfiche) {
-        let idfiche = new ObjectId(req.params.idfiche);
-        
-        Fiche.findOne({
-        _id: idfiche
-    }).then(function (fiche) {
-        if(fiche.etatpayement==0)return res.status(200).json("Votre facture doit être payée avant de pouvoir effectuer une demande de sortie");
-        UpdateEtatFiche(idfiche, 4);
-        res.status(200).json({
-            message: "Votre Demande de sortie est envoyé"
-        });
-    })
-    } else {
-        res.status(200).json({
-            message: "Impossible ajouter un id svp"
-        });
-    }
+// const DemandeSortie = async (req, res) => {
+//     if (req.params.idfiche) {
+//         let idfiche = new ObjectId(req.params.idfiche);
 
+//         Fiche.findOne({
+//             _id: idfiche
+//         }).then(function (fiche) {
+//             if (fiche.etatpayement == 0) return res.status(200).json("Votre facture doit être payée avant de pouvoir effectuer une demande de sortie");
+//             UpdateEtatFiche(idfiche, 4);
+//             res.status(200).json({
+//                 message: "Votre Demande de sortie est envoyé"
+//             });
+//         })
+//     } else {
+//         res.status(200).json({
+//             message: "Impossible ajouter un id svp"
+//         });
+//     }
+
+// }
+
+const getListeVoitureRecuperable = async (req, res) => {
+    try {
+        console.log("liste demande de sortie");
+        Fiche.find({
+            etat: 4,
+            user: new ObjectId(res.locals.user.id)
+        }).populate("voiture").populate("user").then(function (fiche) {
+            if (fiche.length > 0) {
+                return sendResult(res, fiche);
+            }
+            return sendErreur(res, "Pas de voiture receptionnée")
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
 }
 
+const RecupererVoiture = async (req, res) => {
+    let idfiche = new ObjectId(req.params.idfiche);
+    // console.log(req.params.idfiche);
+    // console.log(idfiche);
+    UpdateEtatFiche(idfiche, 5);
+    AjoutFacture(idfiche);
+    res.status(200).json({
+        message: "La voiture est recuperée"
+    });
+}
 
 
 module.exports = {
@@ -285,5 +314,7 @@ module.exports = {
     Login,
     Logout,
     Inscription,
-    DemandeSortie
+    // DemandeSortie,
+    getListeVoitureRecuperable,
+    RecupererVoiture
 }
