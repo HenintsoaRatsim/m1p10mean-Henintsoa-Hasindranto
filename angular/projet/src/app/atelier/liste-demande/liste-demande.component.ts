@@ -14,11 +14,11 @@ export class ListeDemandeComponent implements OnInit {
   constructor(private router: Router, private activated: ActivatedRoute, private atelierService: AtelierService) { }
 
   ngOnInit(): void {
-    this.getListeReceptionner();
+    this.getListeReparationTerminer();
   }
 
-  getListeReceptionner(){
-    this.atelierService.get_demande_sortie()
+  getListeReparationTerminer(){
+    this.atelierService.get_liste_reparation_terminer()
     .subscribe(
       resultat => {
         this.listeDemande = resultat.result;

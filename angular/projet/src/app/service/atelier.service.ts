@@ -15,8 +15,8 @@ export class AtelierService {
     return this.httpClient.get<any>(url);
   }
 
-  get_demande_sortie(): Observable<any>{
-    let url = environment.ATELIER_BASE_URL+environment.ATELIER.listedemande; 
+  get_liste_reparation_terminer(): Observable<any>{
+    let url = environment.ATELIER_BASE_URL+environment.ATELIER.listeterminer; 
     return this.httpClient.get<any>(url);
   }
 
