@@ -29,7 +29,7 @@ export const environment = {
 		ajoutReparation: 'ajoutreparation',
 		ajoutAvancement: 'ajouteravancement',
 		voitureEnReparation: 'getvoitureenreparation',
-		listedemande: 'getdemandesortie'
+		listeterminer: 'getvoiturereparationfini'
 	},
 	FINANCIER_BASE_URL: 'http://localhost:3000/api/financier/',
 	FINANCIER: {

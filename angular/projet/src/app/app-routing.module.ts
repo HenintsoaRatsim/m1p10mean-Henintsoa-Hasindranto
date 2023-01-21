@@ -70,7 +70,7 @@ const routes: Routes = [
 				path: 'liste_en_reparation', component: VoitureEnReparationComponent
 			},
 			{
-				path: 'demande_sortie', component: ListeDemandeComponent
+				path: 'voiture_terminer', component: ListeDemandeComponent
 			},
 		]
 	},
