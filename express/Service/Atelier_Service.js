@@ -289,7 +289,7 @@ const ValiderSortie = async (req, res) => {
     else
         UpdateEtatFiche(idfiche, 5);
     return res.status(200).json({
-        message: "La demande de sortie est validé."
+        message: "Le bon de sortie est validé."
     });
 }
 
@@ -339,15 +339,15 @@ const getVoitureEnReparation = async (req, res) => {
 }
 
 /**
- * la liste de demande de sortie etat fiche =4
+ * la liste reparation fini etat fiche =3
  * @param {*} req 
  * @param {*} res 
  */
-const getDemandeSortie = async (req, res) => {
+const getListeVoitureReparationFini = async (req, res) => {
     try {
         console.log("liste demande de sortie");
         Fiche.find({
-            etat: 4
+            etat: 3
         }).populate("voiture").populate("user").then(function (fiche) {
             if (fiche.length > 0) {
                 return sendResult(res, fiche);
@@ -388,7 +388,7 @@ module.exports = {
     ReceptionnerVoiture,
     UpdateEtatFiche,
     ValiderSortie,
-    getDemandeSortie,
+    getListeVoitureReparationFini,
     getVoitureEnReparation
 
 }

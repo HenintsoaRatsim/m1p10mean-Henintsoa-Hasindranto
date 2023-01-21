@@ -24,8 +24,8 @@ const ficheShema = new Schema({
         1 : Etat receptionner par Atelier
         2 : Etat en reparation 
         3 : Etat Fin de reparation 
-        4 : Etat demmande de sortie
-        5 : Etat sortie
+        4 : Etat bon de sortie validé
+        5 : Etat voiture recuprer
         */
         required: true
     },
