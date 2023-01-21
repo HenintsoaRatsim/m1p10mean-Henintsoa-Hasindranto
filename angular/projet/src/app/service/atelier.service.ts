@@ -26,6 +26,12 @@ export class AtelierService {
     return this.httpClient.get<any>(url);
   }
 
+  valider_bon_de_sortie(fiche: any): Observable<any>{
+    let url = environment.ATELIER_BASE_URL+environment.ATELIER.validerBonSortie+'/'+fiche; 
+    console.log(url);
+    return this.httpClient.get<any>(url);
+  }
+
   get_liste_voiture_receptionner(): Observable<any>{
     let url = environment.ATELIER_BASE_URL+environment.ATELIER.getListeVoitureReceptionner; 
     return this.httpClient.get<any>(url);
