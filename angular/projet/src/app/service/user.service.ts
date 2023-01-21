@@ -40,8 +40,8 @@ export class UserService {
     return this.httpClient.post(url, form);
   }
 
-  demande_sortie(fiche: any): Observable<any>{
-    let url = environment.USER_BASE_URL+environment.USER.demandeSortie+'/'+fiche; 
+  recuperer_voiture(fiche: any): Observable<any>{
+    let url = environment.USER_BASE_URL+environment.USER.recupererVoiture+'/'+fiche; 
     console.log(url);
     return this.httpClient.get<any>(url);
   }

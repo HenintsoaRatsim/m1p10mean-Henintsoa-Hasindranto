@@ -41,7 +41,7 @@
                           
                             <a (click)="OnClick(idFiche)"><button class="btn btn-success">Voir facture <i class="fa fa-arrow-right" style="width: 30px;"></i></button></a>
                             <div *ngIf="etatfiche==4;then demande"></div>
-                            <ng-template #demande><a (click)="OnDemande(idFiche)" style="margin-left: 10px;"><button class="btn btn-info">Récuperer voiture</button></a></ng-template>
+                            <ng-template #demande><a (click)="OnRecuperer(idFiche)" style="margin-left: 10px;"><button class="btn btn-info">Récuperer voiture</button></a></ng-template>
                             
                         </div>
                         

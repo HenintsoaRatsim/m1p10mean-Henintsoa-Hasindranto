@@ -7,7 +7,7 @@ export const environment = {
 		getUser: 'getuser/:id',
 		updateUser: 'updatuser/:id',
 		deleteUser: 'deletuser/:id',
-		demandeSortie: 'demandesortie',
+		recupererVoiture: 'recuperervoiture',
 		ajoutUser: 'inscription'
 	},
 	GARAGE_BASE_URL: 'http://localhost:3000/api/garage/',
@@ -29,7 +29,8 @@ export const environment = {
 		ajoutReparation: 'ajoutreparation',
 		ajoutAvancement: 'ajouteravancement',
 		voitureEnReparation: 'getvoitureenreparation',
-		listeterminer: 'getvoiturereparationfini'
+		listeterminer: 'getvoiturereparationfini',
+		validerBonSortie: 'validerbondesortie'
 	},
 	FINANCIER_BASE_URL: 'http://localhost:3000/api/financier/',
 	FINANCIER: {

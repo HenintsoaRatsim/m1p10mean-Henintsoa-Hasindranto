@@ -49,8 +49,8 @@ export class DetailsReparationComponent implements OnInit {
     this.router.navigate(['Client/facture_fiche', idfiche]); 
   }
 
-  OnDemande(idfiche: any){ 
-    this.userService.demande_sortie(idfiche)
+  OnRecuperer(idfiche: any){ 
+    this.userService.recuperer_voiture(idfiche)
     .subscribe(
       resultat => {
         this.message = resultat;
