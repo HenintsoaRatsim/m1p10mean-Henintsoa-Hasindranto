@@ -10,7 +10,7 @@ import { AtelierService } from 'src/app/service/atelier.service';
 export class ListeDemandeComponent implements OnInit {
 
   listeDemande: any;
-  message: any;
+  mess: any;
   etatpayement: any;
 
   constructor(private router: Router, private activated: ActivatedRoute, private atelierService: AtelierService) { }
@@ -24,7 +24,6 @@ export class ListeDemandeComponent implements OnInit {
     .subscribe(
       resultat => {
         this.listeDemande = resultat.result;
-        this.etatpayement = resultat.result[0].etatpayement;
         console.log(resultat.result);
         console.log(resultat.result[0].etatpayement);
       }
@@ -34,8 +33,9 @@ export class ListeDemandeComponent implements OnInit {
   ValiderSortie(id: any){
     this.atelierService.valider_bon_de_sortie(id)
     .subscribe(response => {
-      console.log(response.message);
-      this.message = response.message;
+      console.log(response.result);
+      this.mess = response.result.message;
+      this.etatpayement = response.result.etatpayement;
       this.getListeReparationTerminer();
     })
     console.log('huhu :', id);
