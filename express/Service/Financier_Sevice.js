@@ -75,9 +75,9 @@ const ValiderPaiement = async (req, res) => {
  */
 const getTempsMoyenneReparationVoiture = async (req, res) => {
     let idFiche = new ObjectId(req.params.idfiche);
-   let fiche = await Fiche.find({
-            _id:idFiche
-        }).populate("voiture").populate("user");
+    let fiche = await Fiche.find({
+        _id: idFiche
+    }).populate("voiture").populate("user");
     Reparations.find({
         fiche: idFiche
     }).then(function (reparations) {
@@ -129,7 +129,13 @@ function ConvertMsToTime(milliseconds) {
  */
 
 const ChiffreAffaire = async (req, res) => {
-    let filtre = req.body.filtre;
+    let value = req.body.filtre;
+    let filtre = ""
+    if (value == "jour") {
+        filtre = "%d/%m/%Y"
+    } else {
+        filtre = "%m/%Y"
+    }
     getChriffreAffaire(res, filtre);
 }
 
@@ -141,7 +147,7 @@ const ChiffreAffaire = async (req, res) => {
  */
 async function getChriffreAffaire(res, Filtre) {
     try {
-        let chiffredaffaire = await Facture.aggregate([
+        let chiffredaffaires = await Facture.aggregate([
             // {
             //     $match: {
             //         $expr: {
@@ -167,8 +173,8 @@ async function getChriffreAffaire(res, Filtre) {
                 }
             },
         ]).exec()
-        sendResult(res, chiffredaffaire);
-        console.log(chiffredaffaire);
+        sendResult(res, chiffredaffaires);
+        console.log(chiffredaffaires);
     } catch (error) {
         console.log(error);
         return res.status(500).json(error);
@@ -341,7 +347,7 @@ const getListeVoiturePaiement = async (req, res) => {
         console.log("validation paiement");
         Fiche.find({
             etat: 3,
-            etatpayement:0
+            etatpayement: 0
         }).populate("voiture").populate("user").then(function (fiche) {
             if (fiche.length > 0) {
                 return sendResult(res, fiche);
@@ -358,8 +364,8 @@ const getlistevoitureTempsMoyenne = async (req, res) => {
     try {
         console.log("validation paiement");
         Fiche.find({
-            etat:{
-                $gte:3
+            etat: {
+                $gte: 3
             }
         }).populate("voiture").populate("user").then(function (fiche) {
             if (fiche.length > 0) {
