@@ -16,6 +16,12 @@ export class FinancierService {
     return this.httpClient.post<any>(url,fiche);
   }
 
+  chiffre_affaire(filtre: any): Observable<any>{
+    let url = environment.FINANCIER_BASE_URL+environment.FINANCIER.getChiffreAffaire; 
+    console.log(url);
+    return this.httpClient.post<any>(url,filtre);
+  }
+
   get_liste_voiture_paiement(): Observable<any>{
     let url = environment.FINANCIER_BASE_URL+environment.FINANCIER.getListePaiement; 
     return this.httpClient.get<any>(url);

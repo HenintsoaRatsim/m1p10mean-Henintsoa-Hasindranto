@@ -15,7 +15,7 @@ router.route("/validerpaiement/").post(ValiderPaiement);
 
 router.route("/gettempsmoyenne/:idfiche").get(getTempsMoyenneReparationVoiture);
 
-router.route("/chiffreaffaire/:filtre").get(ChiffreAffaire);
+router.route("/chiffreaffaire").post(ChiffreAffaire);
 
 router.route("/ajoutertypedepense/").get(AjoutTypeDeDepense);
 
