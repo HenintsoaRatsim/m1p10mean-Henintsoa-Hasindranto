@@ -38,7 +38,11 @@ export const environment = {
 		getListePaiement: 'getlistevoiturepaiement',
 		getListeTermine: 'getlistevoituretempsmoyenne',
 		getTempsMoyenne: 'gettempsmoyenne',
-		getChiffreAffaire: 'chiffreaffaire'
+		getChiffreAffaire: 'chiffreaffaire',
+		ajoutType: 'ajoutertypedepense',
+		getTypeDepense: 'gettypedepense',
+		getListeDepense: 'getlistedepense',
+		ajoutDepense: 'ajouterdepense'
 	}
 
 }

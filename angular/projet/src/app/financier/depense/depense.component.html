@@ -52,10 +52,10 @@
                             <div class="row">
                               <div class="col">
                                 <label>Type de dépense</label>
-                                <select class="form-select" aria-label="Default select example" [(ngModel)]="form.idtypedepense" #idtypedepense="ngModel">
-                                    <!-- <option selected>Choisir un filtre</option> -->
-                                    <option value="jour">Jour</option>
-                                    <option value="mois">Mois</option>
+                                <select class="form-select"  aria-label="Default select example" [(ngModel)]="form.idtypedepense" #idtypedepense="ngModel">
+                                    
+                                        <option *ngFor="let listeType of listeTypeDepense" value="{{listeType._id}}">{{listeType.intitule}}</option>
+                                   
                                 </select>
                               </div>
                               <div class="col">
@@ -103,7 +103,25 @@
                   <div class="card card-plain mt-8">
                     
                     <div class="card-body">
-                     
+                        <table class="table table-bordered" style="margin-top: 20px;">
+                            <thead class="table-dark">
+                              <tr>
+                                
+                                <th style="color: white;">Date</th>
+                                <th style="color: white;">Argents (Ariary)</th>
+    
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let liste of listeDepense">
+                                
+                                <td> {{liste._id}}</td>
+                                <td>{{liste.montantapayer}}</td>
+                               
+                              </tr>
+                              
+                            </tbody>
+                        </table>
                     </div>
                     
                   </div>
