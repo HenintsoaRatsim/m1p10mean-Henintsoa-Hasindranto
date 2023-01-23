@@ -3,34 +3,34 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FinancierService } from 'src/app/service/financier.service';
 
 @Component({
-  selector: 'app-benefice',
-  templateUrl: './benefice.component.html',
-  styleUrls: ['./benefice.component.css']
+  selector: 'app-recherche',
+  templateUrl: './recherche.component.html',
+  styleUrls: ['./recherche.component.css']
 })
-export class BeneficeComponent implements OnInit {
+export class RechercheComponent implements OnInit {
 
-  listeBenefice: any;
+  listeRecherche: any;
 
   form: any={
-    mois: null,
-    annee: null
+    datedebut: null,
+    datefin: null
   }
 
   constructor(private router: Router, private activated: ActivatedRoute, private financierService: FinancierService) { }
 
   ngOnInit(): void {
-    this.getListeBenefice();
+    this.getRecherche();
   }
 
-  getListeBenefice(){
+  getRecherche(){
     console.log('donnee date: ', this.form);
-    this.financierService.get_benefice(this.form)
+    this.financierService.get_recherche(this.form)
     .subscribe(
       resultat => {
-        this.listeBenefice = resultat.result;
-        console.log(resultat.result);
+        this.listeRecherche = resultat.result;
+        console.log(resultat);
       }
     )
   }
- 
+
 }

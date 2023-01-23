@@ -34,6 +34,18 @@ export class FinancierService {
     return this.httpClient.post<any>(url,form);
   }
 
+  get_benefice(form: any): Observable<any>{
+    let url = environment.FINANCIER_BASE_URL+environment.FINANCIER.getBenefice; 
+    console.log(url);
+    return this.httpClient.post<any>(url,form);
+  }
+
+  get_recherche(form: any): Observable<any>{
+    let url = environment.FINANCIER_BASE_URL+environment.FINANCIER.recherche; 
+    console.log(url);
+    return this.httpClient.post<any>(url,form);
+  }
+
   get_liste_voiture_paiement(): Observable<any>{
     let url = environment.FINANCIER_BASE_URL+environment.FINANCIER.getListePaiement; 
     return this.httpClient.get<any>(url);

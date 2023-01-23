@@ -57,3 +57,10 @@ connecter("mongodb+srv://henintsoa:wi0VByNKAQxLq3YF@cluster0.25yd0bh.mongodb.net
 })
 
 module.exports = app;
+
+/**
+ * 
+ * https://api-mean.onrender.com/
+ * 
+ * api-mean
+ */

@@ -23,6 +23,7 @@ import { TempsMoyenneComponent } from './financier/temps-moyenne/temps-moyenne.c
 import { ChiffreAffaireComponent } from './financier/chiffre-affaire/chiffre-affaire.component';
 import { BeneficeComponent } from './financier/benefice/benefice.component';
 import { DepenseComponent } from './financier/depense/depense.component';
+import { RechercheComponent } from './financier/recherche/recherche.component';
 
 
 const routes: Routes = [
@@ -98,6 +99,9 @@ const routes: Routes = [
 			},
 			{
 				path: 'depenses', component: DepenseComponent
+			},
+			{
+				path: 'recherche', component: RechercheComponent
 			}
 		]
 	},
