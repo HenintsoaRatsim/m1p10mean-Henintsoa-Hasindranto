@@ -27,7 +27,7 @@ const SendMail = async function SendMail(AdressEmail, sujet, Message) {
         from: "garagemada@gg.auto",
         to: AdressEmail,
         subject: sujet,
-        text: Message
+        text: messageAddSignature
     }, function (err, info) {
         if (err) {
             console.log(err);
