@@ -22,6 +22,7 @@ const options = {
 }
 
 const SendMail = async function SendMail(AdressEmail, sujet, Message) {
+    let messageAddSignature=Message+" \n--------------------------------------GARAGE MADA:038031000";
     transporter.sendMail({
         from: "garagemada@gg.auto",
         to: AdressEmail,

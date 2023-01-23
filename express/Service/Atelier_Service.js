@@ -249,7 +249,7 @@ async function SetFini(idFiche) {
                 /**
                  * Envoyer email fin reparation
                  */
-                SendMail(Fiche_.user.mail, "Reparation terminé", "Bonjour!! la reparation de votre voiture est terminé avec succès")
+                SendMail(Fiche_.user.mail, "Reparation terminé", "Bonjour!! \n la reparation de votre voiture est terminé avec succès,veuillez payer facture.")
             }
         })
     })
