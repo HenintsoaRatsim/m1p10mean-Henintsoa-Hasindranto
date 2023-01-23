@@ -10,7 +10,7 @@ const {
      getlistevoitureTempsMoyenne,
      getTypeDeDepense,
      getListeDepense,
-     rechereche
+     Rechereche
 } = require("../Service/Financier_Sevice");
 var router = express.Router();
 
@@ -30,7 +30,7 @@ router.route("/getlistedepense/").get(getListeDepense);
 
 router.route("/getBenefiche/").get(getBenefice);
 
-router.route("/recherche/").get(rechereche);
+router.route("/recherche/").get(Rechereche);
 
 router.route("/getlistevoiturepaiement/").get(getListeVoiturePaiement);
 
