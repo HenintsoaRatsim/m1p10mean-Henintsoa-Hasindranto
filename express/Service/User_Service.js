@@ -13,7 +13,7 @@ const {
     UpdateEtatFiche
 } = require("./Atelier_Service");
 
-const Fiche = require("../models/aFiche");
+const Fiche = require("../models/Fiche");
 const SECRET_KEY = "NOTESAPI"; //cle de securite ze tina atao fa tsy votery io NOTES... io
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;

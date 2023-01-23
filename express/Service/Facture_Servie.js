@@ -2,7 +2,7 @@ const {
     ObjectId
 } = require("mongodb");
 const Facture = require("../models/Facture");
-const Fiche = require("../models/aFiche");
+const Fiche = require("../models/Fiche");
 const Reparations = require("../models/Reparations");
 
 
