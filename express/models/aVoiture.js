@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const User = require("./User");
-const Fiche = require("./Fiche");
+const Fiche = require("./aFiche");
 const Schema = mongoose.Schema;
 const ObjectId = require("mongodb").ObjectId;
 

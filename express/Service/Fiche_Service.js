@@ -1,9 +1,9 @@
-const Fiche = require("../models/Fiche");
+const Fiche = require("../models/aFiche");
 const User = require("../models/User")
 const {
     ObjectId
 } = require("mongodb");
-const Voiture = require("../models/Voiture");
+const Voiture = require("../models/aVoiture");
 
 function verifNull(res, input, message) {
     if (!input || input == "" || input == null || input == undefined || input === undefined || input === null || input.length === 0) {

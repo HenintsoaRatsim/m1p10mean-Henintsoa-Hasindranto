@@ -1,7 +1,7 @@
 const {
     ObjectId
 } = require("mongodb");
-const Fiche = require("../models/Fiche");
+const Fiche = require("../models/aFiche");
 
 const Reparations = require("../models/Reparations");
 const {
