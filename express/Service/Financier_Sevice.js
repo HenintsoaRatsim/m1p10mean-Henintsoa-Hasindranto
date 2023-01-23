@@ -138,44 +138,6 @@ const ChiffreAffaire = async (req, res) => {
     }
     getChriffreAffaire(res, filtre);
 }
-
-
-const rechereche = async (req, res) => {
-    let datedebut = req.body.datedebut;
-    let datefin = req.body.datefin;
-    if (verifNull(res, datedebut, "Ajouter une date debut svp")) return;
-    if (verifNull(res, datefin, "Ajouter une date fin svp")) return;
-    try {
-        let chiffredaffaires = await Facture.aggregate([{
-                $match: {
-                    datefacture: {
-                        $gte: new Date(datedebut),
-                        $lte: new Date(datefin)
-                    }
-                }
-            },
-            {
-                $group: {
-                    _id: {
-                        $dateToString: {
-                            format: "%d/%m/%Y",
-                            date: "$datefacture"
-                        }
-                    },
-                    "montantapayer": {
-                        $sum: "$montantapayer"
-                    }
-                }
-            },
-        ]).exec()
-        sendResult(res, chiffredaffaires);
-        console.log(chiffredaffaires);
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json(error);
-    }
-}
-
 /**
  * Fonction calcule chiffre d'affaire
  * 
@@ -362,7 +324,7 @@ const getTypeDeDepense = async (req, res) => {
  */
 const getListeDepense = async (req, res) => {
 
-    let depenses = await Depense.find();
+    let depenses = await Depense.find().populate('Typedepense');
     if (depenses.length == 0) return sendErreur(res, "Pas de dépense trouvé");
     return sendResult(res, depenses);
 }
@@ -443,6 +405,50 @@ const getlistevoitureTempsMoyenne = async (req, res) => {
     }
 }
 
+
+/**
+ * Recherche chiffre d'affaire entre deux date 
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+const Rechereche = async (req, res) => {
+    let datedebut = req.body.datedebut;
+    let datefin = req.body.datefin;
+    if (verifNull(res, datedebut, "Ajouter une date debut svp")) return;
+    if (verifNull(res, datefin, "Ajouter une date fin svp")) return;
+    try {
+        let chiffredaffaires = await Facture.aggregate([{
+                $match: {
+                    datefacture: {
+                        $gte: new Date(datedebut),
+                        $lte: new Date(datefin)
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: {
+                        $dateToString: {
+                            format: "%d/%m/%Y",
+                            date: "$datefacture"
+                        }
+                    },
+                    "montantapayer": {
+                        $sum: "$montantapayer"
+                    }
+                }
+            },
+        ]).exec()
+        sendResult(res, chiffredaffaires);
+        console.log(chiffredaffaires);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json(error);
+    }
+}
+
+
 module.exports = {
     ValiderPaiement,
     getTempsMoyenneReparationVoiture,
@@ -454,5 +460,5 @@ module.exports = {
     getlistevoitureTempsMoyenne,
     getTypeDeDepense,
     getListeDepense,
-    rechereche
+    Rechereche
 }
