@@ -139,6 +139,43 @@ const ChiffreAffaire = async (req, res) => {
     getChriffreAffaire(res, filtre);
 }
 
+
+const rechereche = async (req, res) => {
+    let datedebut = req.body.datedebut;
+    let datefin = req.body.datefin;
+    if (verifNull(res, datedebut, "Ajouter une date debut svp")) return;
+    if (verifNull(res, datefin, "Ajouter une date fin svp")) return;
+    try {
+        let chiffredaffaires = await Facture.aggregate([{
+                $match: {
+                    datefacture: {
+                        $gte: new Date(datedebut),
+                        $lte: new Date(datefin)
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: {
+                        $dateToString: {
+                            format: "%d/%m/%Y",
+                            date: "$datefacture"
+                        }
+                    },
+                    "montantapayer": {
+                        $sum: "$montantapayer"
+                    }
+                }
+            },
+        ]).exec()
+        sendResult(res, chiffredaffaires);
+        console.log(chiffredaffaires);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json(error);
+    }
+}
+
 /**
  * Fonction calcule chiffre d'affaire
  * 
@@ -188,7 +225,7 @@ async function getChriffreAffaire(res, Filtre) {
  * @param {*} res 
  * @returns 
  */
-const getDepense = async (req, res) => {
+const getBenefice = async (req, res) => {
     try {
         let mois = parseInt(req.body.mois);
         let annee = parseInt(req.body.annee);
@@ -412,9 +449,10 @@ module.exports = {
     ChiffreAffaire,
     AjoutTypeDeDepense,
     AjoutDepense,
-    getDepense,
+    getBenefice,
     getListeVoiturePaiement,
     getlistevoitureTempsMoyenne,
     getTypeDeDepense,
-    getListeDepense
+    getListeDepense,
+    rechereche
 }
