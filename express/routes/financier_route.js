@@ -7,7 +7,9 @@ const {
      ChiffreAffaire,
      getDepense,
      getListeVoiturePaiement,
-     getlistevoitureTempsMoyenne
+     getlistevoitureTempsMoyenne,
+     getTypeDeDepense,
+     getListeDepense
 } = require("../Service/Financier_Sevice");
 var router = express.Router();
 
@@ -19,7 +21,11 @@ router.route("/chiffreaffaire/:filtre").get(ChiffreAffaire);
 
 router.route("/ajoutertypedepense/").get(AjoutTypeDeDepense);
 
+router.route("/gettypedepense/").get(getTypeDeDepense);
+
 router.route("/ajouterdepense/").get(AjoutDepense);
+
+router.route("/getlistedepense/").get(getListeDepense);
 
 router.route("/getdepense/").get(getDepense);
 

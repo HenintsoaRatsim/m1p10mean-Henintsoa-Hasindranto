@@ -303,6 +303,33 @@ const AjoutTypeDeDepense = async (req, res) => {
     return sendResult(res, TD);
 }
 
+/**
+ * La liste des types de depense
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+const getTypeDeDepense = async (req, res) => {
+    let types = await Typedepense.find();
+
+    if (types.length == 0) return sendErreur(res, "Pas de type de dépense trouvé");
+    return sendResult(res, types);
+}
+
+/**
+ * La liste de tous les dépense
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+const getListeDepense = async (req, res) => {
+
+    let depenses = await Depense.find();
+    if (depenses.length == 0) return sendErreur(res, "Pas de dépense trouvé");
+    return sendResult(res, depenses);
+}
+
 function verifNull(res, input, message) {
     if (!input || input == "" || input == null || input == undefined || input === undefined || input === null || input.length === 0) {
         sendErreur(res, message)
@@ -387,5 +414,7 @@ module.exports = {
     AjoutDepense,
     getDepense,
     getListeVoiturePaiement,
-    getlistevoitureTempsMoyenne
+    getlistevoitureTempsMoyenne,
+    getTypeDeDepense,
+    getListeDepense
 }
