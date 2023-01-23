@@ -5,9 +5,12 @@ const {
      AjoutTypeDeDepense,
      AjoutDepense,
      ChiffreAffaire,
-     getDepense,
+     getBenefice,
      getListeVoiturePaiement,
-     getlistevoitureTempsMoyenne
+     getlistevoitureTempsMoyenne,
+     getTypeDeDepense,
+     getListeDepense,
+     rechereche
 } = require("../Service/Financier_Sevice");
 var router = express.Router();
 
@@ -19,10 +22,15 @@ router.route("/chiffreaffaire").post(ChiffreAffaire);
 
 router.route("/ajoutertypedepense/").get(AjoutTypeDeDepense);
 
+router.route("/gettypedepense/").get(getTypeDeDepense);
+
 router.route("/ajouterdepense/").get(AjoutDepense);
 
-router.route("/getdepense/").get(getDepense);
+router.route("/getlistedepense/").get(getListeDepense);
 
+router.route("/getBenefiche/").get(getBenefice);
+
+router.route("/recherche/").get(rechereche);
 
 router.route("/getlistevoiturepaiement/").get(getListeVoiturePaiement);
 

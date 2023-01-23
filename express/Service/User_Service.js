@@ -122,8 +122,7 @@ const Inscription = async (req, res) => {
     if (verifNull(res, req.body.nom, "ajouter un nom svp")) return;
     if (verifNull(res, req.body.prenom, "ajouter un prenom")) return;
     if (verifNull(res, req.body.mail, "ajouter un mail")) return;
-    if (verifNull(res, req.body.mpd, "ajouter un mots de passe svp")) return;
-    if (verifNull(res, req.body.contact, "ajouter un contact svp")) return;
+    // if (verifNull(res, req.body.contact, "ajouter un contact svp")) return;
     const {
         nom,
         prenom,
@@ -153,7 +152,8 @@ const Inscription = async (req, res) => {
             role: idRole
         }).save().then(function (user) {
             console.log(user);
-            SendMail(mail, "inscription garage mada", "Bonjour " + prenom + " " + nom + " !! votre inscription chez garage mada est terminée avec succès")
+            console.log("Envoyer mail");
+            SendMail(mail, "Inscription garage mada", "Bonjour " + prenom + " " + nom + "\n !!Votre inscription chez garage mada est terminée avec succès")
             const token = jwt.sign({
                 mail: user.mail,
                 id: user._id

@@ -1,12 +1,16 @@
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
+    pool: true,
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
     auth: {
         user: "ratsimhenintsoa@gmail.com",
         pass: "xlsclgwihipvlcrl"
+    },
+    tls: {
+        rejectUnauthorized: false
     }
 });
 
@@ -21,8 +25,8 @@ const SendMail = async function SendMail(AdressEmail, sujet, Message) {
     transporter.sendMail({
         from: "garagemada@gg.auto",
         to: AdressEmail,
-        subject:sujet,
-        text:Message
+        subject: sujet,
+        text: Message
     }, function (err, info) {
         if (err) {
             console.log(err);
