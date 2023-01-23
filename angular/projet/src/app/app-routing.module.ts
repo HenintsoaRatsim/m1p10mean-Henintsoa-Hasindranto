@@ -22,6 +22,7 @@ import { ListeTermineComponent } from './financier/liste-termine/liste-termine.c
 import { TempsMoyenneComponent } from './financier/temps-moyenne/temps-moyenne.component';
 import { ChiffreAffaireComponent } from './financier/chiffre-affaire/chiffre-affaire.component';
 import { BeneficeComponent } from './financier/benefice/benefice.component';
+import { DepenseComponent } from './financier/depense/depense.component';
 
 
 const routes: Routes = [
@@ -94,6 +95,9 @@ const routes: Routes = [
 			},
 			{
 				path: 'benefice', component: BeneficeComponent
+			},
+			{
+				path: 'depenses', component: DepenseComponent
 			}
 		]
 	},
