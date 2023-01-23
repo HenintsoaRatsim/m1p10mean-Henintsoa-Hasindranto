@@ -43,7 +43,7 @@ export const environment = {
 		getTypeDepense: 'gettypedepense',
 		getListeDepense: 'getlistedepense',
 		ajoutDepense: 'ajouterdepense',
-		getBenefice: 'getBenefice',
+		getBenefice: 'getbenefice',
 		recherche: 'recherche'
 	}
 
