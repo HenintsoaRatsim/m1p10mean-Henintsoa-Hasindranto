@@ -1,0 +1,59 @@
+
+  <main class="main-content  mt-0" >
+    <section>
+      <div class="page-header min-vh-75">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 d-flex flex-column mx-auto">
+                <h1 style="padding-bottom: 20px;">Chiffre d'affaires</h1>
+              <div class="card card-plain mt-8">
+                
+                <div class="card-body">
+                    <form  (ngSubmit)="getChiffreAffaire()">
+                        <div class="row">
+                          <div class="col">
+                            <select class="form-select" aria-label="Default select example" [(ngModel)]="form.filtre" #filtre="ngModel">
+                                <!-- <option selected>Choisir un filtre</option> -->
+                                <option value="jour">Jour</option>
+                                <option value="mois">Mois</option>
+                              </select>
+                            <!-- <input type="datetime-local" class="form-control" aria-label="date" [(ngModel)]="form.filtre" #filtre="ngModel"  required > -->
+                          </div>
+                          <div class="col">
+                            <button type="submit" class="btn btn-info">Filtrer <i class="fa fa-check" style="width: 30px;"></i></button>
+                          </div>
+                        </div>
+                    </form>
+
+                    <table class="table table-bordered" style="margin-top: 20px;">
+                        <thead class="table-dark">
+                          <tr>
+                            
+                            <th style="color: white;">Date</th>
+                            <th style="color: white;">Argents (Ariary)</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let liste of listeChiffre">
+                            
+                            <td><i class="fa fa-calendar"></i> {{liste._id}}</td>
+                            <td> {{liste.montantapayer}}</td>
+                           
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                    
+                </div>
+                
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  

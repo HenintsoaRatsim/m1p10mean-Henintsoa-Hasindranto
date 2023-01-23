@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { ListeTermineComponent } from './liste-termine/liste-termine.component';
 import { TempsMoyenneComponent } from './temps-moyenne/temps-moyenne.component';
 import { ListeReparerComponent } from './liste-reparer/liste-reparer.component';
+import { ChiffreAffaireComponent } from './chiffre-affaire/chiffre-affaire.component';
+import { BeneficeComponent } from './benefice/benefice.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { ListeReparerComponent } from './liste-reparer/liste-reparer.component';
     ListePaiementComponent,
     ListeTermineComponent,
     TempsMoyenneComponent,
-    ListeReparerComponent
+    ListeReparerComponent,
+    ChiffreAffaireComponent,
+    BeneficeComponent
   ],
   imports: [
     CommonModule,

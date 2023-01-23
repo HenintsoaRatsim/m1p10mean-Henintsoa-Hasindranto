@@ -37,7 +37,8 @@ export const environment = {
 		validerPaiement: 'validerpaiement',
 		getListePaiement: 'getlistevoiturepaiement',
 		getListeTermine: 'getlistevoituretempsmoyenne',
-		getTempsMoyenne: 'gettempsmoyenne'
+		getTempsMoyenne: 'gettempsmoyenne',
+		getChiffreAffaire: 'chiffreaffaire'
 	}
 
 }
