@@ -28,7 +28,7 @@ router.route("/ajouterdepense/").post(AjoutDepense);
 
 router.route("/getlistedepense/").get(getListeDepense);
 
-router.route("/getBenefice/").post(getBenefice);
+router.route("/getbenefice/").post(getBenefice);
 
 router.route("/recherche/").post(Rechereche);
 
