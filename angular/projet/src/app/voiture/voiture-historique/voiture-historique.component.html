@@ -43,11 +43,11 @@
                             </ng-template>
                             <div  *ngIf="liste.etat==4;then demande"></div>
                             <ng-template #demande>
-                              <td class="text-success">Voiture récupérable</td>
+                              <td class="text-danger" >Voiture récupérable</td>
                             </ng-template>
                             <div  *ngIf="liste.etat==5;then sortie"></div>
                             <ng-template #sortie>
-                              <td class="text-success">Sortie</td>
+                              <td class="text-danger">Sortie</td>
                             </ng-template>
                             <td>{{liste.datefiche | date: 'à HH:mm, le d MMMM yyyy'}} </td>
                             <td><a (click)="OnClick(liste._id)"><button class="btn btn-info" >Voir détails <i class="fa fa-arrow-right" style="width: 30px;"></i></button></a></td>

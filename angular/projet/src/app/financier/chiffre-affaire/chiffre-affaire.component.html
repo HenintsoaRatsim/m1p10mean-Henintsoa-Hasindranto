@@ -12,7 +12,7 @@
                     <form  (ngSubmit)="getChiffreAffaire()">
                         <div class="row">
                           <div class="col">
-                            <select class="form-select" aria-label="Default select example" [(ngModel)]="form.filtre" #filtre="ngModel">
+                              <select class="form-select" aria-label="Default select example" [(ngModel)]="form.filtre" #filtre="ngModel">
                                 <!-- <option selected>Choisir un filtre</option> -->
                                 <option value="jour">Jour</option>
                                 <option value="mois">Mois</option>
@@ -38,7 +38,7 @@
                           <tr *ngFor="let liste of listeChiffre">
                             
                             <td><i class="fa fa-calendar"></i> {{liste._id}}</td>
-                            <td> {{liste.montantapayer}}</td>
+                            <td>{{liste.montantapayer}}</td>
                            
                           </tr>
                           

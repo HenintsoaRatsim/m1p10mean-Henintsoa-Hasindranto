@@ -10,6 +10,7 @@ import { TempsMoyenneComponent } from './temps-moyenne/temps-moyenne.component';
 import { ListeReparerComponent } from './liste-reparer/liste-reparer.component';
 import { ChiffreAffaireComponent } from './chiffre-affaire/chiffre-affaire.component';
 import { BeneficeComponent } from './benefice/benefice.component';
+import { DepenseComponent } from './depense/depense.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { BeneficeComponent } from './benefice/benefice.component';
     TempsMoyenneComponent,
     ListeReparerComponent,
     ChiffreAffaireComponent,
-    BeneficeComponent
+    BeneficeComponent,
+    DepenseComponent
   ],
   imports: [
     CommonModule,
