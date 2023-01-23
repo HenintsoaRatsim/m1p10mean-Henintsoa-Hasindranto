@@ -20,11 +20,11 @@ router.route("/gettempsmoyenne/:idfiche").get(getTempsMoyenneReparationVoiture);
 
 router.route("/chiffreaffaire").post(ChiffreAffaire);
 
-router.route("/ajoutertypedepense/").get(AjoutTypeDeDepense);
+router.route("/ajoutertypedepense/").post(AjoutTypeDeDepense);
 
 router.route("/gettypedepense/").get(getTypeDeDepense);
 
-router.route("/ajouterdepense/").get(AjoutDepense);
+router.route("/ajouterdepense/").post(AjoutDepense);
 
 router.route("/getlistedepense/").get(getListeDepense);
 
