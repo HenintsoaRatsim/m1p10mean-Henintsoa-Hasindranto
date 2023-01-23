@@ -1,4 +1,4 @@
-const User = require("../models/aser");
+const User = require("../models/User");
 const connect = require("../db/connect");
 const {
     ObjectId
