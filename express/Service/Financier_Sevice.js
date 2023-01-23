@@ -324,7 +324,7 @@ const getTypeDeDepense = async (req, res) => {
  */
 const getListeDepense = async (req, res) => {
 
-    let depenses = await Depense.find().populate('Typedepense');
+    let depenses = await Depense.find().populate('typedepense');
     if (depenses.length == 0) return sendErreur(res, "Pas de dépense trouvé");
     return sendResult(res, depenses);
 }
