@@ -15,6 +15,8 @@ export class ChiffreAffaireComponent implements OnInit {
     filtre: null
   }
 
+  loading !: boolean;
+
   constructor(private router: Router, private activated: ActivatedRoute, private financierService: FinancierService) { }
 
   ngOnInit(): void {
@@ -28,20 +30,14 @@ export class ChiffreAffaireComponent implements OnInit {
       resultat => {
         this.listeChiffre = resultat.result;
         console.log(resultat.result);
+        this.loading=false;
       }
     )
   }
 
-  // OnFiltre(){
-  //   console.log('donnee date: ', this.form);
-  //   this.financierService.chiffre_affaire(this.form)
-  //   .subscribe(
-  //     resultat => {
-  //       this.listeChiffre = resultat.result;
-  //       console.log(resultat.result);
-  //       this.getChiffreAffaire();
-  //     }
-  //   )
-  // }
+  OnButton(){
+    this.loading=true;
+    this.getChiffreAffaire();
+  }
 
 }

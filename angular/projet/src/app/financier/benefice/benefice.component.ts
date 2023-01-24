@@ -11,6 +11,8 @@ export class BeneficeComponent implements OnInit {
 
   listeBenefice: any;
 
+  loading !: boolean;
+
   form: any={
     mois: null,
     annee: null
@@ -23,14 +25,19 @@ export class BeneficeComponent implements OnInit {
   }
 
   getListeBenefice(){
-    console.log('donnee date: ', this.form);
     this.financierService.get_benefice(this.form)
     .subscribe(
       resultat => {
         this.listeBenefice = resultat.result;
         console.log(resultat.result);
+        this.loading=false;
       }
     )
+  }
+  
+  OnButton(){
+    this.loading=true;
+    this.getListeBenefice();
   }
  
 }

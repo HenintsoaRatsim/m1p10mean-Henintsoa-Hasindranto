@@ -7,7 +7,6 @@ import { ListePaiementComponent } from './liste-paiement/liste-paiement.componen
 import { FormsModule } from '@angular/forms';
 import { ListeTermineComponent } from './liste-termine/liste-termine.component';
 import { TempsMoyenneComponent } from './temps-moyenne/temps-moyenne.component';
-import { ListeReparerComponent } from './liste-reparer/liste-reparer.component';
 import { ChiffreAffaireComponent } from './chiffre-affaire/chiffre-affaire.component';
 import { BeneficeComponent } from './benefice/benefice.component';
 import { DepenseComponent } from './depense/depense.component';
@@ -20,7 +19,6 @@ import { RechercheComponent } from './recherche/recherche.component';
     ListePaiementComponent,
     ListeTermineComponent,
     TempsMoyenneComponent,
-    ListeReparerComponent,
     ChiffreAffaireComponent,
     BeneficeComponent,
     DepenseComponent,

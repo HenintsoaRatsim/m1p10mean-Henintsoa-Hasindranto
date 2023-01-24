@@ -16,6 +16,9 @@ export class RechercheComponent implements OnInit {
     datefin: null
   }
 
+  loading !: boolean;
+
+
   constructor(private router: Router, private activated: ActivatedRoute, private financierService: FinancierService) { }
 
   ngOnInit(): void {
@@ -29,8 +32,14 @@ export class RechercheComponent implements OnInit {
       resultat => {
         this.listeRecherche = resultat.result;
         console.log(resultat);
+        this.loading=false;
       }
     )
+  }
+
+  OnButton(){
+    this.loading=true;
+    this.getRecherche();
   }
 
 }

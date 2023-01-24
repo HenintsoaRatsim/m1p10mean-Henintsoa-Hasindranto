@@ -6,10 +6,21 @@
           <div class="row">
             <div class="col-md-12 d-flex flex-column mx-auto">
                 <h1 style="padding-bottom: 20px;">Chiffre d'affaires</h1>
+
+                <div *ngIf="loading==true;then spinner else liste"></div>
+                  <ng-template #spinner>
+                  <div class="text-center" style="margin-top: 150px;">
+                    <div class="spinner-border" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+                  </ng-template>
+                  <ng-template #liste>
+
               <div class="card card-plain mt-8">
                 
-                <div class="card-body">
-                    <form  (ngSubmit)="getChiffreAffaire()">
+                <div class="card-body table-responsive text-nowrap">
+                    <form  (ngSubmit)="OnButton()">
                         <div class="row">
                           <div class="col">
                               <select class="form-select" aria-label="Default select example" [(ngModel)]="form.filtre" #filtre="ngModel">
@@ -48,6 +59,7 @@
                 </div>
                 
               </div>
+            </ng-template>
             </div>
             
           </div>

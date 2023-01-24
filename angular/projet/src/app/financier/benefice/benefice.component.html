@@ -6,79 +6,92 @@
           <div class="row">
             <div class="col-md-12 d-flex flex-column mx-auto">
                 <h1 style="padding-bottom: 20px;">Listes des bénéfices</h1>
-              <div class="card card-plain mt-8">
+                <div *ngIf="loading==true;then spinner else liste"></div>
+                  <ng-template #spinner>
+                  <div class="text-center" style="margin-top: 150px;">
+                    <div class="spinner-border" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+                  </ng-template>
+                  <ng-template #liste>
+                    <div class="card card-plain mt-8">
                 
-                <div class="card-body">
-                    <form  (ngSubmit)="getListeBenefice()">
-                        <div class="row">
-                          <div class="col">
-                              <select class="form-select" aria-label="Default select example" [(ngModel)]="form.mois" #mois="ngModel">
-                                <!-- <option selected>Choisir un filtre</option> -->
-                                <option value="1">Janvier</option>
-                                <option value="2">Février</option>
-                                <option value="3">Mars</option>
-                                <option value="4">Avril</option>
-                                <option value="5">Mai</option>
-                                <option value="6">Juin</option>
-                                <option value="7">Juillet</option>
-                                <option value="8">Août</option>
-                                <option value="9">Septembre</option>
-                                <option value="10">Octobre</option>
-                                <option value="11">Novembre</option>
-                                <option value="12">Décembre</option>
-                              </select>
-                            <!-- <input type="datetime-local" class="form-control" aria-label="date" [(ngModel)]="form.filtre" #filtre="ngModel"  required > -->
-                          </div>
-                          <div class="col">
-                            <select class="form-select" aria-label="Default select example" [(ngModel)]="form.annee" #annee="ngModel">
-                              <!-- <option selected>Choisir un filtre</option> -->
-                              <option value="2019">2019</option>
-                              <option value="2020">2020</option>
-                              <option value="2021">2021</option>
-                              <option value="2022">2022</option>
-                              <option value="2023">2023</option>
-                              <option value="2024">2024</option>
-                              <option value="2025">2025</option>
-                              
-                            </select>
-                          <!-- <input type="datetime-local" class="form-control" aria-label="date" [(ngModel)]="form.filtre" #filtre="ngModel"  required > -->
-                        </div>
-                          <div class="col">
-                            <button type="submit" class="btn btn-info">Filtrer <i class="fa fa-check" style="width: 30px;"></i></button>
-                          </div>
-                        </div>
-                    </form>
-
-                    <table class="table table-bordered" style="margin-top: 20px;">
-                        <thead class="table-dark">
-                          <tr>
-                            
-                            <th style="color: white;">Mois</th>
-                            <th style="color: white;">Année</th>
-                            <th style="color: white;">Chiffre d'affaires (Ariary)</th>
-                            <th style="color: white;">Dépenses (Ariary)</th>
-                            <th style="color: white;">Bénéfices (Ariary)</th>
-
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            
-                            <!-- <td>{{listeBenefice.mois_}}</td> -->
-                            <td>{{listeBenefice.annee}}</td>
-                            <td>{{listeBenefice.chiffredaffaire}}</td>
-                            <td>{{listeBenefice.depense}}</td>
-                            <td>{{listeBenefice.benefice}}</td>
-                 
-                           
-                          </tr>
+                      <div class="card-body table-responsive text-nowrap">
+                          <form  (ngSubmit)="OnButton()">
+                              <div class="row">
+                                <div class="col">
+                                    <select class="form-select" aria-label="Default select example" [(ngModel)]="form.mois" #mois="ngModel">
+                                      <!-- <option selected>Choisir un filtre</option> -->
+                                      <option value="1">Janvier</option>
+                                      <option value="2">Février</option>
+                                      <option value="3">Mars</option>
+                                      <option value="4">Avril</option>
+                                      <option value="5">Mai</option>
+                                      <option value="6">Juin</option>
+                                      <option value="7">Juillet</option>
+                                      <option value="8">Août</option>
+                                      <option value="9">Septembre</option>
+                                      <option value="10">Octobre</option>
+                                      <option value="11">Novembre</option>
+                                      <option value="12">Décembre</option>
+                                    </select>
+                                  <!-- <input type="datetime-local" class="form-control" aria-label="date" [(ngModel)]="form.filtre" #filtre="ngModel"  required > -->
+                                </div>
+                                <div class="col">
+                                  <select class="form-select" aria-label="Default select example" [(ngModel)]="form.annee" #annee="ngModel">
+                                    <!-- <option selected>Choisir un filtre</option> -->
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    
+                                  </select>
+                                <!-- <input type="datetime-local" class="form-control" aria-label="date" [(ngModel)]="form.filtre" #filtre="ngModel"  required > -->
+                              </div>
+                                <div class="col">
+                                  <button type="submit" class="btn btn-info">Filtrer <i class="fa fa-check" style="width: 30px;"></i></button>
+                                </div>
+                              </div>
+                          </form>
+      
+                          <table class="table table-bordered " style="margin-top: 20px;">
+                              <thead class="table-dark">
+                                <tr>
+                                  
+                                  <th style="color: white;">Mois</th>
+                                  <th style="color: white;">Année</th>
+                                  <th style="color: white;">Chiffre d'affaires (Ariary)</th>
+                                  <th style="color: white;">Dépenses (Ariary)</th>
+                                  <th style="color: white;">Bénéfices (Ariary)</th>
+      
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  
+                                  <td>{{listeBenefice.mois_}}</td>
+                                  <td>{{listeBenefice.annee}}</td>
+                                  <td>{{listeBenefice.chiffredaffaire}}</td>
+                                  <td>{{listeBenefice.depense}}</td>
+                                  <td>{{listeBenefice.benefice}}</td>
+                       
+                                 
+                                </tr>
+                                
+                              </tbody>
+                          </table>
                           
-                        </tbody>
-                    </table>
-                    
-                </div>
+                      </div>
+                      
+                    </div>
+                  </ng-template>
                 
-              </div>
+                
+             
             </div>
             
           </div>
