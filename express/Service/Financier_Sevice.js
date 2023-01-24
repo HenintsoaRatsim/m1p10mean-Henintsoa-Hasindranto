@@ -181,22 +181,22 @@ async function getChriffreAffaire(res, Filtre) {
 
 }
 
-function mois(){
+function getmois() {
     var mois = new Array(
-'janvier',
-'février',
-'mars',
-'avril',
-'mai',
-'juin',
-'juillet',
-'août',
-'septembre',
-'octobre',
-'novembre',
-'décembre'
-);
-  return mois
+        'janvier',
+        'février',
+        'mars',
+        'avril',
+        'mai',
+        'juin',
+        'juillet',
+        'août',
+        'septembre',
+        'octobre',
+        'novembre',
+        'décembre'
+    );
+    return mois
 }
 
 
@@ -220,7 +220,7 @@ const getBenefice = async (req, res) => {
         console.log("Depense = " + depense);
         let Benefice = chiffredaffaire - depense;
         console.log("Benefice = " + Benefice);
-        let mois_=mois()[mois-1];
+        let mois_ = getmois()[mois - 1];
         let data = {
             mois_,
             annee,
