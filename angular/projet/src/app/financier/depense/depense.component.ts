@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FinancierService } from 'src/app/service/financier.service';
 
 @Component({
@@ -22,7 +21,7 @@ export class DepenseComponent implements OnInit {
   listeTypeDepense: any;
   listeDepense: any;
 
-  constructor(private router: Router, private activated: ActivatedRoute, private financierService: FinancierService) { }
+  constructor( private financierService: FinancierService) { }
 
   ngOnInit(): void {
     this.getListeTypeDepense();
@@ -34,7 +33,7 @@ export class DepenseComponent implements OnInit {
     .subscribe(
       resultat => {
         this.listeTypeDepense = resultat.result;
-        console.log(resultat.result);
+        // console.log(resultat.result);
       }
     )
   }
@@ -44,7 +43,7 @@ export class DepenseComponent implements OnInit {
     .subscribe(
       resultat => {
         this.listeDepense = resultat.result;
-        console.log(resultat.result);
+        // console.log(resultat.result);
       }
     )
   }
@@ -54,7 +53,7 @@ export class DepenseComponent implements OnInit {
     console.log('donnee: ', this.form);
     this.financierService.ajout_depense(this.form)
     .subscribe((response) => {
-      console.log(response);
+      // console.log(response);
       this.getListeTypeDepense();
       this.getListeDepense();
       this.form.idtypedepense=null;
@@ -69,7 +68,7 @@ export class DepenseComponent implements OnInit {
     console.log('donnee: ', this.input);
     this.financierService.ajout_type_depense(this.input)
     .subscribe((response) => {
-      console.log(response);
+      // console.log(response);
       this.getListeTypeDepense();
       this.getListeDepense();
       this.input.intitule=null;

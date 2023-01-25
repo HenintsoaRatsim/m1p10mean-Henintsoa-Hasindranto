@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AtelierService } from 'src/app/service/atelier.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class VoitureEnReparationComponent implements OnInit {
 
   listeEnReparation: any;
 
-  constructor(private router: Router, private activated: ActivatedRoute, private atelierService: AtelierService) { }
+  constructor(private router: Router, private atelierService: AtelierService) { }
 
   ngOnInit(): void {
     this.getListeVoitureEnReparation();
@@ -22,7 +22,7 @@ export class VoitureEnReparationComponent implements OnInit {
     .subscribe(
       resultat => {
         this.listeEnReparation = resultat.result;
-        console.log(resultat.result);
+        // console.log(resultat.result);
       }
     )
   }

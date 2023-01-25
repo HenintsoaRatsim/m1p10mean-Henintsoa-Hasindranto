@@ -16,9 +16,12 @@ export class FactureFicheComponent implements OnInit {
   somme: any;
   etat: any;
 
+
+
   constructor(private factureService: FactureService, private activated: ActivatedRoute) { }
 
   ngOnInit(): void {
+    
     let id= this.activated.snapshot.params['idfiche'];
     this.getFacture(id);
   }
@@ -33,12 +36,12 @@ export class FactureFicheComponent implements OnInit {
         this.detailsUser= Array.of(resultat.data.detailfacture.user);
         this.somme= resultat.data.montantapayer;
         this.etat= resultat.data.detailfacture.etatpayement;
-        console.log(this.detailsFacture);     
-        console.log(this.detailsReparation);
-        console.log(this.voiture);    
-        console.log(this.detailsUser);    
-        console.log(this.somme);
-        console.log(this.etat);
+        // console.log(this.detailsFacture);     
+        // console.log(this.detailsReparation);
+        // console.log(this.voiture);    
+        // console.log(this.detailsUser);    
+        // console.log(this.somme);
+        // console.log(this.etat);
       }
     )
   }

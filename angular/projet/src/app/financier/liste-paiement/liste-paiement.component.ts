@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FinancierService } from 'src/app/service/financier.service';
 
 @Component({
@@ -16,7 +15,7 @@ export class ListePaiementComponent implements OnInit {
     date: null
   }
 
-  constructor(private router: Router, private activated: ActivatedRoute, private financierService: FinancierService) { }
+  constructor( private financierService: FinancierService) { }
 
   ngOnInit(): void {
     this.getListeVoiturePaiement();
@@ -27,7 +26,7 @@ export class ListePaiementComponent implements OnInit {
     .subscribe(
       resultat => {
         this.listePaiement = resultat.result;
-        console.log(resultat.result);
+        // console.log(resultat.result);
       }
     )
   }
@@ -37,7 +36,7 @@ export class ListePaiementComponent implements OnInit {
     console.log('donnee date: ', this.form);
     this.financierService.valider_paiement(this.form)
     .subscribe((response) => {
-      console.log(response);
+      // console.log(response);
       this.getListeVoiturePaiement();
       
     });    

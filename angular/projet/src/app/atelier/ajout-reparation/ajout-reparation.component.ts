@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { AtelierService } from 'src/app/service/atelier.service';
 import { VoitureService } from 'src/app/service/voiture.service';
 
@@ -19,7 +19,6 @@ export class AjoutReparationComponent implements OnInit {
 
   detailsFiche: any;
   voiture: any;
-  idFiche: any;
 
   input: any={
     idreparation: null,
@@ -38,7 +37,6 @@ export class AjoutReparationComponent implements OnInit {
 
 
   constructor(
-    private router: Router,
     private atelierService: AtelierService, 
     private activated: ActivatedRoute, 
     private voitureService: VoitureService
@@ -55,27 +53,28 @@ export class AjoutReparationComponent implements OnInit {
       resultat => {
         this.detailsFiche = resultat.data.reparations;
         this.voiture= Array.of(resultat.data.voiture);
-        this.idFiche= Array.of(resultat.data._id);
-        console.log(resultat.data);
-        console.log(resultat.data.reparations[0].etatareparation);
-        console.log(this.detailsFiche);
-        console.log(this.idFiche);
-        console.log(this.voiture);
+        // this.idFiche= Array.of(resultat.data._id);
+        // console.log(resultat.data);
+        // console.log(resultat.data.reparations[0].etatareparation);
+        // console.log(this.detailsFiche);
+        // console.log(this.idFiche);
+        // console.log(this.voiture);
       }
     )
   }
 
   OnSubmit(){
     let id= this.activated.snapshot.params['idfiche'];
-    this.form.idfiche= this.activated.snapshot.params['idfiche'];
+    this.form.idfiche= id;
     console.log('donnee entree: ', this.form);
     this.atelierService.ajout_reparation(this.form)
     .subscribe((response) => {
-      console.log(response);
-      this.getDetailFiche(id);
+      // console.log(response);
       this.form.intitule=null;
       this.form.description=null;
       this.form.prix=null;
+      this.form.idfiche=null;
+      this.getDetailFiche(id);
     });
     
     
@@ -87,7 +86,7 @@ export class AjoutReparationComponent implements OnInit {
     console.log('donnee date: ', this.input);
     this.atelierService.ajout_avancement(this.input)
     .subscribe((response) => {
-      console.log(response);
+      // console.log(response);
       this.getDetailFiche(id);
       
     });    
@@ -99,7 +98,7 @@ export class AjoutReparationComponent implements OnInit {
     console.log('donnee avacement: ', this.entre);
     this.atelierService.ajout_avancement(this.entre)
     .subscribe((response) => {
-      console.log(response);
+      // console.log(response);
       this.getDetailFiche(id);
       
     });
@@ -112,7 +111,7 @@ export class AjoutReparationComponent implements OnInit {
     console.log('donnee date: ', this.haha);
     this.atelierService.ajout_avancement(this.haha)
     .subscribe((response) => {
-      console.log(response);
+      // console.log(response);
       this.getDetailFiche(id);
       
     });    

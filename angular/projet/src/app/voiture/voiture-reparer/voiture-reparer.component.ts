@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { VoitureService } from 'src/app/service/voiture.service';
+
 
 @Component({
   selector: 'app-voiture-reparer',
@@ -10,8 +11,9 @@ import { VoitureService } from 'src/app/service/voiture.service';
 export class VoitureReparerComponent implements OnInit {
 
   voitureListe: any;
+  loading = false;
 
-  constructor(private voitureService: VoitureService, private router: Router) { }
+  constructor(private voitureService: VoitureService, private router: Router) {  }
 
   ngOnInit(): void {
     this.getVoitureReparerListe();
@@ -21,7 +23,7 @@ export class VoitureReparerComponent implements OnInit {
     this.voitureService.get_voiture_a_reparer()
     .subscribe(response => {
       this.voitureListe=response.data;
-      console.log(response.data);
+      // console.log(response.data);
       // console.log(response.data[0].etat);
     })
   }

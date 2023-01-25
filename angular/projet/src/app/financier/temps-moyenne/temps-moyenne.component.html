@@ -5,7 +5,19 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12 d-flex flex-column mx-auto">
-                <h1 style="padding-bottom: 20px;">Temps de réparation moyenne</h1>
+                <h1 style="padding-bottom: 20px;">Temps de réparation moyenne: {{detailsVoiture.matricule}}</h1>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>Temps moyenne:</strong> {{tempsMoyenne}}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>Temps total:</strong> {{tempsTotal}}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
               <div class="card card-plain mt-8">
                 
                 <div class="card-body table-responsive text-nowrap">
@@ -37,18 +49,7 @@
                 </div>
                 
               </div>
-              <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Temps moyenne:</strong> {{tempsMoyenne}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Temps total:</strong> {{tempsTotal}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
+             
             </div>
             
           </div>

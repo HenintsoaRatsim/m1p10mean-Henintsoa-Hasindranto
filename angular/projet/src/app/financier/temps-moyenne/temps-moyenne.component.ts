@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { FinancierService } from 'src/app/service/financier.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class TempsMoyenneComponent implements OnInit {
   detailsVoiture: any;
   client: any;
 
-  constructor(private router: Router, private activated: ActivatedRoute, private financierService: FinancierService) { }
+  constructor( private activated: ActivatedRoute, private financierService: FinancierService) { }
 
   ngOnInit(): void {
     let id= this.activated.snapshot.params['idfiche'];
@@ -31,12 +31,12 @@ export class TempsMoyenneComponent implements OnInit {
         this.listeReparation = resultat.result.reparations;
         this.detailsVoiture = resultat.result.fiche[0].voiture;
         this.client = resultat.result.fiche[0].user;
-        console.log(resultat.result);
-        console.log(this.tempsMoyenne);
-        console.log(this.tempsTotal);
-        console.log(this.listeReparation);
-        console.log(this.detailsVoiture);
-        console.log(this.client);
+        // console.log(resultat.result);
+        // console.log(this.tempsMoyenne);
+        // console.log(this.tempsTotal);
+        // console.log(this.listeReparation);
+        // console.log(this.detailsVoiture);
+        // console.log(this.client);
       }
     )
   }

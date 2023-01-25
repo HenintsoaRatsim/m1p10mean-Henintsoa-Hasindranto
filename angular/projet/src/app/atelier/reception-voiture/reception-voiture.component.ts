@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AtelierService } from 'src/app/service/atelier.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class ReceptionVoitureComponent implements OnInit {
 
   voitureListe: any;
 
-  constructor(private atelierService: AtelierService, private router: Router, private activated: ActivatedRoute) { }
+  constructor(private atelierService: AtelierService, private activated: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getListeVoitureReparer();
@@ -21,8 +21,8 @@ export class ReceptionVoitureComponent implements OnInit {
     this.atelierService.get_liste_voiture_a_reparer()
     .subscribe(response => {
       this.voitureListe=response.result;
-      console.log('valiny: ', response.result);
-      console.log('valiny: ', response.result[0].datefiche);
+      // console.log('valiny: ', response.result);
+      // console.log('valiny: ', response.result[0].datefiche);
       // console.log(response.data[0].etat);
     })
   }
@@ -33,7 +33,7 @@ export class ReceptionVoitureComponent implements OnInit {
       console.log(response);
       this.getListeVoitureReparer();
     })
-    console.log('huhu :', id);
+    // console.log('huhu :', id);
     // this.router.navigate(['Atelier/liste_reception']); 
   }
 }

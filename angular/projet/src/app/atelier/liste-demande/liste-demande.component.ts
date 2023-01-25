@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { AtelierService } from 'src/app/service/atelier.service';
 
 @Component({
@@ -13,7 +12,7 @@ export class ListeDemandeComponent implements OnInit {
   mess: any;
   etatpayement: any;
 
-  constructor(private router: Router, private activated: ActivatedRoute, private atelierService: AtelierService) { }
+  constructor( private atelierService: AtelierService) { }
 
   ngOnInit(): void {
     this.getListeReparationTerminer();
@@ -34,11 +33,11 @@ export class ListeDemandeComponent implements OnInit {
     this.atelierService.valider_bon_de_sortie(id)
     .subscribe(response => {
       this.getListeReparationTerminer();
-      console.log(response.result);
+      // console.log(response.result);
       this.mess = response.result.message;
       this.etatpayement = response.result.etatpayement;
     })
-    console.log('huhu :', id);
+    // console.log('huhu :', id);
   }
 
 }

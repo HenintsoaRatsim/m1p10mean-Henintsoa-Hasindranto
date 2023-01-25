@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FinancierService } from 'src/app/service/financier.service';
 
 @Component({
@@ -18,7 +17,7 @@ export class BeneficeComponent implements OnInit {
     annee: null
   }
 
-  constructor(private router: Router, private activated: ActivatedRoute, private financierService: FinancierService) { }
+  constructor(private financierService: FinancierService) { }
 
   ngOnInit(): void {
     this.getListeBenefice();
@@ -29,7 +28,7 @@ export class BeneficeComponent implements OnInit {
     .subscribe(
       resultat => {
         this.listeBenefice = resultat.result;
-        console.log(resultat.result);
+        // console.log(resultat.result);
         this.loading=false;
       }
     )

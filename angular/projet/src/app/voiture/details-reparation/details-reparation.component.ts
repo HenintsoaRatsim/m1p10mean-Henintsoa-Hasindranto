@@ -37,10 +37,10 @@ export class DetailsReparationComponent implements OnInit {
         this.voiture= Array.of(resultat.data.voiture);
         this.idFiche= resultat.data._id;
         this.etatfiche= resultat.data.etat;
-        console.log(resultat);
-        console.log(this.detailsFiche);
-        console.log(this.idFiche);
-        console.log(this.voiture);
+        // console.log(resultat);
+        // console.log(this.detailsFiche);
+        // console.log(this.idFiche);
+        // console.log(this.voiture);
       }
     )
   }
@@ -54,7 +54,7 @@ export class DetailsReparationComponent implements OnInit {
     .subscribe(
       resultat => {
         this.message = resultat;
-        console.log(this.message);
+        // console.log(this.message);
         this.getDetailFiche(idfiche);
       }
     )

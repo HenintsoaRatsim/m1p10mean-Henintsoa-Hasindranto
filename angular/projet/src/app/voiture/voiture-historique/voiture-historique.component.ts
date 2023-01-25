@@ -11,6 +11,7 @@ export class VoitureHistoriqueComponent implements OnInit {
 
   historiqueListe: any;
 
+
   constructor(private voitureService: VoitureService, private router: Router) { }
 
   ngOnInit(): void {
@@ -21,7 +22,7 @@ export class VoitureHistoriqueComponent implements OnInit {
     this.voitureService.get_historique()
     .subscribe(response => {
       this.historiqueListe=response.data; 
-      console.log(response.data);
+      // console.log(response.data);
     })
   
   }

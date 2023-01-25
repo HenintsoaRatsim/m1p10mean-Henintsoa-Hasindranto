@@ -6,6 +6,7 @@
           <div class="row">
             <div class="col-md-12 d-flex flex-column mx-auto">
                 <h1 style="padding-bottom: 20px;" *ngFor="let vam of voiture">Facture du voiture: {{vam.matricule}}</h1>
+                
               <div class="card card-plain mt-8">
                 
                 <div class="card-body table-responsive text-nowrap">
@@ -38,9 +39,12 @@
                       </table>
                       <div class="row">
                         <div class="col-md-10">
-                          <div *ngIf="etat==0;then non else oui"></div>
+                          <div *ngIf="etat==0;then non"></div>
                           <ng-template #non><p><u>Etat facture:</u> <em style="color: red;"> Non payé</em></p></ng-template>
+                          <div *ngIf="etat==1;then oui"></div>
                           <ng-template #oui><p><u>Etat facture:</u> <em style="color: red;"> Payé</em></p></ng-template>
+                          <div *ngIf="etat==null;then tsisy"></div>
+                          <ng-template #tsisy><p><u>Etat facture:</u> <em style="color: red;"> </em></p></ng-template>
                         </div>
                           
                         <div class="col-md-2"  style="text-align: center;"><strong> Total: {{somme}} </strong></div>
@@ -49,6 +53,7 @@
                 </div>
                 
               </div>
+            
             </div>
             
           </div>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FinancierService } from 'src/app/service/financier.service';
 
 @Component({
@@ -19,7 +18,7 @@ export class RechercheComponent implements OnInit {
   loading !: boolean;
 
 
-  constructor(private router: Router, private activated: ActivatedRoute, private financierService: FinancierService) { }
+  constructor( private financierService: FinancierService) { }
 
   ngOnInit(): void {
     this.getRecherche();
@@ -31,7 +30,7 @@ export class RechercheComponent implements OnInit {
     .subscribe(
       resultat => {
         this.listeRecherche = resultat.result;
-        console.log(resultat);
+        // console.log(resultat);
         this.loading=false;
       }
     )

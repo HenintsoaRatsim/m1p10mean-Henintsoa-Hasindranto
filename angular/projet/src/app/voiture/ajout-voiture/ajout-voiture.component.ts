@@ -25,7 +25,7 @@ export class AjoutVoitureComponent implements OnInit {
     console.log('donnee entree: ', this.form);
     this.voitureService.ajout_voiture(this.form)
     .subscribe((response) => {
-      console.log(response);
+      // console.log(response);
       this.router.navigate(['Client/reparation_voiture']);
     });
   }
