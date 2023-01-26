@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment.dev';
+import { environment } from 'src/environments/environment.prod';
 import { Observable } from 'rxjs';
 
 
@@ -18,7 +18,7 @@ export class UserService {
   	return this.httpClient.get(url);
   }
 
-  login_user(form: any){
+    login_user(form: any){
     let url = environment.BASE_URL+'/login'; 
   	return this.httpClient.post(url, form);
   }
