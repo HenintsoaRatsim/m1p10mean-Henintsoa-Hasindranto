@@ -18,18 +18,6 @@ export class UserService {
   	return this.httpClient.get(url);
   }
 
-  // viewUser(id){
-
-  // }
-
-  // editUser(id, userObj){
-
-  // }
-
-  // delete_User(id){
-
-  // }
-
   login_user(form: any){
     let url = environment.BASE_URL+'/login'; 
   	return this.httpClient.post(url, form);

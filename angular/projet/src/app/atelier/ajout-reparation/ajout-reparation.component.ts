@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { AtelierService } from 'src/app/service/atelier.service';
 import { VoitureService } from 'src/app/service/voiture.service';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-ajout-reparation',
@@ -35,7 +36,6 @@ export class AjoutReparationComponent implements OnInit {
     date: null
   }
 
-
   constructor(
     private atelierService: AtelierService, 
     private activated: ActivatedRoute, 
@@ -45,6 +45,10 @@ export class AjoutReparationComponent implements OnInit {
   ngOnInit(): void {
     let id= this.activated.snapshot.params['idfiche'];
     this.getDetailFiche(id);
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.detailsFiche, event.previousIndex, event.currentIndex);
   }
 
   getDetailFiche(id:any){

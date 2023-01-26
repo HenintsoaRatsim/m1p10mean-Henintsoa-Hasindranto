@@ -63,8 +63,8 @@
                 </div>
                   <div class="card card-plain mt-8">
                     
-                    <div class="card-body table-responsive text-nowrap">
-                      <table class="table">
+                    <div class="card-body table-responsive text-nowrap " >
+                      <table class="table" cdkDropList (cdkDropListDropped)="drop($event)">
                         <thead>
                           <tr>
                         
@@ -76,9 +76,9 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let list of detailsFiche">
-                            
-                         
+                          <tr *ngFor="let list of detailsFiche" cdkDrag>
+                           
+                            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
                             <td *ngFor="let vam of voiture"><i class="fa fa-car" ></i> {{vam.matricule}}</td>
                             <td>{{list.intitule}}</td>
                             <td>
@@ -147,6 +147,9 @@
                           
                         </tbody>
                       </table>
+
+                     
+
                     </div>
                     
                   </div>

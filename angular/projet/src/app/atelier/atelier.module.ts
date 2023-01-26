@@ -9,6 +9,7 @@ import { ListeReceptionnerComponent } from './liste-receptionner/liste-reception
 import { ReceptionVoitureComponent } from './reception-voiture/reception-voiture.component';
 import { VoitureEnReparationComponent } from './voiture-en-reparation/voiture-en-reparation.component';
 import { ListeDemandeComponent } from './liste-demande/liste-demande.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ListeDemandeComponent } from './liste-demande/liste-demande.component';
   imports: [
     CommonModule,
     AtelierRoutingModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ]
 })
 export class AtelierModule { }

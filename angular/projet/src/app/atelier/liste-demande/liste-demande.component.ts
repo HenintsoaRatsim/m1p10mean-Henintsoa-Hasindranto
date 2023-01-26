@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AtelierService } from 'src/app/service/atelier.service';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-liste-demande',
@@ -12,10 +13,27 @@ export class ListeDemandeComponent implements OnInit {
   mess: any;
   etatpayement: any;
 
+  movies = [
+    'Episode I - The Phantom Menace',
+    'Episode II - Attack of the Clones',
+    'Episode III - Revenge of the Sith',
+    'Episode IV - A New Hope',
+    'Episode V - The Empire Strikes Back',
+    'Episode VI - Return of the Jedi',
+    'Episode VII - The Force Awakens',
+    'Episode VIII - The Last Jedi',
+    'Episode IX - The Rise of Skywalker',
+  ];
+  
+
   constructor( private atelierService: AtelierService) { }
 
   ngOnInit(): void {
     this.getListeReparationTerminer();
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
   }
 
   getListeReparationTerminer(){
