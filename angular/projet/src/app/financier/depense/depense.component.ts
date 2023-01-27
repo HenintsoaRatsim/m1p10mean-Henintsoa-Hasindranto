@@ -70,7 +70,7 @@ export class DepenseComponent implements OnInit {
     this.financierService.ajout_type_depense(this.input)
     .subscribe((response) => {
       // console.log(response);
-      this.mess = response.result.message;
+      // this.mess = response.result.message;
       this.getListeTypeDepense();
       this.getListeDepense();
       this.input.intitule=null;

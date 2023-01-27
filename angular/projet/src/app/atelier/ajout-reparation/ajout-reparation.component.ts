@@ -36,6 +36,8 @@ export class AjoutReparationComponent implements OnInit {
     date: null
   }
 
+  mess: any;
+
   constructor(
     private atelierService: AtelierService, 
     private activated: ActivatedRoute, 
@@ -74,6 +76,7 @@ export class AjoutReparationComponent implements OnInit {
     this.atelierService.ajout_reparation(this.form)
     .subscribe((response) => {
       // console.log(response);
+      this.mess = response;
       this.form.intitule=null;
       this.form.description=null;
       this.form.prix=null;
