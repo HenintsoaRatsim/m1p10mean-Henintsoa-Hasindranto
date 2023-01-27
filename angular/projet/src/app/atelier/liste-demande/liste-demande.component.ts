@@ -41,8 +41,8 @@ export class ListeDemandeComponent implements OnInit {
     .subscribe(
       resultat => {
         this.listeDemande = resultat.result;
-        console.log(resultat.result);
-        console.log(resultat.result[0].etatpayement);
+        // console.log(resultat.result);
+        // console.log(resultat.result[0].etatpayement);
       }
     )
   }

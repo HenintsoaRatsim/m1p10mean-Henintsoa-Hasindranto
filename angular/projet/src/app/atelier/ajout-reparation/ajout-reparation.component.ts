@@ -56,7 +56,7 @@ export class AjoutReparationComponent implements OnInit {
     .subscribe(
       resultat => {
         this.detailsFiche = resultat.data.reparations;
-        this.voiture= Array.of(resultat.data.voiture);
+        this.voiture= resultat.data.voiture.matricule;
         // this.idFiche= Array.of(resultat.data._id);
         // console.log(resultat.data);
         // console.log(resultat.data.reparations[0].etatareparation);

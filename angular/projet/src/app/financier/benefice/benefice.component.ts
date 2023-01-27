@@ -13,8 +13,8 @@ export class BeneficeComponent implements OnInit {
   loading !: boolean;
 
   form: any={
-    mois: null,
-    annee: null
+    mois: '1',
+    annee: '2019'
   }
 
   constructor(private financierService: FinancierService) { }

@@ -10,8 +10,8 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
 
   form: any = {
-    mail: null, 
-    mdp: null
+    mail: 'ratsimhenintsoa@gmail.com' , 
+    mdp: '123'
   }
 
   constructor(private authService: AuthService, private router: Router) { }

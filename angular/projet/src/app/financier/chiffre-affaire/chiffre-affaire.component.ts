@@ -11,7 +11,7 @@ export class ChiffreAffaireComponent implements OnInit {
   listeChiffre: any;
 
   form: any={
-    filtre: null
+    filtre: 'jour'
   }
 
   loading !: boolean;

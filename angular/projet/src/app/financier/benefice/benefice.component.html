@@ -21,7 +21,8 @@
                           <form  (ngSubmit)="OnButton()">
                               <div class="row">
                                 <div class="col">
-                                    <select class="form-select" aria-label="Default select example" [(ngModel)]="form.mois" #mois="ngModel">
+                                  <label>Choisir un mois</label>
+                                    <select class="form-select" aria-label="Default select example" [(ngModel)]="form.mois" #mois="ngModel" name="mois">
                                       <!-- <option selected>Choisir un filtre</option> -->
                                       <option value="1">Janvier</option>
                                       <option value="2">Février</option>
@@ -39,7 +40,8 @@
                                   <!-- <input type="datetime-local" class="form-control" aria-label="date" [(ngModel)]="form.filtre" #filtre="ngModel"  required > -->
                                 </div>
                                 <div class="col">
-                                  <select class="form-select" aria-label="Default select example" [(ngModel)]="form.annee" #annee="ngModel">
+                                  <label>Choisir une année</label>
+                                  <select class="form-select" aria-label="Default select example" [(ngModel)]="form.annee" #annee="ngModel" name="annee">
                                     <!-- <option selected>Choisir un filtre</option> -->
                                     <option value="2019">2019</option>
                                     <option value="2020">2020</option>
@@ -53,7 +55,8 @@
                                 <!-- <input type="datetime-local" class="form-control" aria-label="date" [(ngModel)]="form.filtre" #filtre="ngModel"  required > -->
                               </div>
                                 <div class="col">
-                                  <button type="submit" class="btn btn-info">Filtrer <i class="fa fa-check" style="width: 30px;"></i></button>
+                                  
+                                  <button type="submit" class="btn btn-info" style="margin-top: 31px;">Filtrer <i class="fa fa-check" style="width: 30px;"></i></button>
                                 </div>
                               </div>
                           </form>

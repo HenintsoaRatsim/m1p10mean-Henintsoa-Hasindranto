@@ -27,6 +27,7 @@
                             
                             <th scope="col">Nom client</th>
                             <th scope="col">Matricule voiture</th>
+                            <th scope="col">Réparation</th>
                             <th scope="col">Début de réparation</th>
                             <th scope="col">Fin de réparation</th>
 
@@ -37,6 +38,7 @@
                             
                             <td><i class="fa fa-user"></i> {{client.nom}} {{client.prenom}}</td>
                             <td><i class="fa fa-car" ></i> {{detailsVoiture.matricule}}</td>
+                            <td><i class="fa fa-car" ></i> {{list.intitule}}</td>
                             <td>{{list.datedebut | date: 'à HH:mm, le d MMMM yyyy'}}</td>
                             <td>{{list.datefin | date: 'à HH:mm, le d MMMM yyyy'}}</td>
                            
