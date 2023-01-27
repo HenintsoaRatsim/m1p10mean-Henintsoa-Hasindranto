@@ -37,6 +37,7 @@ export class AjoutReparationComponent implements OnInit {
   }
 
   mess: any;
+  success: any;
 
   constructor(
     private atelierService: AtelierService, 
@@ -75,8 +76,9 @@ export class AjoutReparationComponent implements OnInit {
     console.log('donnee entree: ', this.form);
     this.atelierService.ajout_reparation(this.form)
     .subscribe((response) => {
-      // console.log(response);
+      console.log(response);
       this.mess = response;
+      this.success = response;
       this.form.intitule=null;
       this.form.description=null;
       this.form.prix=null;
