@@ -136,7 +136,7 @@ const Inscription = async (req, res) => {
         });
         if (existClient) {
             return res.status(200).json({
-                message: "address e-mail déjà utilisé"
+                message: "adresse E-mail déjà utilisé"
             });
         }
         let idRole = new ObjectId('63c7e2c18eb320722db1e0e8');
