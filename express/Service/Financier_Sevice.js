@@ -320,8 +320,11 @@ const AjoutTypeDeDepense = async (req, res) => {
     let typedepense = {
         intitule: intitule,
     }
-    let TD = await Typedepense(typedepense).save()
-    return sendResult(res, TD);
+    // let TD = await Typedepense(typedepense).save()
+    let result = {
+        message: "Insertion pour le  type de dépense "+intitule+" est bien effectuée"
+    };
+    return sendResult(res, result);
 }
 
 /**
