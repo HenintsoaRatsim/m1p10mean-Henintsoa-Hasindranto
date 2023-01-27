@@ -64,7 +64,7 @@
                   <div class="card card-plain mt-8">
                     
                     <div class="card-body table-responsive text-nowrap " >
-                      <table class="table" cdkDropList (cdkDropListDropped)="drop($event)">
+                      <table class="table" >
                         <thead>
                           <tr>
                         
@@ -75,11 +75,12 @@
 
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr *ngFor="let list of detailsFiche" cdkDrag>
+                        <tbody class="example-list" cdkDropList (cdkDropListDropped)="drop($event)">
+                          <tr *ngFor="let list of detailsFiche" cdkDrag class="example-box">
                            
                             <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-                            <td *ngFor="let vam of voiture"><i class="fa fa-car" ></i> {{vam.matricule}}</td>
+                            
+                            <td ><i class="fa fa-car" ></i> {{voiture}}</td>
                             <td>{{list.intitule}}</td>
                             <td>
                                 <div class="progress">
@@ -111,7 +112,7 @@
                                     <div class="row">
                                       <div class="col">
                                         <input type="hidden" class="form-control" [(ngModel)]="entre.idreparation" #idreparation="ngModel"  >
-                                        <input type="number" class="form-control" aria-label="avancement" [(ngModel)]="entre.avancement" #avacement="ngModel"  required min="0" max="100" style="width: 200px;">
+                                        <input type="number" placeholder="Avancement en %" class="form-control" aria-label="avancement" [(ngModel)]="entre.avancement" #avacement="ngModel"  required min="0" max="100" style="width: 200px;">
                                       </div>
                                       <div class="col">
                                         <button type="submit" class="btn btn-info w-100 text-gradient">Valider avancement</button>

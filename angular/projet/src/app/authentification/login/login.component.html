@@ -4,24 +4,35 @@
       <div class="page-header min-vh-75">
         <div class="container">
           <div class="row">
-            <div class="col-md-4">
-              
+            <div class="col-md-6">
+              <h2>Authentification des utilisateurs</h2>
+              <ul style="padding: 10px; color: rgb(73, 72, 72); list-style-type: none;">
+                <li style="padding-bottom: 10px; padding-top: 10px;">
+                  <strong><u>Client:</u></strong> <ul><li>ratsimhenintsoa@gmail.com</li><li>123</li></ul>
+                </li>
+                <li style="padding-bottom: 10px; padding-top: 10px;">
+                  <strong><u>Résponsable atelier:</u></strong> <ul><li>ateliergmail.com</li><li>123</li></ul>
+                </li>
+                <li style="padding-bottom: 10px; padding-top: 10px;">
+                  <strong><u>Résponsable financier:</u></strong> <ul><li>financier@gmail.com</li><li>123</li></ul>
+                </li>
+              </ul>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="card card-plain mt-8">
                 <div class="card-header  text-left bg-transparent">
                   <h3 class="font-weight-bolder text-info text-gradient">Bienvenue</h3>
                   
                 </div>
                 <div class="card-body">
-                  <form role="form" #f="ngForm" (ngSubmit)="f.form.valid && OnSubmit()" >
+                  <form role="form" (ngSubmit)="OnSubmit()" >
                     <label>Mail</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" autocomplete="mail" placeholder="Votre mail" aria-label="Email" aria-describedby="email-addon"  [(ngModel)]="form.mail" #email="ngModel" required>
+                      <input type="email" class="form-control" [(ngModel)]="form.mail" name="mail" required >
                     </div>
                     <label>Mot de passe</label>
                     <div class="mb-3">
-                      <input type="password" class="form-control" autocomplete="mdp" placeholder="Votre mot de passe" aria-label="Password" aria-describedby="password-addon"  [(ngModel)]="form.mdp" #mdp="ngModel" required>
+                      <input type="password" class="form-control" [(ngModel)]="form.mdp" name="mdp" required >
                     </div>
                     
                     <div class="text-center">
@@ -37,9 +48,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              
-            </div>
+            
           </div>
         </div>
       </div>

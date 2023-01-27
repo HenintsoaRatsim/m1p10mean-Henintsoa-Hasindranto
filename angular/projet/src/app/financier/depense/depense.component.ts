@@ -9,7 +9,7 @@ import { FinancierService } from 'src/app/service/financier.service';
 export class DepenseComponent implements OnInit {
 
   form: any = {
-    idtypedepense: null,
+    idtypedepense: '63ce478cd795f36e9b6c5a65',
     montant: null,
     date: null
   }
@@ -20,6 +20,7 @@ export class DepenseComponent implements OnInit {
 
   listeTypeDepense: any;
   listeDepense: any;
+  mess: any;
 
   constructor( private financierService: FinancierService) { }
 
@@ -69,6 +70,7 @@ export class DepenseComponent implements OnInit {
     this.financierService.ajout_type_depense(this.input)
     .subscribe((response) => {
       // console.log(response);
+      this.mess = response.result.message;
       this.getListeTypeDepense();
       this.getListeDepense();
       this.input.intitule=null;
