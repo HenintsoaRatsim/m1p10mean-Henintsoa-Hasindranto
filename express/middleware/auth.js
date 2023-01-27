@@ -37,7 +37,7 @@ module.exports = (req,res,next)=>{
                     res.locals.user =null;
                     // res.cookie("jwt",'',{maxAge:1});
                     sendErreur(res,"Token invalide");
-                    // redirectLogin();
+                    redirectLogin();
                     // return res.status(200).json({message :"token invalide",err})
                 }
                 else{

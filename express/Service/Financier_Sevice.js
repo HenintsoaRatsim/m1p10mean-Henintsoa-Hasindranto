@@ -61,7 +61,7 @@ const ValiderPaiement = async (req, res) => {
                     console.log("Facture inserer");
                     // sendResult(res, fiche);
                     return res.status(200).json({
-                        message:"le paiement est validé";
+                        message:"le paiement est validé"
                     })
                 })
 
