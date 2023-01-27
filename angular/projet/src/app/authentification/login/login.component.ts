@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
     mdp: '123'
   }
 
+  mess: any;
+
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -23,7 +25,8 @@ export class LoginComponent implements OnInit {
     console.log('User form value is: ', this.form);
     this.authService.logInUser(this.form)
     .subscribe((response) => {
-      console.log(response);
+      console.log(response.message);
+      this.mess = response.message;
       if(response.role.intitule=='client'){
         this.router.navigate(['Client/depot_voiture']);
       }else if(response.role.intitule=='atelier'){
@@ -33,6 +36,7 @@ export class LoginComponent implements OnInit {
       }else{
         this.router.navigate(['']);
       }
+      
      
     });
   }

@@ -10,7 +10,15 @@
         <div class="container">
           <div class="row">
             <div class="col-md-8 d-flex flex-column mx-auto">
+              <div *ngIf="mess!=null;then message"></div>
+                  <ng-template #message>
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{mess}}
+                    
+                  </div>
+                  </ng-template>
               <div class="card card-plain mt-8">
+                
                 <div class="card-header  text-left bg-transparent">
                   <h3 class="font-weight-bolder text-info text-gradient">Inscription</h3>
                   

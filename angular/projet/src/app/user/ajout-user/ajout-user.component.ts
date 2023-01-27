@@ -19,6 +19,9 @@ export class AjoutUserComponent implements OnInit {
     mdp: null,
     contact: null
   }
+
+  mess: any;
+
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -29,6 +32,7 @@ export class AjoutUserComponent implements OnInit {
     this.authService.InscrireUser(this.form)
     .subscribe((response) => {
       console.log(response);
+      this.mess = response.message;
       if(response.role.intitule=='client'){
         this.router.navigate(['Client/depot_voiture']);
       }else{
