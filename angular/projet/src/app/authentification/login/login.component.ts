@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     console.log('User form value is: ', this.form);
     this.authService.logInUser(this.form)
     .subscribe((response) => {
-      console.log(response.message);
+      // console.log(response.message);
       this.mess = response.message;
       if(response.role.intitule=='client'){
         this.router.navigate(['Client/depot_voiture']);

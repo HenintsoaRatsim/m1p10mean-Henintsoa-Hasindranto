@@ -88,7 +88,7 @@ const ReceptionnerVoiture = async (req, res) => {
     UpdateEtatFiche(idfiche, 1);
     AjoutFacture(idfiche);
     res.status(200).json({
-        message: "La voiture est receptionnée"
+        message: "La voiture est receptionnée, veuillez regarder dans la liste des voitures récéptionnées."
     });
 }
 /**
@@ -297,8 +297,8 @@ const ValiderSortie = async (req, res) => {
     } else {
         UpdateEtatFiche(idfiche, 4);
         return res.status(200).json({
-            message: "Le bon de sortie est validé.",
-            f
+            success: "Le bon de sortie est validé."
+            
         });
     }
 
