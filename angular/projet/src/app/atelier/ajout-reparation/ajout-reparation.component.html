@@ -7,7 +7,7 @@
                 <div *ngIf="mess!=null;then message"></div>
                 <ng-template #message>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  {{mess.message}}
+                  {{mess}}
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -15,8 +15,8 @@
                 </ng-template>
                 <div *ngIf="success!=null;then succ"></div>
                 <ng-template #succ>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  {{success.success}}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  {{success}}
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>

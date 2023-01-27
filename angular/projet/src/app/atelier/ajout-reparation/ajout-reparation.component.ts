@@ -77,8 +77,8 @@ export class AjoutReparationComponent implements OnInit {
     this.atelierService.ajout_reparation(this.form)
     .subscribe((response) => {
       console.log(response);
-      this.mess = response;
-      this.success = response;
+      this.mess = response.message;
+      this.success = response.success;
       this.form.intitule=null;
       this.form.description=null;
       this.form.prix=null;
@@ -95,7 +95,7 @@ export class AjoutReparationComponent implements OnInit {
     console.log('donnee date: ', this.input);
     this.atelierService.ajout_avancement(this.input)
     .subscribe((response) => {
-      // console.log(response);
+      console.log(response);
       this.getDetailFiche(id);
       
     });    

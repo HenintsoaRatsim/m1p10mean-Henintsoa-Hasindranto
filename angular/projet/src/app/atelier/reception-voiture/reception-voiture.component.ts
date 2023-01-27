@@ -11,6 +11,8 @@ export class ReceptionVoitureComponent implements OnInit {
 
   voitureListe: any;
 
+  mess: any;
+
   constructor(private atelierService: AtelierService, private activated: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -30,7 +32,8 @@ export class ReceptionVoitureComponent implements OnInit {
   receptionner(id: any){
     this.atelierService.receptionner_voiture(id)
     .subscribe(response => {
-      console.log(response);
+      // console.log(response);
+      this.mess = response.message;
       this.getListeVoitureReparer();
     })
     // console.log('huhu :', id);

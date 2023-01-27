@@ -31,7 +31,7 @@ export class AjoutUserComponent implements OnInit {
     console.log('donnee entree: ', this.form);
     this.authService.InscrireUser(this.form)
     .subscribe((response) => {
-      console.log(response);
+      // console.log(response);
       this.mess = response.message;
       if(response.role.intitule=='client'){
         this.router.navigate(['Client/depot_voiture']);
