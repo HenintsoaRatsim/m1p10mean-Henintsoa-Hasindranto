@@ -38,7 +38,7 @@ export class ListeDemandeComponent implements OnInit {
     this.atelierService.valider_bon_de_sortie(id)
     .subscribe(response => {
       this.getListeReparationTerminer();
-      // console.log(response.result);
+      console.log(response.success);
       this.mess = response.result.message;
       this.success = response.success;
       this.etatpayement = response.result.etatpayement;

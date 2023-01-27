@@ -122,7 +122,7 @@ const AjoutReparation = async (req, res) => {
                     console.log(fiche);
                     console.log("id reparation: " + idFiche);
                     return res.status(200).json({
-                        success: "Inseration de la réparation " + req.body.intitule + " est effecutée"
+                        success: "Insertion de la réparation " + req.body.intitule + " est effecutée"
                     })
                 })
             })
