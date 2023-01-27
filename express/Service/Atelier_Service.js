@@ -120,8 +120,10 @@ const AjoutReparation = async (req, res) => {
                     path: "reparations"
                 }).exec().then(function (fiche) {
                     console.log(fiche);
-                    console.log("id reparation: " + idFiche)
-                    sendResult(res, fiche);
+                    console.log("id reparation: " + idFiche);
+                    return res.status(200).json({
+                        message: "Inseration de la réparation " + req.body.intitule + " effecuter"
+                    })
                 })
             })
         })
@@ -287,9 +289,9 @@ const ValiderSortie = async (req, res) => {
     if (fiche.length == 0) {
         return sendErreur(res, "Fiche introuvable")
     } else if (fiche.etatpayement == 0) {
-        let resultat={
+        let resultat = {
             etatpayement,
-            message:"Impossible de valider le bon de sortie car le paiement n'est pas encore validé"
+            message: "Impossible de valider le bon de sortie car le paiement n'est pas encore validé"
         }
         return sendResult(res, resultat)
     } else {
