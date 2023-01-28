@@ -15,7 +15,7 @@ export class DetailsReparationComponent implements OnInit {
   idFiche: any;
   etatfiche: any;
 
-  message: any;
+  mess: any;
 
   constructor(
     private voitureService: VoitureService, 
@@ -53,8 +53,8 @@ export class DetailsReparationComponent implements OnInit {
     this.userService.recuperer_voiture(idfiche)
     .subscribe(
       resultat => {
-        this.message = resultat;
-        // console.log(this.message);
+        this.mess = resultat.message;
+        console.log(resultat.message);
         this.getDetailFiche(idfiche);
       }
     )
