@@ -52,9 +52,9 @@ export class DetailsReparationComponent implements OnInit {
   OnRecuperer(idfiche: any){ 
     this.userService.recuperer_voiture(idfiche)
     .subscribe(
-      resultat => {
-        this.mess = resultat.message;
-        console.log(resultat.message);
+      response => {
+        this.mess = response.message;
+        console.log(response.message);
         this.getDetailFiche(idfiche);
       }
     )
