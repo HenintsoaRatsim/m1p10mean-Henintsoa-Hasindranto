@@ -12,6 +12,9 @@ const {
 const {
     UpdateEtatFiche
 } = require("./Atelier_Service");
+const {
+    AjoutFacture
+} = require("./Facture_Servie");
 
 const Fiche = require("../models/Fiche");
 const SECRET_KEY = "NOTESAPI"; //cle de securite ze tina atao fa tsy votery io NOTES... io
