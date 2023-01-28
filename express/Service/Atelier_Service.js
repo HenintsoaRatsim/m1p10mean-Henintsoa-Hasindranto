@@ -296,10 +296,10 @@ const ValiderSortie = async (req, res) => {
         return sendResult(res, resultat)
     } else {
         UpdateEtatFiche(idfiche, 4);
-        return res.status(200).json({
-            success: "Le bon de sortie est validé."
-            
-        });
+        let resultat = {
+            valide: "Le bon de sortie est validé."
+        }
+        return sendResult(res, resultat);
     }
 
 }
