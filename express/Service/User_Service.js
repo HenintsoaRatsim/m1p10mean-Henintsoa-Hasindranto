@@ -300,7 +300,7 @@ const RecupererVoiture = async (req, res) => {
     UpdateEtatFiche(idfiche, 5);
     AjoutFacture(idfiche);
     res.status(200).json({
-        message: "La voiture est recuperée"
+        message: "La voiture est récupérée"
     });
 }
 
