@@ -251,7 +251,7 @@ async function SetFini(idFiche) {
                 /**
                  * Envoyer email fin reparation
                  */
-                SendMail(Fiche_.user.mail, "Reparation terminé", "Bonjour!! \n la reparation de votre voiture est terminé avec  succès,veuillez payer la facture.")
+                SendMail(Fiche_.user.mail, "Reparation terminée", "Bonjour!! \n La réparation de votre voiture est terminée,\nveuillez payer la facture svp.")
             }
         })
     })
@@ -296,10 +296,10 @@ const ValiderSortie = async (req, res) => {
         return sendResult(res, resultat)
     } else {
         UpdateEtatFiche(idfiche, 4);
-        return res.status(200).json({
-            success: "Le bon de sortie est validé."
-            
-        });
+        let resultat = {
+            valide: "Le bon de sortie est validé."
+        }
+        return sendResult(res, resultat);
     }
 
 }

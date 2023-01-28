@@ -7,25 +7,18 @@ const transporter = nodemailer.createTransport({
     secure: true,
     auth: {
         user: "ratsimhenintsoa@gmail.com",
-        pass: "xlsclgwihipvlcrl"
+        pass: "vverzxojmyjibjil"
     },
     tls: {
         rejectUnauthorized: false
     }
 });
 
-const options = {
-    from: "ratsimhenintsoa@gmail.com",
-    to: "ratsimhenintsoa@gmail.com",
-    subject: "efa vita reparation ilay fiara azafady",
-    text: "alaivo aaaaah"
-}
-
 const SendMail = async function SendMail(AdressEmail, sujet, Message) {
-    let messageAddSignature = Message + " \n--------------------------------------\n Garage mada \n conact :0380312356 \n" +
-        "mail: gara.mada@gara.auto";
+    let messageAddSignature = Message + " \n\n\n--------------------------------------\n GARAGE MADA \n conact :0340000002 \n" +
+        " mail: garage.mada@gg.auto";
     transporter.sendMail({
-        from: "garagemada@gg.auto",
+        from: "garage.mada@gg.auto",
         to: AdressEmail,
         subject: sujet,
         text: messageAddSignature

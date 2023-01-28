@@ -153,7 +153,7 @@ const Inscription = async (req, res) => {
         }).save().then(function (user) {
             console.log(user);
             console.log("Envoyer mail");
-            SendMail(mail, "Inscription garage mada", "Bonjour " + prenom + " " + nom + "\n !!Votre inscription chez garage mada est terminée avec succès")
+            SendMail(mail, "Inscription GARAGE MADA", " Bonjour " + prenom + " " + nom + " !!\n Bienvenue chez GARAGE MADA, \n Votre inscription  est terminée avec succès.")
             const token = jwt.sign({
                 mail: user.mail,
                 id: user._id
