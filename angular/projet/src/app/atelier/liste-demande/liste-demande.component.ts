@@ -37,11 +37,13 @@ export class ListeDemandeComponent implements OnInit {
   ValiderSortie(id: any){
     this.atelierService.valider_bon_de_sortie(id)
     .subscribe(response => {
-      this.getListeReparationTerminer();
-      console.log(response.success);
+      // console.log(response);
       this.mess = response.result.message;
-      this.success = response.success;
+      console.log('message: ',response.result.message);
+      this.success = response.result.valide;
+      console.log('success: ',this.success);
       this.etatpayement = response.result.etatpayement;
+      this.getListeReparationTerminer();
     })
     // console.log('huhu :', id);
   }

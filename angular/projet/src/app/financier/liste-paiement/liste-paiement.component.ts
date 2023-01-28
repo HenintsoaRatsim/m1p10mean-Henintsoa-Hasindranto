@@ -15,6 +15,8 @@ export class ListePaiementComponent implements OnInit {
     date: null
   }
 
+  mess: any;
+
   constructor( private financierService: FinancierService) { }
 
   ngOnInit(): void {
@@ -37,6 +39,7 @@ export class ListePaiementComponent implements OnInit {
     this.financierService.valider_paiement(this.form)
     .subscribe((response) => {
       // console.log(response);
+      this.mess=response.message;
       this.getListeVoiturePaiement();
       
     });    

@@ -97,6 +97,8 @@ export class AjoutReparationComponent implements OnInit {
     .subscribe((response) => {
       console.log(response);
       this.getDetailFiche(id);
+      this.success = null;
+      this.mess = null;
       
     });    
   }
@@ -109,6 +111,8 @@ export class AjoutReparationComponent implements OnInit {
     .subscribe((response) => {
       // console.log(response);
       this.getDetailFiche(id);
+      this.success = null;
+      this.mess = null;
       
     });
     
@@ -122,6 +126,8 @@ export class AjoutReparationComponent implements OnInit {
     .subscribe((response) => {
       // console.log(response);
       this.getDetailFiche(id);
+      this.success = null;
+      this.mess = null;
       
     });    
   }
