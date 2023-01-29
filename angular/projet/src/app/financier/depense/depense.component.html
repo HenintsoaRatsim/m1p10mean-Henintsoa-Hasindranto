@@ -122,7 +122,7 @@
                               <tr *ngFor="let liste of listeDepense">
                                 
                                 <td>{{liste.typedepense.intitule}}</td>
-                                <td>{{liste.datedepense | date: 'à HH:mm, le d MMMM yyyy'}}</td>
+                                <td>{{liste.datedepense | date: 'à HH:mm, le d MMMM yyyy': 'UTC+0'}}</td>
                                 <td>{{liste.montant}}</td>
                               </tr>
                               

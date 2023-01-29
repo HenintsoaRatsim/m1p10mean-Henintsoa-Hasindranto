@@ -39,8 +39,8 @@
                             <td><i class="fa fa-user"></i> {{client.nom}} {{client.prenom}}</td>
                             <td><i class="fa fa-car" ></i> {{detailsVoiture.matricule}}</td>
                             <td>{{list.intitule}}</td>
-                            <td>{{list.datedebut | date: 'à HH:mm, le d MMMM yyyy'}}</td>
-                            <td>{{list.datefin | date: 'à HH:mm, le d MMMM yyyy'}}</td>
+                            <td>{{list.datedebut | date: 'à HH:mm, le d MMMM yyyy': 'UTC+0'}}</td>
+                            <td>{{list.datefin | date: 'à HH:mm, le d MMMM yyyy': 'UTC+0'}}</td>
                            
                             
 

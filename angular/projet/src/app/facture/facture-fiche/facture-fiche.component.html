@@ -31,7 +31,7 @@
                             
                             <td *ngFor="let vam of voiture">{{vam.type}}</td>
                             <td>{{list.intitule}}</td>
-                            <td *ngFor="let detfac of detailsFacture">{{detfac | date: 'à HH:mm, le d MMMM yyyy'}}</td>
+                            <td *ngFor="let detfac of detailsFacture">{{detfac | date: 'à HH:mm, le d MMMM yyyy': 'UTC+0'}}</td>
                             <td>{{list.prix}}</td>
                           </tr>
                           

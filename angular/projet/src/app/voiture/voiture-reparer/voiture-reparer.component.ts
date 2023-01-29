@@ -8,10 +8,12 @@ import { VoitureService } from 'src/app/service/voiture.service';
   templateUrl: './voiture-reparer.component.html',
   styleUrls: ['./voiture-reparer.component.css']
 })
+
 export class VoitureReparerComponent implements OnInit {
 
   voitureListe: any;
   loading = false;
+  daty : any;
 
   constructor(private voitureService: VoitureService, private router: Router) {  }
 
@@ -23,6 +25,14 @@ export class VoitureReparerComponent implements OnInit {
     this.voitureService.get_voiture_a_reparer()
     .subscribe(response => {
       this.voitureListe=response.data;
+      this.daty= new Date(Date.UTC(
+        this.voitureListe.datefiche.getFullYear(),
+        this.voitureListe.datefiche.getMonth(),
+        this.voitureListe.datefiche.getDate(),
+        this.voitureListe.datefiche.getHours(),
+        this.voitureListe.datefiche.getMinutes(),
+        this.voitureListe.datefiche.getSeconds()
+      ));
       // console.log(response.data);
       // console.log(response.data[0].etat);
     })
